@@ -1,0 +1,4694 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "资管双智能体 P0 开发联调接口",
+    "version": "2.4.0",
+    "description": "可运行参考契约；虚构数据、演示身份、内存存储、结构化意图。真实SSO、数据库与模型接入需按适配清单实施。金额统一人民币分，比例统一基点。"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8765",
+      "description": "本地参考服务；GitHub Pages不运行后端"
+    }
+  ],
+  "security": [
+    {
+      "DemoOrRealBearer": []
+    }
+  ],
+  "paths": {
+    "/v1/context": {
+      "get": {
+        "operationId": "getContext",
+        "summary": "当前可信上下文",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Context"
+                },
+                "example": {
+                  "principal_id": "clerk-a",
+                  "tenant_id": "DEMO",
+                  "role": "CLERK",
+                  "projects": [
+                    "项目A"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/resolve": {
+      "post": {
+        "operationId": "resolveEntity",
+        "summary": "授权对象检索/消歧",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolveResponse"
+                },
+                "example": {
+                  "status": "NEEDS_CLARIFICATION",
+                  "candidates": [
+                    {
+                      "id": "HT-A01",
+                      "label": "HT-A01虚构租赁合同"
+                    },
+                    {
+                      "id": "HT-A02",
+                      "label": "HT-A02虚构租赁合同"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveRequest"
+              },
+              "example": {
+                "object_type": "CONTRACT",
+                "keyword": "HT-A0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyses/contract": {
+      "post": {
+        "operationId": "createContractAnalysis",
+        "summary": "单合同事实及风险核查",
+        "tags": [
+          "A1"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractAnalysis"
+                },
+                "example": {
+                  "schema_version": "p0-v1",
+                  "analysis_id": "AN-37f82d79270c4abf",
+                  "request_id": "REQ-f4919cd3613748e3",
+                  "kind": "CONTRACT",
+                  "as_of": "2026-11-08",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "snapshot_id": "SNAP-f80097c5324b4b05",
+                  "captured_at": "2026-11-09T06:17:02.207760+00:00",
+                  "rule_version": "R-C01-C02-v1",
+                  "metric_version": "R1-R6-v1",
+                  "scope": {
+                    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+                    "effective_project_ids": [
+                      "项目A"
+                    ],
+                    "responsibility": "ALL_VISIBLE",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ]
+                  },
+                  "query_context": {
+                    "contract_id": "HT-A01",
+                    "as_of": "2026-11-08"
+                  },
+                  "data": {
+                    "contract": {
+                      "id": "HT-A01",
+                      "number": "HT-A01",
+                      "name": "HT-A01虚构租赁合同",
+                      "project_id": "项目A",
+                      "responsible_id": "clerk-a",
+                      "status": "PERFORMING",
+                      "effective_version": "V1",
+                      "end_date": "2026-12-31",
+                      "timeliness_complete": true,
+                      "guarantee_complete": true
+                    },
+                    "bills": [
+                      {
+                        "id": "DEMO-B-A01-01",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 7000000,
+                        "effective_due_date": "2026-07-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 7000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 7000000,
+                        "allocation_ids": [
+                          "ALLOC-A01-01"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-01",
+                            "bill_id": "DEMO-B-A01-01",
+                            "amount_fen": 7000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-07-30",
+                            "effective_at": "2026-07-30",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-01"
+                      },
+                      {
+                        "id": "DEMO-B-A01-02",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 1000000,
+                        "effective_due_date": "2026-08-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 1000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [
+                          "ALLOC-A01-02"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-02",
+                            "bill_id": "DEMO-B-A01-02",
+                            "amount_fen": 1000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-09-05",
+                            "effective_at": "2026-09-05",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-02"
+                      },
+                      {
+                        "id": "DEMO-B-A01-03",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 2000000,
+                        "effective_due_date": "2026-10-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 0,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000,
+                        "overdue_days": 8,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [],
+                        "allocations": [],
+                        "source_ref": "DEMO-B-A01-03"
+                      }
+                    ],
+                    "financial": {
+                      "receivable_fen": 10000000,
+                      "cash_allocated_fen": 8000000,
+                      "noncash_settled_fen": 0,
+                      "unsettled_fen": 2000000,
+                      "overdue_fen": 2000000
+                    },
+                    "pending_receipts": [
+                      {
+                        "id": "DEMO-R-A01-5000",
+                        "contract_id": "HT-A01",
+                        "amount_fen": 500000,
+                        "unallocated_fen": 500000,
+                        "actual_paid_at": "2026-11-07",
+                        "verified_contract_ref": true
+                      }
+                    ],
+                    "rules": [
+                      {
+                        "rule_id": "R-C01",
+                        "status": "MATCHED",
+                        "severity": "MEDIUM",
+                        "observed_fen": 2000000,
+                        "evidence_refs": [
+                          "DEMO-B-A01-03"
+                        ]
+                      },
+                      {
+                        "rule_id": "R-C02",
+                        "status": "PENDING_REVIEW",
+                        "severity": "INFO",
+                        "observed_fen": 500000,
+                        "evidence_refs": [
+                          "DEMO-R-A01-5000"
+                        ]
+                      }
+                    ],
+                    "allowed_actions": [
+                      "OPEN_SOURCE",
+                      "RECHECK",
+                      "SAVE_DRAFT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractRequest"
+              },
+              "example": {
+                "contract_id": "HT-A01",
+                "as_of": "2026-11-08"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyses/enterprise": {
+      "post": {
+        "operationId": "createEnterpriseAnalysis",
+        "summary": "企业整体指标及六维",
+        "tags": [
+          "A2"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnterpriseAnalysis"
+                },
+                "example": {
+                  "schema_version": "p0-v1",
+                  "analysis_id": "AN-269e47f00879441d",
+                  "request_id": "REQ-8caf103b65364f82",
+                  "kind": "ENTERPRISE",
+                  "as_of": "2026-11-08",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "snapshot_id": "SNAP-cddd88127bd74afc",
+                  "captured_at": "2026-11-09T06:17:02.209181+00:00",
+                  "rule_version": "R-C01-C02-v1",
+                  "metric_version": "R1-R6-v1",
+                  "scope": {
+                    "scope_fingerprint": "70851815bebc2b340739df7d",
+                    "effective_project_ids": [
+                      "项目A",
+                      "项目B"
+                    ],
+                    "responsibility": "ALL_VISIBLE",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ]
+                  },
+                  "query_context": {
+                    "enterprise_ids": [
+                      "A"
+                    ],
+                    "as_of": "2026-11-08",
+                    "responsibility": "ALL_VISIBLE",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ],
+                    "page": 1,
+                    "page_size": 20
+                  },
+                  "data": {
+                    "financial": {
+                      "receivable_fen": 20000000,
+                      "cash_allocated_fen": 17000000,
+                      "noncash_settled_fen": 0,
+                      "unsettled_fen": 3000000,
+                      "overdue_fen": 3000000
+                    },
+                    "contract_count": 3,
+                    "enterprises": [
+                      {
+                        "enterprise_id": "A",
+                        "name": "远景科技（虚构）",
+                        "contract_count": 3,
+                        "dimensions": [
+                          {
+                            "id": "R1",
+                            "status": "COMPLETE",
+                            "numerator": 17000000,
+                            "denominator": 20000000,
+                            "num_unit": "CNY_FEN",
+                            "den_unit": "CNY_FEN",
+                            "value_bps": 8500,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "DEMO-B-A01-01",
+                              "DEMO-B-A01-02",
+                              "DEMO-B-A01-03",
+                              "DEMO-B-A02-01",
+                              "DEMO-B-A03-01"
+                            ]
+                          },
+                          {
+                            "id": "R2",
+                            "status": "COMPLETE",
+                            "numerator": 15500000,
+                            "denominator": 20000000,
+                            "num_unit": "CNY_FEN",
+                            "den_unit": "CNY_FEN",
+                            "value_bps": 7750,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "DEMO-B-A01-01",
+                              "DEMO-B-A01-02",
+                              "DEMO-B-A01-03",
+                              "DEMO-B-A02-01",
+                              "DEMO-B-A03-01"
+                            ]
+                          },
+                          {
+                            "id": "R3",
+                            "status": "COMPLETE",
+                            "numerator": 4000000,
+                            "denominator": 6000000,
+                            "num_unit": "CNY_FEN",
+                            "den_unit": "CNY_FEN",
+                            "value_bps": 6667,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "G-A01",
+                              "G-A02",
+                              "G-A03"
+                            ]
+                          },
+                          {
+                            "id": "R4",
+                            "status": "COMPLETE",
+                            "numerator": 8,
+                            "denominator": 10,
+                            "num_unit": "ITEM",
+                            "den_unit": "ITEM",
+                            "value_bps": 8000,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "obligations-A01-01",
+                              "obligations-A01-02",
+                              "obligations-A01-03",
+                              "obligations-A01-04",
+                              "obligations-A01-05",
+                              "obligations-A02-01",
+                              "obligations-A02-02",
+                              "obligations-A02-03",
+                              "obligations-A03-01",
+                              "obligations-A03-02"
+                            ]
+                          },
+                          {
+                            "id": "R5",
+                            "status": "COMPLETE",
+                            "numerator": 1,
+                            "denominator": 3,
+                            "num_unit": "ITEM",
+                            "den_unit": "ITEM",
+                            "value_bps": 3333,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "preparation_items-A01-01",
+                              "preparation_items-A01-02",
+                              "preparation_items-A03-01"
+                            ]
+                          },
+                          {
+                            "id": "R6",
+                            "status": "COMPLETE",
+                            "numerator": 20,
+                            "denominator": 25,
+                            "num_unit": "ITEM",
+                            "den_unit": "ITEM",
+                            "value_bps": 8000,
+                            "value_unit": "BASIS_POINT",
+                            "known_contract_count": 3,
+                            "eligible_contract_count": 3,
+                            "source_refs": [
+                              "evidence_items-A01-01",
+                              "evidence_items-A01-02",
+                              "evidence_items-A01-03",
+                              "evidence_items-A01-04",
+                              "evidence_items-A01-05",
+                              "evidence_items-A01-06",
+                              "evidence_items-A01-07",
+                              "evidence_items-A01-08",
+                              "evidence_items-A01-09",
+                              "evidence_items-A01-10",
+                              "evidence_items-A02-01",
+                              "evidence_items-A02-02",
+                              "evidence_items-A02-03",
+                              "evidence_items-A02-04",
+                              "evidence_items-A02-05",
+                              "evidence_items-A02-06",
+                              "evidence_items-A02-07",
+                              "evidence_items-A02-08",
+                              "evidence_items-A02-09",
+                              "evidence_items-A02-10",
+                              "evidence_items-A03-01",
+                              "evidence_items-A03-02",
+                              "evidence_items-A03-03",
+                              "evidence_items-A03-04",
+                              "evidence_items-A03-05"
+                            ]
+                          }
+                        ],
+                        "financial": {
+                          "receivable_fen": 20000000,
+                          "cash_allocated_fen": 17000000,
+                          "noncash_settled_fen": 0,
+                          "unsettled_fen": 3000000,
+                          "overdue_fen": 3000000
+                        }
+                      }
+                    ],
+                    "enterprise_totals_nonadditive": false,
+                    "contracts": [
+                      {
+                        "contract_id": "HT-A01",
+                        "contract_number": "HT-A01",
+                        "project_id": "项目A",
+                        "responsible_id": "clerk-a",
+                        "receivable_fen": 10000000,
+                        "cash_allocated_fen": 8000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000,
+                        "rules": [
+                          {
+                            "rule_id": "R-C01",
+                            "status": "MATCHED",
+                            "severity": "MEDIUM",
+                            "observed_fen": 2000000,
+                            "evidence_refs": [
+                              "DEMO-B-A01-03"
+                            ]
+                          },
+                          {
+                            "rule_id": "R-C02",
+                            "status": "PENDING_REVIEW",
+                            "severity": "INFO",
+                            "observed_fen": 500000,
+                            "evidence_refs": [
+                              "DEMO-R-A01-5000"
+                            ]
+                          }
+                        ],
+                        "handoff": {
+                          "agent_id": "A1",
+                          "contract_id": "HT-A01",
+                          "as_of": "2026-11-08"
+                        }
+                      },
+                      {
+                        "contract_id": "HT-A02",
+                        "contract_number": "HT-A02",
+                        "project_id": "项目A",
+                        "responsible_id": "clerk-b",
+                        "receivable_fen": 8000000,
+                        "cash_allocated_fen": 8000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "rules": [
+                          {
+                            "rule_id": "R-C01",
+                            "status": "NOT_MATCHED",
+                            "severity": "INFO",
+                            "observed_fen": 0,
+                            "evidence_refs": []
+                          },
+                          {
+                            "rule_id": "R-C02",
+                            "status": "NOT_MATCHED",
+                            "severity": "INFO",
+                            "observed_fen": 0,
+                            "evidence_refs": []
+                          }
+                        ],
+                        "handoff": {
+                          "agent_id": "A1",
+                          "contract_id": "HT-A02",
+                          "as_of": "2026-11-08"
+                        }
+                      },
+                      {
+                        "contract_id": "HT-A03",
+                        "contract_number": "HT-A03",
+                        "project_id": "项目B",
+                        "responsible_id": "clerk-a",
+                        "receivable_fen": 2000000,
+                        "cash_allocated_fen": 1000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 1000000,
+                        "overdue_fen": 1000000,
+                        "rules": [
+                          {
+                            "rule_id": "R-C01",
+                            "status": "MATCHED",
+                            "severity": "MEDIUM",
+                            "observed_fen": 1000000,
+                            "evidence_refs": [
+                              "DEMO-B-A03-01"
+                            ]
+                          },
+                          {
+                            "rule_id": "R-C02",
+                            "status": "NOT_MATCHED",
+                            "severity": "INFO",
+                            "observed_fen": 0,
+                            "evidence_refs": []
+                          }
+                        ],
+                        "handoff": {
+                          "agent_id": "A1",
+                          "contract_id": "HT-A03",
+                          "as_of": "2026-11-08"
+                        }
+                      }
+                    ],
+                    "page": {
+                      "number": 1,
+                      "size": 20,
+                      "total": 3,
+                      "has_more": false,
+                      "statistics_scope": "ALL_MATCHED"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnterpriseRequest"
+              },
+              "example": {
+                "enterprise_ids": [
+                  "A"
+                ],
+                "as_of": "2026-11-08",
+                "responsibility": "ALL_VISIBLE",
+                "role_scope": [
+                  "SIGNATORY"
+                ],
+                "page": 1,
+                "page_size": 20
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyses/collection": {
+      "post": {
+        "operationId": "createCollectionAnalysis",
+        "summary": "当前范围风险/欠费清单",
+        "tags": [
+          "A2"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionAnalysis"
+                },
+                "example": {
+                  "schema_version": "p0-v1",
+                  "analysis_id": "AN-8d735ed26d374f0b",
+                  "request_id": "REQ-ab4231ab94224e7a",
+                  "kind": "COLLECTION",
+                  "as_of": "2026-11-08",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "snapshot_id": "SNAP-4b08d0abed074808",
+                  "captured_at": "2026-11-09T06:17:02.209974+00:00",
+                  "rule_version": "R-C01-C02-v1",
+                  "metric_version": "R1-R6-v1",
+                  "scope": {
+                    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+                    "effective_project_ids": [
+                      "项目A"
+                    ],
+                    "responsibility": "SELF",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ]
+                  },
+                  "query_context": {
+                    "as_of": "2026-11-08",
+                    "list_type": "UNSETTLED",
+                    "responsibility": "SELF"
+                  },
+                  "data": {
+                    "contracts": [
+                      {
+                        "contract_id": "HT-A01",
+                        "contract_number": "HT-A01",
+                        "project_id": "项目A",
+                        "responsible_id": "clerk-a",
+                        "receivable_fen": 10000000,
+                        "cash_allocated_fen": 8000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000,
+                        "rules": [
+                          {
+                            "rule_id": "R-C01",
+                            "status": "MATCHED",
+                            "severity": "MEDIUM",
+                            "observed_fen": 2000000,
+                            "evidence_refs": [
+                              "DEMO-B-A01-03"
+                            ]
+                          },
+                          {
+                            "rule_id": "R-C02",
+                            "status": "PENDING_REVIEW",
+                            "severity": "INFO",
+                            "observed_fen": 500000,
+                            "evidence_refs": [
+                              "DEMO-R-A01-5000"
+                            ]
+                          }
+                        ],
+                        "handoff": {
+                          "agent_id": "A1",
+                          "contract_id": "HT-A01",
+                          "as_of": "2026-11-08"
+                        }
+                      }
+                    ],
+                    "financial": {
+                      "receivable_fen": 10000000,
+                      "cash_allocated_fen": 8000000,
+                      "noncash_settled_fen": 0,
+                      "unsettled_fen": 2000000,
+                      "overdue_fen": 2000000
+                    },
+                    "contract_count": 1,
+                    "page": {
+                      "number": 1,
+                      "size": 20,
+                      "total": 1,
+                      "has_more": false,
+                      "statistics_scope": "ALL_MATCHED"
+                    },
+                    "enabled_rules": [
+                      "R-C01",
+                      "R-C02"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectionRequest"
+              },
+              "example": {
+                "as_of": "2026-11-08",
+                "list_type": "UNSETTLED",
+                "responsibility": "SELF"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyses/{analysis_id}": {
+      "get": {
+        "operationId": "getAnalysis",
+        "summary": "读取已有分析并重新鉴权",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Analysis"
+                },
+                "example": {
+                  "schema_version": "p0-v1",
+                  "analysis_id": "AN-37f82d79270c4abf",
+                  "request_id": "REQ-f4919cd3613748e3",
+                  "kind": "CONTRACT",
+                  "as_of": "2026-11-08",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "snapshot_id": "SNAP-f80097c5324b4b05",
+                  "captured_at": "2026-11-09T06:17:02.207760+00:00",
+                  "rule_version": "R-C01-C02-v1",
+                  "metric_version": "R1-R6-v1",
+                  "scope": {
+                    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+                    "effective_project_ids": [
+                      "项目A"
+                    ],
+                    "responsibility": "ALL_VISIBLE",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ]
+                  },
+                  "query_context": {
+                    "contract_id": "HT-A01",
+                    "as_of": "2026-11-08"
+                  },
+                  "data": {
+                    "contract": {
+                      "id": "HT-A01",
+                      "number": "HT-A01",
+                      "name": "HT-A01虚构租赁合同",
+                      "project_id": "项目A",
+                      "responsible_id": "clerk-a",
+                      "status": "PERFORMING",
+                      "effective_version": "V1",
+                      "end_date": "2026-12-31",
+                      "timeliness_complete": true,
+                      "guarantee_complete": true
+                    },
+                    "bills": [
+                      {
+                        "id": "DEMO-B-A01-01",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 7000000,
+                        "effective_due_date": "2026-07-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 7000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 7000000,
+                        "allocation_ids": [
+                          "ALLOC-A01-01"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-01",
+                            "bill_id": "DEMO-B-A01-01",
+                            "amount_fen": 7000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-07-30",
+                            "effective_at": "2026-07-30",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-01"
+                      },
+                      {
+                        "id": "DEMO-B-A01-02",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 1000000,
+                        "effective_due_date": "2026-08-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 1000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [
+                          "ALLOC-A01-02"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-02",
+                            "bill_id": "DEMO-B-A01-02",
+                            "amount_fen": 1000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-09-05",
+                            "effective_at": "2026-09-05",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-02"
+                      },
+                      {
+                        "id": "DEMO-B-A01-03",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 2000000,
+                        "effective_due_date": "2026-10-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 0,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000,
+                        "overdue_days": 8,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [],
+                        "allocations": [],
+                        "source_ref": "DEMO-B-A01-03"
+                      }
+                    ],
+                    "financial": {
+                      "receivable_fen": 10000000,
+                      "cash_allocated_fen": 8000000,
+                      "noncash_settled_fen": 0,
+                      "unsettled_fen": 2000000,
+                      "overdue_fen": 2000000
+                    },
+                    "pending_receipts": [
+                      {
+                        "id": "DEMO-R-A01-5000",
+                        "contract_id": "HT-A01",
+                        "amount_fen": 500000,
+                        "unallocated_fen": 500000,
+                        "actual_paid_at": "2026-11-07",
+                        "verified_contract_ref": true
+                      }
+                    ],
+                    "rules": [
+                      {
+                        "rule_id": "R-C01",
+                        "status": "MATCHED",
+                        "severity": "MEDIUM",
+                        "observed_fen": 2000000,
+                        "evidence_refs": [
+                          "DEMO-B-A01-03"
+                        ]
+                      },
+                      {
+                        "rule_id": "R-C02",
+                        "status": "PENDING_REVIEW",
+                        "severity": "INFO",
+                        "observed_fen": 500000,
+                        "evidence_refs": [
+                          "DEMO-R-A01-5000"
+                        ]
+                      }
+                    ],
+                    "allowed_actions": [
+                      "OPEN_SOURCE",
+                      "RECHECK",
+                      "SAVE_DRAFT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/analyses/{analysis_id}/details": {
+      "get": {
+        "operationId": "getAnalysisDetails",
+        "summary": "同分析维度穿透",
+        "tags": [
+          "A2"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Details"
+                },
+                "example": {
+                  "analysis_id": "AN-269e47f00879441d",
+                  "dimension_id": "R1",
+                  "snapshot_id": "SNAP-cddd88127bd74afc",
+                  "data": {
+                    "rows": [
+                      {
+                        "contract_id": "HT-A01",
+                        "id": "R1",
+                        "status": "COMPLETE",
+                        "numerator": 8000000,
+                        "denominator": 10000000,
+                        "num_unit": "CNY_FEN",
+                        "den_unit": "CNY_FEN",
+                        "value_bps": 8000,
+                        "value_unit": "BASIS_POINT",
+                        "known_contract_count": 1,
+                        "eligible_contract_count": 1,
+                        "source_refs": [
+                          "DEMO-B-A01-01",
+                          "DEMO-B-A01-02",
+                          "DEMO-B-A01-03"
+                        ],
+                        "evidence": [
+                          {
+                            "source_id": "DEMO-B-A01-01",
+                            "source_type": "BILL"
+                          },
+                          {
+                            "source_id": "DEMO-B-A01-02",
+                            "source_type": "BILL"
+                          },
+                          {
+                            "source_id": "DEMO-B-A01-03",
+                            "source_type": "BILL"
+                          }
+                        ],
+                        "handoff": {
+                          "agent_id": "A1",
+                          "contract_id": "HT-A01",
+                          "as_of": "2026-11-08"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dimension_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "R1",
+                "R2",
+                "R3",
+                "R4",
+                "R5",
+                "R6"
+              ]
+            }
+          },
+          {
+            "name": "contract_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/analyses/{analysis_id}/recheck": {
+      "post": {
+        "operationId": "recheckAnalysis",
+        "summary": "重新读取事实生成新分析",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecheckAnalysis"
+                },
+                "example": {
+                  "schema_version": "p0-v1",
+                  "analysis_id": "AN-bc3a32f93a1f4f43",
+                  "request_id": "REQ-3dba5ae5363d4630",
+                  "kind": "CONTRACT",
+                  "as_of": "2026-11-08",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "snapshot_id": "SNAP-6f4dc7a2edd04481",
+                  "captured_at": "2026-11-09T06:38:39.168723+00:00",
+                  "rule_version": "R-C01-C02-v1",
+                  "metric_version": "R1-R6-v1",
+                  "scope": {
+                    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+                    "effective_project_ids": [
+                      "项目A"
+                    ],
+                    "responsibility": "ALL_VISIBLE",
+                    "role_scope": [
+                      "SIGNATORY"
+                    ]
+                  },
+                  "query_context": {
+                    "contract_id": "HT-A01",
+                    "as_of": "2026-11-08"
+                  },
+                  "data": {
+                    "contract": {
+                      "id": "HT-A01",
+                      "number": "HT-A01",
+                      "name": "HT-A01虚构租赁合同",
+                      "project_id": "项目A",
+                      "responsible_id": "clerk-a",
+                      "status": "PERFORMING",
+                      "effective_version": "V1",
+                      "end_date": "2026-12-31",
+                      "timeliness_complete": true,
+                      "guarantee_complete": true
+                    },
+                    "bills": [
+                      {
+                        "id": "DEMO-B-A01-01",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 7000000,
+                        "effective_due_date": "2026-07-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 7000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 7000000,
+                        "allocation_ids": [
+                          "ALLOC-A01-01"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-01",
+                            "bill_id": "DEMO-B-A01-01",
+                            "amount_fen": 7000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-07-30",
+                            "effective_at": "2026-07-30",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-01"
+                      },
+                      {
+                        "id": "DEMO-B-A01-02",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 1000000,
+                        "effective_due_date": "2026-08-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 1000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 0,
+                        "overdue_fen": 0,
+                        "overdue_days": 0,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [
+                          "ALLOC-A01-02"
+                        ],
+                        "allocations": [
+                          {
+                            "id": "ALLOC-A01-02",
+                            "bill_id": "DEMO-B-A01-02",
+                            "amount_fen": 1000000,
+                            "kind": "CASH",
+                            "actual_paid_at": "2026-09-05",
+                            "effective_at": "2026-09-05",
+                            "status": "POSTED",
+                            "reverse_of": null
+                          }
+                        ],
+                        "source_ref": "DEMO-B-A01-02"
+                      },
+                      {
+                        "id": "DEMO-B-A01-03",
+                        "contract_id": "HT-A01",
+                        "fee_code": "RENT",
+                        "period_from": "2026-01-01",
+                        "period_to": "2026-10-31",
+                        "receivable_fen": 2000000,
+                        "effective_due_date": "2026-10-31",
+                        "effective_at": "2026-01-01",
+                        "status": "EFFECTIVE",
+                        "parent_id": null,
+                        "is_leaf": true,
+                        "cash_allocated_fen": 0,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000,
+                        "overdue_days": 8,
+                        "timely_paid_fen": 0,
+                        "allocation_ids": [],
+                        "allocations": [],
+                        "source_ref": "DEMO-B-A01-03"
+                      }
+                    ],
+                    "financial": {
+                      "receivable_fen": 10000000,
+                      "cash_allocated_fen": 8000000,
+                      "noncash_settled_fen": 0,
+                      "unsettled_fen": 2000000,
+                      "overdue_fen": 2000000
+                    },
+                    "pending_receipts": [
+                      {
+                        "id": "DEMO-R-A01-5000",
+                        "contract_id": "HT-A01",
+                        "amount_fen": 500000,
+                        "unallocated_fen": 500000,
+                        "actual_paid_at": "2026-11-07",
+                        "verified_contract_ref": true
+                      }
+                    ],
+                    "rules": [
+                      {
+                        "rule_id": "R-C01",
+                        "status": "MATCHED",
+                        "severity": "MEDIUM",
+                        "observed_fen": 2000000,
+                        "evidence_refs": [
+                          "DEMO-B-A01-03"
+                        ]
+                      },
+                      {
+                        "rule_id": "R-C02",
+                        "status": "PENDING_REVIEW",
+                        "severity": "INFO",
+                        "observed_fen": 500000,
+                        "evidence_refs": [
+                          "DEMO-R-A01-5000"
+                        ]
+                      }
+                    ],
+                    "allowed_actions": [
+                      "OPEN_SOURCE",
+                      "RECHECK",
+                      "SAVE_DRAFT"
+                    ]
+                  },
+                  "previous_analysis_id": "AN-0f160477cff547da",
+                  "changes": {
+                    "previous_source_revision": "4f3c16beb9e19d415aca38d9",
+                    "current_source_revision": "4f3c16beb9e19d415aca38d9",
+                    "source_changed": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmptyRequest"
+              },
+              "example": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/review-drafts": {
+      "post": {
+        "operationId": "createReviewDraft",
+        "summary": "生成单合同核查草稿",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                },
+                "example": {
+                  "draft_id": "DRAFT-bf2dcb5e9ee54cb6",
+                  "analysis_id": "AN-37f82d79270c4abf",
+                  "contract_id": "HT-A01",
+                  "action_type": "PAYMENT_REVIEW",
+                  "note": "核实5000元到账待分配",
+                  "state": "DRAFT",
+                  "source_revision": "4f3c16beb9e19d415aca38d9",
+                  "created_at": "2026-11-09T06:17:02.212025+00:00",
+                  "expires_at": "2026-11-09T06:47:02.212027+00:00",
+                  "principal_id": "clerk-a"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftRequest"
+              },
+              "example": {
+                "analysis_id": "AN-37f82d79270c4abf",
+                "action_type": "PAYMENT_REVIEW",
+                "note": "核实5000元到账待分配"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/review-drafts/{draft_id}/confirm": {
+      "post": {
+        "operationId": "confirmReviewDraft",
+        "summary": "人工确认登记核查事项",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Confirmation"
+                },
+                "example": {
+                  "draft_id": "DRAFT-bf2dcb5e9ee54cb6",
+                  "state": "SUBMITTED",
+                  "work_item_id": "MOCK-WORK-3e8c9d53eba544fc",
+                  "business_risk_state": "OPEN",
+                  "financial_write_performed": false,
+                  "simulation": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmRequest"
+              },
+              "example": {
+                "expected_revision": "4f3c16beb9e19d415aca38d9"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "draft_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/agent-runs": {
+      "post": {
+        "operationId": "runStructuredAgent",
+        "summary": "执行结构化意图工作流（无LLM）",
+        "tags": [
+          "Shared"
+        ],
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRunResponse"
+                },
+                "example": {
+                  "agent_id": "A1",
+                  "execution_mode": "STRUCTURED_INTENT_REFERENCE",
+                  "llm_called": false,
+                  "trace": [
+                    {
+                      "node": "CONTEXT",
+                      "status": "SUCCEEDED",
+                      "analysis_id": "AN-136c6960c90d48ff"
+                    },
+                    {
+                      "node": "RESOLVE_SELECTED_CONTRACT",
+                      "status": "SUCCEEDED",
+                      "analysis_id": "AN-136c6960c90d48ff"
+                    },
+                    {
+                      "node": "FACTS",
+                      "status": "SUCCEEDED",
+                      "analysis_id": "AN-136c6960c90d48ff"
+                    },
+                    {
+                      "node": "RULES",
+                      "status": "SUCCEEDED",
+                      "analysis_id": "AN-136c6960c90d48ff"
+                    },
+                    {
+                      "node": "TEMPLATE_RENDER",
+                      "status": "SUCCEEDED",
+                      "analysis_id": "AN-136c6960c90d48ff"
+                    }
+                  ],
+                  "result": {
+                    "schema_version": "p0-v1",
+                    "analysis_id": "AN-136c6960c90d48ff",
+                    "request_id": "REQ-0f84c39237554577",
+                    "kind": "CONTRACT",
+                    "as_of": "2026-11-08",
+                    "source_revision": "4f3c16beb9e19d415aca38d9",
+                    "snapshot_id": "SNAP-03ea1b63b70f4cab",
+                    "captured_at": "2026-11-09T06:17:02.212590+00:00",
+                    "rule_version": "R-C01-C02-v1",
+                    "metric_version": "R1-R6-v1",
+                    "scope": {
+                      "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+                      "effective_project_ids": [
+                        "项目A"
+                      ],
+                      "responsibility": "ALL_VISIBLE",
+                      "role_scope": [
+                        "SIGNATORY"
+                      ]
+                    },
+                    "query_context": {
+                      "contract_id": "HT-A01",
+                      "as_of": "2026-11-08"
+                    },
+                    "data": {
+                      "contract": {
+                        "id": "HT-A01",
+                        "number": "HT-A01",
+                        "name": "HT-A01虚构租赁合同",
+                        "project_id": "项目A",
+                        "responsible_id": "clerk-a",
+                        "status": "PERFORMING",
+                        "effective_version": "V1",
+                        "end_date": "2026-12-31",
+                        "timeliness_complete": true,
+                        "guarantee_complete": true
+                      },
+                      "bills": [
+                        {
+                          "id": "DEMO-B-A01-01",
+                          "contract_id": "HT-A01",
+                          "fee_code": "RENT",
+                          "period_from": "2026-01-01",
+                          "period_to": "2026-10-31",
+                          "receivable_fen": 7000000,
+                          "effective_due_date": "2026-07-31",
+                          "effective_at": "2026-01-01",
+                          "status": "EFFECTIVE",
+                          "parent_id": null,
+                          "is_leaf": true,
+                          "cash_allocated_fen": 7000000,
+                          "noncash_settled_fen": 0,
+                          "unsettled_fen": 0,
+                          "overdue_fen": 0,
+                          "overdue_days": 0,
+                          "timely_paid_fen": 7000000,
+                          "allocation_ids": [
+                            "ALLOC-A01-01"
+                          ],
+                          "allocations": [
+                            {
+                              "id": "ALLOC-A01-01",
+                              "bill_id": "DEMO-B-A01-01",
+                              "amount_fen": 7000000,
+                              "kind": "CASH",
+                              "actual_paid_at": "2026-07-30",
+                              "effective_at": "2026-07-30",
+                              "status": "POSTED",
+                              "reverse_of": null
+                            }
+                          ],
+                          "source_ref": "DEMO-B-A01-01"
+                        },
+                        {
+                          "id": "DEMO-B-A01-02",
+                          "contract_id": "HT-A01",
+                          "fee_code": "RENT",
+                          "period_from": "2026-01-01",
+                          "period_to": "2026-10-31",
+                          "receivable_fen": 1000000,
+                          "effective_due_date": "2026-08-31",
+                          "effective_at": "2026-01-01",
+                          "status": "EFFECTIVE",
+                          "parent_id": null,
+                          "is_leaf": true,
+                          "cash_allocated_fen": 1000000,
+                          "noncash_settled_fen": 0,
+                          "unsettled_fen": 0,
+                          "overdue_fen": 0,
+                          "overdue_days": 0,
+                          "timely_paid_fen": 0,
+                          "allocation_ids": [
+                            "ALLOC-A01-02"
+                          ],
+                          "allocations": [
+                            {
+                              "id": "ALLOC-A01-02",
+                              "bill_id": "DEMO-B-A01-02",
+                              "amount_fen": 1000000,
+                              "kind": "CASH",
+                              "actual_paid_at": "2026-09-05",
+                              "effective_at": "2026-09-05",
+                              "status": "POSTED",
+                              "reverse_of": null
+                            }
+                          ],
+                          "source_ref": "DEMO-B-A01-02"
+                        },
+                        {
+                          "id": "DEMO-B-A01-03",
+                          "contract_id": "HT-A01",
+                          "fee_code": "RENT",
+                          "period_from": "2026-01-01",
+                          "period_to": "2026-10-31",
+                          "receivable_fen": 2000000,
+                          "effective_due_date": "2026-10-31",
+                          "effective_at": "2026-01-01",
+                          "status": "EFFECTIVE",
+                          "parent_id": null,
+                          "is_leaf": true,
+                          "cash_allocated_fen": 0,
+                          "noncash_settled_fen": 0,
+                          "unsettled_fen": 2000000,
+                          "overdue_fen": 2000000,
+                          "overdue_days": 8,
+                          "timely_paid_fen": 0,
+                          "allocation_ids": [],
+                          "allocations": [],
+                          "source_ref": "DEMO-B-A01-03"
+                        }
+                      ],
+                      "financial": {
+                        "receivable_fen": 10000000,
+                        "cash_allocated_fen": 8000000,
+                        "noncash_settled_fen": 0,
+                        "unsettled_fen": 2000000,
+                        "overdue_fen": 2000000
+                      },
+                      "pending_receipts": [
+                        {
+                          "id": "DEMO-R-A01-5000",
+                          "contract_id": "HT-A01",
+                          "amount_fen": 500000,
+                          "unallocated_fen": 500000,
+                          "actual_paid_at": "2026-11-07",
+                          "verified_contract_ref": true
+                        }
+                      ],
+                      "rules": [
+                        {
+                          "rule_id": "R-C01",
+                          "status": "MATCHED",
+                          "severity": "MEDIUM",
+                          "observed_fen": 2000000,
+                          "evidence_refs": [
+                            "DEMO-B-A01-03"
+                          ]
+                        },
+                        {
+                          "rule_id": "R-C02",
+                          "status": "PENDING_REVIEW",
+                          "severity": "INFO",
+                          "observed_fen": 500000,
+                          "evidence_refs": [
+                            "DEMO-R-A01-5000"
+                          ]
+                        }
+                      ],
+                      "allowed_actions": [
+                        "OPEN_SOURCE",
+                        "RECHECK",
+                        "SAVE_DRAFT"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON不合法",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "登录失效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "动作无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "对象不可访问/路由不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "快照/权限/草稿/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "源数据不一致",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentRunRequest"
+              },
+              "example": {
+                "intent": {
+                  "object_level": "CONTRACT",
+                  "task": "RISK"
+                },
+                "query": {
+                  "contract_id": "HT-A01",
+                  "as_of": "2026-11-08"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "DemoOrRealBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "参考服务使用公开演示值demo-manager/demo-clerk-a/demo-finance；生产替换为资管SSO委托会话，不能接受这些演示值。"
+      }
+    },
+    "schemas": {
+      "ContractRequest": {
+        "type": "object",
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "contract_id",
+          "as_of"
+        ],
+        "additionalProperties": false
+      },
+      "Filters": {
+        "type": "object",
+        "properties": {
+          "project_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fee_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [],
+        "additionalProperties": false,
+        "description": "筛选与可信授权范围求交；空数组表示无匹配，不能当全部。"
+      },
+      "EnterpriseRequest": {
+        "type": "object",
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "enterprise_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100
+          },
+          "filters": {
+            "$ref": "#/components/schemas/Filters"
+          },
+          "responsibility": {
+            "type": "string",
+            "enum": [
+              "SELF",
+              "ALL_VISIBLE"
+            ]
+          },
+          "role_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "SIGNATORY",
+                "JOINT_SIGNATORY",
+                "PAYER",
+                "USER",
+                "GUARANTOR"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 100
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000000,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "required": [
+          "as_of"
+        ],
+        "additionalProperties": false,
+        "description": "首期固定累计有效账单集合；仅as_of和允许筛选。账期区间暂不支持，传period返回422。"
+      },
+      "CollectionRequest": {
+        "type": "object",
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "enterprise_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100
+          },
+          "filters": {
+            "$ref": "#/components/schemas/Filters"
+          },
+          "responsibility": {
+            "type": "string",
+            "enum": [
+              "SELF",
+              "ALL_VISIBLE"
+            ]
+          },
+          "role_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "SIGNATORY",
+                "JOINT_SIGNATORY",
+                "PAYER",
+                "USER",
+                "GUARANTOR"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 100
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000000,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "list_type": {
+            "type": "string",
+            "enum": [
+              "RISK",
+              "UNSETTLED"
+            ]
+          }
+        },
+        "required": [
+          "as_of",
+          "list_type"
+        ],
+        "additionalProperties": false
+      },
+      "ResolveRequest": {
+        "type": "object",
+        "properties": {
+          "object_type": {
+            "type": "string",
+            "enum": [
+              "CONTRACT",
+              "ENTERPRISE"
+            ]
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "object_type",
+          "keyword"
+        ],
+        "additionalProperties": false
+      },
+      "DraftRequest": {
+        "type": "object",
+        "properties": {
+          "analysis_id": {
+            "type": "string"
+          },
+          "action_type": {
+            "type": "string",
+            "enum": [
+              "PAYMENT_REVIEW"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "analysis_id",
+          "action_type"
+        ],
+        "additionalProperties": false
+      },
+      "ConfirmRequest": {
+        "type": "object",
+        "properties": {
+          "expected_revision": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_revision"
+        ],
+        "additionalProperties": false
+      },
+      "EmptyRequest": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "Intent": {
+        "type": "object",
+        "properties": {
+          "object_level": {
+            "type": "string",
+            "enum": [
+              "CONTRACT",
+              "ENTERPRISE",
+              "COLLECTION"
+            ]
+          },
+          "task": {
+            "type": "string",
+            "enum": [
+              "RISK",
+              "OVERVIEW",
+              "UNSETTLED",
+              "DIMENSIONS"
+            ]
+          }
+        },
+        "required": [
+          "object_level",
+          "task"
+        ],
+        "additionalProperties": false
+      },
+      "AgentRunRequest": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "$ref": "#/components/schemas/Intent"
+          },
+          "query": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContractRequest"
+              },
+              {
+                "$ref": "#/components/schemas/EnterpriseRequest"
+              }
+            ]
+          }
+        },
+        "required": [
+          "intent",
+          "query"
+        ],
+        "additionalProperties": false
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": [
+                  "AUTH_REQUIRED",
+                  "NOT_ACCESSIBLE",
+                  "INVALID_REQUEST",
+                  "INVALID_JSON",
+                  "PAYLOAD_TOO_LARGE",
+                  "ACTION_FORBIDDEN",
+                  "SCOPE_CHANGED",
+                  "STALE_SNAPSHOT",
+                  "REVISION_CONFLICT",
+                  "DRAFT_EXPIRED",
+                  "ALREADY_SUBMITTED",
+                  "IDEMPOTENCY_CONFLICT",
+                  "SOURCE_INCONSISTENT",
+                  "ROUTE_NOT_FOUND",
+                  "INTERNAL_ERROR"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "retryable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "retryable"
+            ],
+            "additionalProperties": false
+          },
+          "request_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "additionalProperties": false
+      },
+      "Financial": {
+        "type": "object",
+        "properties": {
+          "receivable_fen": {
+            "type": "integer",
+            "description": "人民币分，整数；不使用浮点元。"
+          },
+          "cash_allocated_fen": {
+            "type": "integer",
+            "description": "人民币分，整数；不使用浮点元。"
+          },
+          "noncash_settled_fen": {
+            "type": "integer",
+            "description": "人民币分，整数；不使用浮点元。"
+          },
+          "unsettled_fen": {
+            "type": "integer",
+            "description": "人民币分，整数；不使用浮点元。"
+          },
+          "overdue_fen": {
+            "type": "integer",
+            "description": "人民币分，整数；不使用浮点元。"
+          }
+        },
+        "required": [
+          "receivable_fen",
+          "cash_allocated_fen",
+          "noncash_settled_fen",
+          "unsettled_fen",
+          "overdue_fen"
+        ],
+        "additionalProperties": false
+      },
+      "Rule": {
+        "type": "object",
+        "properties": {
+          "rule_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "MATCHED",
+              "NOT_MATCHED",
+              "PENDING_REVIEW",
+              "SKIPPED_REQUIRED_DATA_MISSING"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "INFO"
+            ]
+          },
+          "observed_fen": {
+            "type": "integer"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "rule_id",
+          "status",
+          "severity",
+          "observed_fen",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "Contract": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_id": {
+            "type": "string"
+          },
+          "responsible_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "effective_version": {
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          },
+          "timeliness_complete": {
+            "type": "boolean"
+          },
+          "guarantee_complete": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "name",
+          "project_id",
+          "responsible_id",
+          "status",
+          "effective_version",
+          "end_date",
+          "timeliness_complete",
+          "guarantee_complete"
+        ],
+        "additionalProperties": false
+      },
+      "Allocation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bill_id": {
+            "type": "string"
+          },
+          "amount_fen": {
+            "type": "integer"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "CASH",
+              "NONCASH"
+            ]
+          },
+          "actual_paid_at": {
+            "type": "string"
+          },
+          "effective_at": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "reverse_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "bill_id",
+          "amount_fen",
+          "kind",
+          "actual_paid_at",
+          "effective_at",
+          "status",
+          "reverse_of"
+        ],
+        "additionalProperties": false
+      },
+      "Bill": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "string"
+          },
+          "fee_code": {
+            "type": "string"
+          },
+          "period_from": {
+            "type": "string"
+          },
+          "period_to": {
+            "type": "string"
+          },
+          "receivable_fen": {
+            "type": "integer"
+          },
+          "effective_due_date": {
+            "type": "string"
+          },
+          "effective_at": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_leaf": {
+            "type": "boolean"
+          },
+          "cash_allocated_fen": {
+            "type": "integer"
+          },
+          "noncash_settled_fen": {
+            "type": "integer"
+          },
+          "unsettled_fen": {
+            "type": "integer"
+          },
+          "overdue_fen": {
+            "type": "integer"
+          },
+          "overdue_days": {
+            "type": "integer"
+          },
+          "timely_paid_fen": {
+            "type": "integer"
+          },
+          "allocation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Allocation"
+            }
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "contract_id",
+          "fee_code",
+          "period_from",
+          "period_to",
+          "receivable_fen",
+          "effective_due_date",
+          "effective_at",
+          "status",
+          "parent_id",
+          "is_leaf",
+          "cash_allocated_fen",
+          "noncash_settled_fen",
+          "unsettled_fen",
+          "overdue_fen",
+          "overdue_days",
+          "timely_paid_fen",
+          "allocation_ids",
+          "allocations",
+          "source_ref"
+        ],
+        "additionalProperties": false
+      },
+      "Receipt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "string"
+          },
+          "amount_fen": {
+            "type": "integer"
+          },
+          "unallocated_fen": {
+            "type": "integer"
+          },
+          "actual_paid_at": {
+            "type": "string"
+          },
+          "verified_contract_ref": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "contract_id",
+          "amount_fen",
+          "unallocated_fen",
+          "actual_paid_at",
+          "verified_contract_ref"
+        ],
+        "additionalProperties": false
+      },
+      "Page": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "statistics_scope": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "size",
+          "total",
+          "has_more",
+          "statistics_scope"
+        ],
+        "additionalProperties": false
+      },
+      "Dimension": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "R1",
+              "R2",
+              "R3",
+              "R4",
+              "R5",
+              "R6"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "COMPLETE",
+              "PARTIAL",
+              "UNAVAILABLE",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "numerator": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "denominator": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "num_unit": {
+            "type": "string",
+            "enum": [
+              "CNY_FEN",
+              "ITEM"
+            ]
+          },
+          "den_unit": {
+            "type": "string",
+            "enum": [
+              "CNY_FEN",
+              "ITEM"
+            ]
+          },
+          "value_bps": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "基点；8500表示85.00%。非COMPLETE必须为null。"
+          },
+          "value_unit": {
+            "type": "string"
+          },
+          "known_contract_count": {
+            "type": "integer"
+          },
+          "eligible_contract_count": {
+            "type": "integer"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "numerator",
+          "denominator",
+          "num_unit",
+          "den_unit",
+          "value_bps",
+          "value_unit",
+          "known_contract_count",
+          "eligible_contract_count",
+          "source_refs"
+        ],
+        "additionalProperties": false
+      },
+      "ContractRow": {
+        "type": "object",
+        "properties": {
+          "contract_id": {
+            "type": "string"
+          },
+          "contract_number": {
+            "type": "string"
+          },
+          "project_id": {
+            "type": "string"
+          },
+          "responsible_id": {
+            "type": "string"
+          },
+          "receivable_fen": {
+            "type": "integer"
+          },
+          "cash_allocated_fen": {
+            "type": "integer"
+          },
+          "noncash_settled_fen": {
+            "type": "integer"
+          },
+          "unsettled_fen": {
+            "type": "integer"
+          },
+          "overdue_fen": {
+            "type": "integer"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rule"
+            }
+          },
+          "handoff": {
+            "type": "object",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              },
+              "contract_id": {
+                "type": "string"
+              },
+              "as_of": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id",
+              "contract_id",
+              "as_of"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "contract_id",
+          "contract_number",
+          "project_id",
+          "responsible_id",
+          "receivable_fen",
+          "cash_allocated_fen",
+          "noncash_settled_fen",
+          "unsettled_fen",
+          "overdue_fen",
+          "rules",
+          "handoff"
+        ],
+        "additionalProperties": false
+      },
+      "EnterpriseRow": {
+        "type": "object",
+        "properties": {
+          "enterprise_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "contract_count": {
+            "type": "integer"
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dimension"
+            }
+          },
+          "financial": {
+            "$ref": "#/components/schemas/Financial"
+          }
+        },
+        "required": [
+          "enterprise_id",
+          "name",
+          "contract_count",
+          "dimensions",
+          "financial"
+        ],
+        "additionalProperties": false
+      },
+      "ContractAnalysis": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "analysis_id": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "CONTRACT"
+            ]
+          },
+          "as_of": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string"
+          },
+          "snapshot_id": {
+            "type": "string"
+          },
+          "captured_at": {
+            "type": "string"
+          },
+          "rule_version": {
+            "type": "string"
+          },
+          "metric_version": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "scope_fingerprint": {
+                "type": "string"
+              },
+              "effective_project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "responsibility": {
+                "type": "string"
+              },
+              "role_scope": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "SIGNATORY",
+                    "JOINT_SIGNATORY",
+                    "PAYER",
+                    "USER",
+                    "GUARANTOR"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "scope_fingerprint",
+              "effective_project_ids",
+              "responsibility",
+              "role_scope"
+            ],
+            "additionalProperties": false
+          },
+          "query_context": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContractRequest"
+              },
+              {
+                "$ref": "#/components/schemas/EnterpriseRequest"
+              },
+              {
+                "$ref": "#/components/schemas/CollectionRequest"
+              }
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "contract": {
+                "$ref": "#/components/schemas/Contract"
+              },
+              "bills": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Bill"
+                }
+              },
+              "financial": {
+                "$ref": "#/components/schemas/Financial"
+              },
+              "pending_receipts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "allowed_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "OPEN_SOURCE",
+                    "RECHECK",
+                    "SAVE_DRAFT"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "contract",
+              "bills",
+              "financial",
+              "pending_receipts",
+              "rules",
+              "allowed_actions"
+            ],
+            "additionalProperties": false
+          },
+          "previous_analysis_id": {
+            "type": "string"
+          },
+          "changes": {
+            "type": "object",
+            "properties": {
+              "previous_source_revision": {
+                "type": "string"
+              },
+              "current_source_revision": {
+                "type": "string"
+              },
+              "source_changed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "previous_source_revision",
+              "current_source_revision",
+              "source_changed"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "analysis_id",
+          "request_id",
+          "kind",
+          "as_of",
+          "source_revision",
+          "snapshot_id",
+          "captured_at",
+          "rule_version",
+          "metric_version",
+          "scope",
+          "query_context",
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "EnterpriseAnalysis": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "analysis_id": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "ENTERPRISE"
+            ]
+          },
+          "as_of": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string"
+          },
+          "snapshot_id": {
+            "type": "string"
+          },
+          "captured_at": {
+            "type": "string"
+          },
+          "rule_version": {
+            "type": "string"
+          },
+          "metric_version": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "scope_fingerprint": {
+                "type": "string"
+              },
+              "effective_project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "responsibility": {
+                "type": "string"
+              },
+              "role_scope": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "SIGNATORY",
+                    "JOINT_SIGNATORY",
+                    "PAYER",
+                    "USER",
+                    "GUARANTOR"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "scope_fingerprint",
+              "effective_project_ids",
+              "responsibility",
+              "role_scope"
+            ],
+            "additionalProperties": false
+          },
+          "query_context": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContractRequest"
+              },
+              {
+                "$ref": "#/components/schemas/EnterpriseRequest"
+              },
+              {
+                "$ref": "#/components/schemas/CollectionRequest"
+              }
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "financial": {
+                "$ref": "#/components/schemas/Financial"
+              },
+              "contract_count": {
+                "type": "integer"
+              },
+              "enterprises": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EnterpriseRow"
+                }
+              },
+              "enterprise_totals_nonadditive": {
+                "type": "boolean"
+              },
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContractRow"
+                }
+              },
+              "page": {
+                "$ref": "#/components/schemas/Page"
+              }
+            },
+            "required": [
+              "financial",
+              "contract_count",
+              "enterprises",
+              "enterprise_totals_nonadditive",
+              "contracts",
+              "page"
+            ],
+            "additionalProperties": false
+          },
+          "previous_analysis_id": {
+            "type": "string"
+          },
+          "changes": {
+            "type": "object",
+            "properties": {
+              "previous_source_revision": {
+                "type": "string"
+              },
+              "current_source_revision": {
+                "type": "string"
+              },
+              "source_changed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "previous_source_revision",
+              "current_source_revision",
+              "source_changed"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "analysis_id",
+          "request_id",
+          "kind",
+          "as_of",
+          "source_revision",
+          "snapshot_id",
+          "captured_at",
+          "rule_version",
+          "metric_version",
+          "scope",
+          "query_context",
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "CollectionAnalysis": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "analysis_id": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "COLLECTION"
+            ]
+          },
+          "as_of": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string"
+          },
+          "snapshot_id": {
+            "type": "string"
+          },
+          "captured_at": {
+            "type": "string"
+          },
+          "rule_version": {
+            "type": "string"
+          },
+          "metric_version": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "scope_fingerprint": {
+                "type": "string"
+              },
+              "effective_project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "responsibility": {
+                "type": "string"
+              },
+              "role_scope": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "SIGNATORY",
+                    "JOINT_SIGNATORY",
+                    "PAYER",
+                    "USER",
+                    "GUARANTOR"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "scope_fingerprint",
+              "effective_project_ids",
+              "responsibility",
+              "role_scope"
+            ],
+            "additionalProperties": false
+          },
+          "query_context": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContractRequest"
+              },
+              {
+                "$ref": "#/components/schemas/EnterpriseRequest"
+              },
+              {
+                "$ref": "#/components/schemas/CollectionRequest"
+              }
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContractRow"
+                }
+              },
+              "financial": {
+                "$ref": "#/components/schemas/Financial"
+              },
+              "contract_count": {
+                "type": "integer"
+              },
+              "page": {
+                "$ref": "#/components/schemas/Page"
+              },
+              "enabled_rules": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "contracts",
+              "financial",
+              "contract_count",
+              "page",
+              "enabled_rules"
+            ],
+            "additionalProperties": false
+          },
+          "previous_analysis_id": {
+            "type": "string"
+          },
+          "changes": {
+            "type": "object",
+            "properties": {
+              "previous_source_revision": {
+                "type": "string"
+              },
+              "current_source_revision": {
+                "type": "string"
+              },
+              "source_changed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "previous_source_revision",
+              "current_source_revision",
+              "source_changed"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "schema_version",
+          "analysis_id",
+          "request_id",
+          "kind",
+          "as_of",
+          "source_revision",
+          "snapshot_id",
+          "captured_at",
+          "rule_version",
+          "metric_version",
+          "scope",
+          "query_context",
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "Analysis": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ContractAnalysis"
+          },
+          {
+            "$ref": "#/components/schemas/EnterpriseAnalysis"
+          },
+          {
+            "$ref": "#/components/schemas/CollectionAnalysis"
+          }
+        ]
+      },
+      "RecheckAnalysis": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string"
+              },
+              "analysis_id": {
+                "type": "string"
+              },
+              "request_id": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "CONTRACT"
+                ]
+              },
+              "as_of": {
+                "type": "string"
+              },
+              "source_revision": {
+                "type": "string"
+              },
+              "snapshot_id": {
+                "type": "string"
+              },
+              "captured_at": {
+                "type": "string"
+              },
+              "rule_version": {
+                "type": "string"
+              },
+              "metric_version": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "object",
+                "properties": {
+                  "scope_fingerprint": {
+                    "type": "string"
+                  },
+                  "effective_project_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "responsibility": {
+                    "type": "string"
+                  },
+                  "role_scope": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "SIGNATORY",
+                        "JOINT_SIGNATORY",
+                        "PAYER",
+                        "USER",
+                        "GUARANTOR"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "scope_fingerprint",
+                  "effective_project_ids",
+                  "responsibility",
+                  "role_scope"
+                ],
+                "additionalProperties": false
+              },
+              "query_context": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ContractRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EnterpriseRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CollectionRequest"
+                  }
+                ]
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "contract": {
+                    "$ref": "#/components/schemas/Contract"
+                  },
+                  "bills": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Bill"
+                    }
+                  },
+                  "financial": {
+                    "$ref": "#/components/schemas/Financial"
+                  },
+                  "pending_receipts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Receipt"
+                    }
+                  },
+                  "rules": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Rule"
+                    }
+                  },
+                  "allowed_actions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "OPEN_SOURCE",
+                        "RECHECK",
+                        "SAVE_DRAFT"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "contract",
+                  "bills",
+                  "financial",
+                  "pending_receipts",
+                  "rules",
+                  "allowed_actions"
+                ],
+                "additionalProperties": false
+              },
+              "previous_analysis_id": {
+                "type": "string"
+              },
+              "changes": {
+                "type": "object",
+                "properties": {
+                  "previous_source_revision": {
+                    "type": "string"
+                  },
+                  "current_source_revision": {
+                    "type": "string"
+                  },
+                  "source_changed": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "previous_source_revision",
+                  "current_source_revision",
+                  "source_changed"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "schema_version",
+              "analysis_id",
+              "request_id",
+              "kind",
+              "as_of",
+              "source_revision",
+              "snapshot_id",
+              "captured_at",
+              "rule_version",
+              "metric_version",
+              "scope",
+              "query_context",
+              "data",
+              "previous_analysis_id",
+              "changes"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string"
+              },
+              "analysis_id": {
+                "type": "string"
+              },
+              "request_id": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "ENTERPRISE"
+                ]
+              },
+              "as_of": {
+                "type": "string"
+              },
+              "source_revision": {
+                "type": "string"
+              },
+              "snapshot_id": {
+                "type": "string"
+              },
+              "captured_at": {
+                "type": "string"
+              },
+              "rule_version": {
+                "type": "string"
+              },
+              "metric_version": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "object",
+                "properties": {
+                  "scope_fingerprint": {
+                    "type": "string"
+                  },
+                  "effective_project_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "responsibility": {
+                    "type": "string"
+                  },
+                  "role_scope": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "SIGNATORY",
+                        "JOINT_SIGNATORY",
+                        "PAYER",
+                        "USER",
+                        "GUARANTOR"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "scope_fingerprint",
+                  "effective_project_ids",
+                  "responsibility",
+                  "role_scope"
+                ],
+                "additionalProperties": false
+              },
+              "query_context": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ContractRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EnterpriseRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CollectionRequest"
+                  }
+                ]
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "financial": {
+                    "$ref": "#/components/schemas/Financial"
+                  },
+                  "contract_count": {
+                    "type": "integer"
+                  },
+                  "enterprises": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/EnterpriseRow"
+                    }
+                  },
+                  "enterprise_totals_nonadditive": {
+                    "type": "boolean"
+                  },
+                  "contracts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractRow"
+                    }
+                  },
+                  "page": {
+                    "$ref": "#/components/schemas/Page"
+                  }
+                },
+                "required": [
+                  "financial",
+                  "contract_count",
+                  "enterprises",
+                  "enterprise_totals_nonadditive",
+                  "contracts",
+                  "page"
+                ],
+                "additionalProperties": false
+              },
+              "previous_analysis_id": {
+                "type": "string"
+              },
+              "changes": {
+                "type": "object",
+                "properties": {
+                  "previous_source_revision": {
+                    "type": "string"
+                  },
+                  "current_source_revision": {
+                    "type": "string"
+                  },
+                  "source_changed": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "previous_source_revision",
+                  "current_source_revision",
+                  "source_changed"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "schema_version",
+              "analysis_id",
+              "request_id",
+              "kind",
+              "as_of",
+              "source_revision",
+              "snapshot_id",
+              "captured_at",
+              "rule_version",
+              "metric_version",
+              "scope",
+              "query_context",
+              "data",
+              "previous_analysis_id",
+              "changes"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string"
+              },
+              "analysis_id": {
+                "type": "string"
+              },
+              "request_id": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "COLLECTION"
+                ]
+              },
+              "as_of": {
+                "type": "string"
+              },
+              "source_revision": {
+                "type": "string"
+              },
+              "snapshot_id": {
+                "type": "string"
+              },
+              "captured_at": {
+                "type": "string"
+              },
+              "rule_version": {
+                "type": "string"
+              },
+              "metric_version": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "object",
+                "properties": {
+                  "scope_fingerprint": {
+                    "type": "string"
+                  },
+                  "effective_project_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "responsibility": {
+                    "type": "string"
+                  },
+                  "role_scope": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "SIGNATORY",
+                        "JOINT_SIGNATORY",
+                        "PAYER",
+                        "USER",
+                        "GUARANTOR"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "scope_fingerprint",
+                  "effective_project_ids",
+                  "responsibility",
+                  "role_scope"
+                ],
+                "additionalProperties": false
+              },
+              "query_context": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ContractRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EnterpriseRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CollectionRequest"
+                  }
+                ]
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "contracts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractRow"
+                    }
+                  },
+                  "financial": {
+                    "$ref": "#/components/schemas/Financial"
+                  },
+                  "contract_count": {
+                    "type": "integer"
+                  },
+                  "page": {
+                    "$ref": "#/components/schemas/Page"
+                  },
+                  "enabled_rules": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "contracts",
+                  "financial",
+                  "contract_count",
+                  "page",
+                  "enabled_rules"
+                ],
+                "additionalProperties": false
+              },
+              "previous_analysis_id": {
+                "type": "string"
+              },
+              "changes": {
+                "type": "object",
+                "properties": {
+                  "previous_source_revision": {
+                    "type": "string"
+                  },
+                  "current_source_revision": {
+                    "type": "string"
+                  },
+                  "source_changed": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "previous_source_revision",
+                  "current_source_revision",
+                  "source_changed"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "schema_version",
+              "analysis_id",
+              "request_id",
+              "kind",
+              "as_of",
+              "source_revision",
+              "snapshot_id",
+              "captured_at",
+              "rule_version",
+              "metric_version",
+              "scope",
+              "query_context",
+              "data",
+              "previous_analysis_id",
+              "changes"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Context": {
+        "type": "object",
+        "properties": {
+          "principal_id": {
+            "type": "string"
+          },
+          "tenant_id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "CLERK",
+              "MANAGER",
+              "FINANCE"
+            ]
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "principal_id",
+          "tenant_id",
+          "role",
+          "projects"
+        ],
+        "additionalProperties": false
+      },
+      "ResolveResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "label"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "status",
+          "candidates"
+        ],
+        "additionalProperties": false
+      },
+      "Draft": {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string"
+          },
+          "analysis_id": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "string"
+          },
+          "action_type": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "SUBMITTED"
+            ]
+          },
+          "source_revision": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string"
+          },
+          "principal_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "draft_id",
+          "analysis_id",
+          "contract_id",
+          "action_type",
+          "note",
+          "state",
+          "source_revision",
+          "created_at",
+          "expires_at",
+          "principal_id"
+        ],
+        "additionalProperties": false
+      },
+      "Confirmation": {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "work_item_id": {
+            "type": "string"
+          },
+          "business_risk_state": {
+            "type": "string"
+          },
+          "financial_write_performed": {
+            "type": "boolean"
+          },
+          "simulation": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "draft_id",
+          "state",
+          "work_item_id",
+          "business_risk_state",
+          "financial_write_performed",
+          "simulation"
+        ],
+        "additionalProperties": false
+      },
+      "Details": {
+        "type": "object",
+        "properties": {
+          "analysis_id": {
+            "type": "string"
+          },
+          "dimension_id": {
+            "type": "string"
+          },
+          "snapshot_id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "contract_id": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string",
+                      "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4",
+                        "R5",
+                        "R6"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "COMPLETE",
+                        "PARTIAL",
+                        "UNAVAILABLE",
+                        "NOT_APPLICABLE"
+                      ]
+                    },
+                    "numerator": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "denominator": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "num_unit": {
+                      "type": "string",
+                      "enum": [
+                        "CNY_FEN",
+                        "ITEM"
+                      ]
+                    },
+                    "den_unit": {
+                      "type": "string",
+                      "enum": [
+                        "CNY_FEN",
+                        "ITEM"
+                      ]
+                    },
+                    "value_bps": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "description": "基点；8500表示85.00%。非COMPLETE必须为null。"
+                    },
+                    "value_unit": {
+                      "type": "string"
+                    },
+                    "known_contract_count": {
+                      "type": "integer"
+                    },
+                    "eligible_contract_count": {
+                      "type": "integer"
+                    },
+                    "source_refs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "source_id": {
+                            "type": "string"
+                          },
+                          "source_type": {
+                            "type": "string",
+                            "enum": [
+                              "BILL",
+                              "GUARANTEE",
+                              "OBLIGATION",
+                              "PREPARATION_ITEM",
+                              "EVIDENCE"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "source_id",
+                          "source_type"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "handoff": {
+                      "type": "object",
+                      "properties": {
+                        "agent_id": {
+                          "type": "string"
+                        },
+                        "contract_id": {
+                          "type": "string"
+                        },
+                        "as_of": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "agent_id",
+                        "contract_id",
+                        "as_of"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "contract_id",
+                    "id",
+                    "status",
+                    "numerator",
+                    "denominator",
+                    "num_unit",
+                    "den_unit",
+                    "value_bps",
+                    "value_unit",
+                    "known_contract_count",
+                    "eligible_contract_count",
+                    "source_refs",
+                    "evidence",
+                    "handoff"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "rows"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "analysis_id",
+          "dimension_id",
+          "snapshot_id",
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "AgentRunResponse": {
+        "type": "object",
+        "properties": {
+          "agent_id": {
+            "type": "string",
+            "enum": [
+              "A1",
+              "A2"
+            ]
+          },
+          "execution_mode": {
+            "type": "string"
+          },
+          "llm_called": {
+            "type": "boolean"
+          },
+          "trace": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "node": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "analysis_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node",
+                "status",
+                "analysis_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "result": {
+            "$ref": "#/components/schemas/Analysis"
+          }
+        },
+        "required": [
+          "agent_id",
+          "execution_mode",
+          "llm_called",
+          "trace",
+          "result"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

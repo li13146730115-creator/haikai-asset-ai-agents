@@ -1,0 +1,239 @@
+{
+  "schema_version": "p0-v1",
+  "analysis_id": "AN-cddf35a7c1394515",
+  "request_id": "REQ-390a0656f29f4f64",
+  "kind": "ENTERPRISE",
+  "as_of": "2026-11-08",
+  "source_revision": "4f3c16beb9e19d415aca38d9",
+  "snapshot_id": "SNAP-b11f790c286a4eee",
+  "captured_at": "2026-11-09T06:17:02.210854+00:00",
+  "rule_version": "R-C01-C02-v1",
+  "metric_version": "R1-R6-v1",
+  "scope": {
+    "scope_fingerprint": "70851815bebc2b340739df7d",
+    "effective_project_ids": [
+      "项目B"
+    ],
+    "responsibility": "ALL_VISIBLE",
+    "role_scope": [
+      "SIGNATORY"
+    ]
+  },
+  "query_context": {
+    "enterprise_ids": [
+      "C"
+    ],
+    "as_of": "2026-11-08",
+    "responsibility": "ALL_VISIBLE",
+    "role_scope": [
+      "SIGNATORY"
+    ],
+    "page": 1,
+    "page_size": 20
+  },
+  "data": {
+    "financial": {
+      "receivable_fen": 10000000,
+      "cash_allocated_fen": 8800000,
+      "noncash_settled_fen": 0,
+      "unsettled_fen": 1200000,
+      "overdue_fen": 1200000
+    },
+    "contract_count": 2,
+    "enterprises": [
+      {
+        "enterprise_id": "C",
+        "name": "海辰运营（虚构）",
+        "contract_count": 2,
+        "dimensions": [
+          {
+            "id": "R1",
+            "status": "COMPLETE",
+            "numerator": 8800000,
+            "denominator": 10000000,
+            "num_unit": "CNY_FEN",
+            "den_unit": "CNY_FEN",
+            "value_bps": 8800,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 2,
+            "eligible_contract_count": 2,
+            "source_refs": [
+              "DEMO-B-C01-01",
+              "DEMO-B-C02-01"
+            ]
+          },
+          {
+            "id": "R2",
+            "status": "PARTIAL",
+            "numerator": 4200000,
+            "denominator": 6000000,
+            "num_unit": "CNY_FEN",
+            "den_unit": "CNY_FEN",
+            "value_bps": null,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 1,
+            "eligible_contract_count": 2,
+            "source_refs": [
+              "DEMO-B-C01-01"
+            ]
+          },
+          {
+            "id": "R3",
+            "status": "UNAVAILABLE",
+            "numerator": null,
+            "denominator": null,
+            "num_unit": "CNY_FEN",
+            "den_unit": "CNY_FEN",
+            "value_bps": null,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 0,
+            "eligible_contract_count": 2,
+            "source_refs": []
+          },
+          {
+            "id": "R4",
+            "status": "COMPLETE",
+            "numerator": 3,
+            "denominator": 4,
+            "num_unit": "ITEM",
+            "den_unit": "ITEM",
+            "value_bps": 7500,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 2,
+            "eligible_contract_count": 2,
+            "source_refs": [
+              "obligations-C01-01",
+              "obligations-C01-02",
+              "obligations-C02-01",
+              "obligations-C02-02"
+            ]
+          },
+          {
+            "id": "R5",
+            "status": "COMPLETE",
+            "numerator": 0,
+            "denominator": 1,
+            "num_unit": "ITEM",
+            "den_unit": "ITEM",
+            "value_bps": 0,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 2,
+            "eligible_contract_count": 2,
+            "source_refs": [
+              "preparation_items-C01-01"
+            ]
+          },
+          {
+            "id": "R6",
+            "status": "COMPLETE",
+            "numerator": 9,
+            "denominator": 12,
+            "num_unit": "ITEM",
+            "den_unit": "ITEM",
+            "value_bps": 7500,
+            "value_unit": "BASIS_POINT",
+            "known_contract_count": 2,
+            "eligible_contract_count": 2,
+            "source_refs": [
+              "evidence_items-C01-01",
+              "evidence_items-C01-02",
+              "evidence_items-C01-03",
+              "evidence_items-C01-04",
+              "evidence_items-C01-05",
+              "evidence_items-C01-06",
+              "evidence_items-C02-01",
+              "evidence_items-C02-02",
+              "evidence_items-C02-03",
+              "evidence_items-C02-04",
+              "evidence_items-C02-05",
+              "evidence_items-C02-06"
+            ]
+          }
+        ],
+        "financial": {
+          "receivable_fen": 10000000,
+          "cash_allocated_fen": 8800000,
+          "noncash_settled_fen": 0,
+          "unsettled_fen": 1200000,
+          "overdue_fen": 1200000
+        }
+      }
+    ],
+    "enterprise_totals_nonadditive": false,
+    "contracts": [
+      {
+        "contract_id": "HT-C01",
+        "contract_number": "HT-C01",
+        "project_id": "项目B",
+        "responsible_id": "clerk-b",
+        "receivable_fen": 6000000,
+        "cash_allocated_fen": 4800000,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 1200000,
+        "overdue_fen": 1200000,
+        "rules": [
+          {
+            "rule_id": "R-C01",
+            "status": "MATCHED",
+            "severity": "MEDIUM",
+            "observed_fen": 1200000,
+            "evidence_refs": [
+              "DEMO-B-C01-01"
+            ]
+          },
+          {
+            "rule_id": "R-C02",
+            "status": "NOT_MATCHED",
+            "severity": "INFO",
+            "observed_fen": 0,
+            "evidence_refs": []
+          }
+        ],
+        "handoff": {
+          "agent_id": "A1",
+          "contract_id": "HT-C01",
+          "as_of": "2026-11-08"
+        }
+      },
+      {
+        "contract_id": "HT-C02",
+        "contract_number": "HT-C02",
+        "project_id": "项目B",
+        "responsible_id": "clerk-b",
+        "receivable_fen": 4000000,
+        "cash_allocated_fen": 4000000,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 0,
+        "overdue_fen": 0,
+        "rules": [
+          {
+            "rule_id": "R-C01",
+            "status": "NOT_MATCHED",
+            "severity": "INFO",
+            "observed_fen": 0,
+            "evidence_refs": []
+          },
+          {
+            "rule_id": "R-C02",
+            "status": "NOT_MATCHED",
+            "severity": "INFO",
+            "observed_fen": 0,
+            "evidence_refs": []
+          }
+        ],
+        "handoff": {
+          "agent_id": "A1",
+          "contract_id": "HT-C02",
+          "as_of": "2026-11-08"
+        }
+      }
+    ],
+    "page": {
+      "number": 1,
+      "size": 20,
+      "total": 2,
+      "has_more": false,
+      "statistics_scope": "ALL_MATCHED"
+    }
+  }
+}

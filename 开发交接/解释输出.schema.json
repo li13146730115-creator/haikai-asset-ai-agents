@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "analysis_id": {
+      "type": "string"
+    },
+    "paragraphs": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "fact_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^/"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "text",
+          "fact_refs",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "analysis_id",
+    "paragraphs"
+  ],
+  "additionalProperties": false
+}

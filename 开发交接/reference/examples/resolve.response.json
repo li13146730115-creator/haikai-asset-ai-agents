@@ -1,0 +1,13 @@
+{
+  "status": "NEEDS_CLARIFICATION",
+  "candidates": [
+    {
+      "id": "HT-A01",
+      "label": "HT-A01虚构租赁合同"
+    },
+    {
+      "id": "HT-A02",
+      "label": "HT-A02虚构租赁合同"
+    }
+  ]
+}

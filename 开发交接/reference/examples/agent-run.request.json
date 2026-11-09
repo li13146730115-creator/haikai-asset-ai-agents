@@ -1,0 +1,10 @@
+{
+  "intent": {
+    "object_level": "CONTRACT",
+    "task": "RISK"
+  },
+  "query": {
+    "contract_id": "HT-A01",
+    "as_of": "2026-11-08"
+  }
+}

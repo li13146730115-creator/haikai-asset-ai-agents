@@ -1,0 +1,8 @@
+{
+  "error": {
+    "code": "NOT_ACCESSIBLE",
+    "message": "当前无法访问该对象",
+    "retryable": false
+  },
+  "request_id": "REQ-EXAMPLE"
+}

@@ -1,0 +1,1261 @@
+{
+  "version": "fixture-v1",
+  "enterprises": [
+    {
+      "id": "A",
+      "name": "远景科技（虚构）"
+    },
+    {
+      "id": "B",
+      "name": "恒瑞服务（虚构）"
+    },
+    {
+      "id": "C",
+      "name": "海辰运营（虚构）"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HT-A01",
+      "number": "HT-A01",
+      "name": "HT-A01虚构租赁合同",
+      "project_id": "项目A",
+      "responsible_id": "clerk-a",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    {
+      "id": "HT-A02",
+      "number": "HT-A02",
+      "name": "HT-A02虚构租赁合同",
+      "project_id": "项目A",
+      "responsible_id": "clerk-b",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    {
+      "id": "HT-A03",
+      "number": "HT-A03",
+      "name": "HT-A03虚构租赁合同",
+      "project_id": "项目B",
+      "responsible_id": "clerk-a",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    {
+      "id": "HT-B01",
+      "number": "HT-B01",
+      "name": "HT-B01虚构租赁合同",
+      "project_id": "项目A",
+      "responsible_id": "clerk-b",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    {
+      "id": "HT-B02",
+      "number": "HT-B02",
+      "name": "HT-B02虚构租赁合同",
+      "project_id": "项目B",
+      "responsible_id": "clerk-b",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    {
+      "id": "HT-C01",
+      "number": "HT-C01",
+      "name": "HT-C01虚构租赁合同",
+      "project_id": "项目B",
+      "responsible_id": "clerk-b",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": false
+    },
+    {
+      "id": "HT-C02",
+      "number": "HT-C02",
+      "name": "HT-C02虚构租赁合同",
+      "project_id": "项目B",
+      "responsible_id": "clerk-b",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": false,
+      "guarantee_complete": false
+    }
+  ],
+  "parties": [
+    {
+      "contract_id": "HT-A01",
+      "enterprise_id": "A",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-A02",
+      "enterprise_id": "A",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-A03",
+      "enterprise_id": "A",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-B01",
+      "enterprise_id": "B",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-B02",
+      "enterprise_id": "B",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-C01",
+      "enterprise_id": "C",
+      "role": "SIGNATORY",
+      "verified": true
+    },
+    {
+      "contract_id": "HT-C02",
+      "enterprise_id": "C",
+      "role": "SIGNATORY",
+      "verified": true
+    }
+  ],
+  "bills": [
+    {
+      "id": "DEMO-B-A01-01",
+      "contract_id": "HT-A01",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 7000000,
+      "effective_due_date": "2026-07-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-A01-02",
+      "contract_id": "HT-A01",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 1000000,
+      "effective_due_date": "2026-08-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-A01-03",
+      "contract_id": "HT-A01",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 2000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-A02-01",
+      "contract_id": "HT-A02",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 8000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-A03-01",
+      "contract_id": "HT-A03",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 2000000,
+      "effective_due_date": "2026-11-03",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-B01-01",
+      "contract_id": "HT-B01",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 12000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-B02-01",
+      "contract_id": "HT-B02",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 8000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-C01-01",
+      "contract_id": "HT-C01",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 6000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    },
+    {
+      "id": "DEMO-B-C02-01",
+      "contract_id": "HT-C02",
+      "fee_code": "RENT",
+      "period_from": "2026-01-01",
+      "period_to": "2026-10-31",
+      "receivable_fen": 4000000,
+      "effective_due_date": "2026-10-31",
+      "effective_at": "2026-01-01",
+      "status": "EFFECTIVE",
+      "parent_id": null,
+      "is_leaf": true
+    }
+  ],
+  "allocations": [
+    {
+      "id": "ALLOC-A01-01",
+      "bill_id": "DEMO-B-A01-01",
+      "amount_fen": 7000000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-07-30",
+      "effective_at": "2026-07-30",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-A01-02",
+      "bill_id": "DEMO-B-A01-02",
+      "amount_fen": 1000000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-09-05",
+      "effective_at": "2026-09-05",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-A02-T",
+      "bill_id": "DEMO-B-A02-01",
+      "amount_fen": 8000000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-10-30",
+      "effective_at": "2026-10-30",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-A03-T",
+      "bill_id": "DEMO-B-A03-01",
+      "amount_fen": 500000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-11-02",
+      "effective_at": "2026-11-02",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-A03-L",
+      "bill_id": "DEMO-B-A03-01",
+      "amount_fen": 500000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-11-04",
+      "effective_at": "2026-11-04",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-B01-T",
+      "bill_id": "DEMO-B-B01-01",
+      "amount_fen": 10800000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-10-30",
+      "effective_at": "2026-10-30",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-B01-L",
+      "bill_id": "DEMO-B-B01-01",
+      "amount_fen": 600000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-11-01",
+      "effective_at": "2026-11-01",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-B02-T",
+      "bill_id": "DEMO-B-B02-01",
+      "amount_fen": 8000000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-10-30",
+      "effective_at": "2026-10-30",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-C01-T",
+      "bill_id": "DEMO-B-C01-01",
+      "amount_fen": 4200000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-10-30",
+      "effective_at": "2026-10-30",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-C01-L",
+      "bill_id": "DEMO-B-C01-01",
+      "amount_fen": 600000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-11-01",
+      "effective_at": "2026-11-01",
+      "status": "POSTED",
+      "reverse_of": null
+    },
+    {
+      "id": "ALLOC-C02-T",
+      "bill_id": "DEMO-B-C02-01",
+      "amount_fen": 4000000,
+      "kind": "CASH",
+      "actual_paid_at": "2026-10-30",
+      "effective_at": "2026-10-30",
+      "status": "POSTED",
+      "reverse_of": null
+    }
+  ],
+  "receipts": [
+    {
+      "id": "DEMO-R-A01-5000",
+      "contract_id": "HT-A01",
+      "amount_fen": 500000,
+      "unallocated_fen": 500000,
+      "actual_paid_at": "2026-11-07",
+      "verified_contract_ref": true
+    }
+  ],
+  "guarantees": [
+    {
+      "id": "G-A01",
+      "contract_id": "HT-A01",
+      "required_fen": 3000000,
+      "valid_held_fen": 2000000,
+      "verified": true
+    },
+    {
+      "id": "G-A02",
+      "contract_id": "HT-A02",
+      "required_fen": 2000000,
+      "valid_held_fen": 2000000,
+      "verified": true
+    },
+    {
+      "id": "G-A03",
+      "contract_id": "HT-A03",
+      "required_fen": 1000000,
+      "valid_held_fen": 0,
+      "verified": true
+    },
+    {
+      "id": "G-B01",
+      "contract_id": "HT-B01",
+      "required_fen": 3000000,
+      "valid_held_fen": 3000000,
+      "verified": true
+    },
+    {
+      "id": "G-B02",
+      "contract_id": "HT-B02",
+      "required_fen": 2000000,
+      "valid_held_fen": 2000000,
+      "verified": true
+    }
+  ],
+  "obligations": [
+    {
+      "id": "obligations-A01-01",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A01-02",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A01-03",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A01-04",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A01-05",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A02-01",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A02-02",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A02-03",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A03-01",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-A03-02",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B01-01",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B01-02",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B01-03",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B01-04",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B02-01",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B02-02",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B02-03",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-B02-04",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-C01-01",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-C01-02",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-C02-01",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "obligations-C02-02",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    }
+  ],
+  "preparation_items": [
+    {
+      "id": "preparation_items-A01-01",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    },
+    {
+      "id": "preparation_items-A01-02",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    },
+    {
+      "id": "preparation_items-A03-01",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    },
+    {
+      "id": "preparation_items-B01-01",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    },
+    {
+      "id": "preparation_items-B01-02",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    },
+    {
+      "id": "preparation_items-C01-01",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-11-30",
+      "obligor": "INTERNAL"
+    }
+  ],
+  "evidence_items": [
+    {
+      "id": "evidence_items-A01-01",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-02",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-03",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-04",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-05",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-06",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-07",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-08",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-09",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A01-10",
+      "contract_id": "HT-A01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-01",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-02",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-03",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-04",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-05",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-06",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-07",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-08",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-09",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A02-10",
+      "contract_id": "HT-A02",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A03-01",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A03-02",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A03-03",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A03-04",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-A03-05",
+      "contract_id": "HT-A03",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-01",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-02",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-03",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-04",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-05",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-06",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-07",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-08",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-09",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B01-10",
+      "contract_id": "HT-B01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-01",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-02",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-03",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-04",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-05",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-06",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-07",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-B02-08",
+      "contract_id": "HT-B02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-01",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-02",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-03",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-04",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-05",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C01-06",
+      "contract_id": "HT-C01",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-01",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-02",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-03",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-04",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-05",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": true,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    },
+    {
+      "id": "evidence_items-C02-06",
+      "contract_id": "HT-C02",
+      "required": true,
+      "completed": false,
+      "verified": true,
+      "review_status": "PUBLISHED",
+      "due_date": "2026-10-30",
+      "obligor": "SIGNATORY"
+    }
+  ]
+}

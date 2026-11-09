@@ -1,0 +1,265 @@
+{
+  "version": "2.4",
+  "vendor_importable": false,
+  "description": "平台无关节点契约；operation匹配reference/openapi.json；JSON Pointer校验节点待中台/编排后端实现。",
+  "nodes": [
+    {
+      "id": "N00",
+      "kind": "HTTP_TRUSTED",
+      "input": [
+        "session",
+        "entry_context"
+      ],
+      "operation": "getContext",
+      "output": [
+        "trusted_context_ref",
+        "role_hint"
+      ],
+      "success": "N01",
+      "failure": "LOGIN_REQUIRED"
+    },
+    {
+      "id": "N01",
+      "kind": "LLM",
+      "input": [
+        "user_text",
+        "entry_context",
+        "business_day",
+        "last_business_state"
+      ],
+      "output_schema": "意图抽取.schema.json",
+      "success": "N02",
+      "failure": "FORMAT_REPAIR_ONCE"
+    },
+    {
+      "id": "N02",
+      "kind": "CODE",
+      "input": [
+        "N01.output"
+      ],
+      "output": [
+        "normalized_slots",
+        "missing_slots"
+      ],
+      "success": "N03",
+      "branches": {
+        "needs_clarification": "ASK_USER"
+      }
+    },
+    {
+      "id": "N03",
+      "kind": "HTTP",
+      "input": [
+        "entity_mentions",
+        "object_type"
+      ],
+      "operation": "resolveEntity",
+      "output": [
+        "candidates",
+        "stable_ids"
+      ],
+      "success": "N04",
+      "branches": {
+        "multiple": "ASK_USER_SELECT",
+        "none": "NO_MATCH",
+        "no_entity_collection": "N04"
+      }
+    },
+    {
+      "id": "N04",
+      "kind": "CONDITION",
+      "input": [
+        "object_level",
+        "stable_ids",
+        "normalized_slots"
+      ],
+      "branches": {
+        "CONTRACT": "A1-10",
+        "ENTERPRISE": "A2-20",
+        "COLLECTION": "A2-20",
+        "UNKNOWN": "ASK_USER"
+      }
+    },
+    {
+      "id": "A1-10",
+      "kind": "HTTP",
+      "input": [
+        "contract_id",
+        "as_of"
+      ],
+      "operation": "createContractAnalysis",
+      "output_schema": "ContractAnalysis",
+      "success": "A1-11",
+      "failure": "TOOL_ERROR_CARD"
+    },
+    {
+      "id": "A1-11",
+      "kind": "LLM",
+      "input": [
+        "analysis_id",
+        "data.financial",
+        "data.rules",
+        "data.pending_receipts",
+        "data.bills"
+      ],
+      "output_schema": "解释输出.schema.json",
+      "success": "A1-12",
+      "failure": "FACT_TEMPLATE"
+    },
+    {
+      "id": "A1-12",
+      "kind": "CODE",
+      "input": [
+        "analysis",
+        "explanation"
+      ],
+      "validations": [
+        "same_analysis_id",
+        "fact_json_pointer_exists",
+        "visible_evidence_subset",
+        "no_unbound_financial_numbers"
+      ],
+      "success": "A1-13",
+      "failure": "FACT_TEMPLATE"
+    },
+    {
+      "id": "A1-13",
+      "kind": "RENDER",
+      "input": [
+        "analysis",
+        "verified_explanation"
+      ],
+      "output": [
+        "contract_card",
+        "allowed_actions"
+      ],
+      "success": "WAIT_ACTION"
+    },
+    {
+      "id": "A2-20",
+      "kind": "HTTP",
+      "input": [
+        "as_of",
+        "enterprise_ids",
+        "filters",
+        "responsibility",
+        "role_scope"
+      ],
+      "operation_by_task": {
+        "enterprise": "createEnterpriseAnalysis",
+        "collection": "createCollectionAnalysis"
+      },
+      "success": "A2-21",
+      "failure": "TOOL_ERROR_CARD"
+    },
+    {
+      "id": "A2-21",
+      "kind": "CODE",
+      "input": [
+        "analysis"
+      ],
+      "validations": [
+        "dimension_status_preserved",
+        "null_not_zero",
+        "sum_before_pagination",
+        "nonadditive_warning"
+      ],
+      "success": "A2-22"
+    },
+    {
+      "id": "A2-22",
+      "kind": "LLM",
+      "input": [
+        "analysis",
+        "available_contributions"
+      ],
+      "output_schema": "解释输出.schema.json",
+      "success": "A2-23",
+      "failure": "FACT_TEMPLATE"
+    },
+    {
+      "id": "A2-23",
+      "kind": "CODE_RENDER",
+      "input": [
+        "analysis",
+        "explanation"
+      ],
+      "validations": [
+        "same_analysis_id",
+        "fact_json_pointer_exists",
+        "visible_evidence_subset"
+      ],
+      "success": "WAIT_ACTION",
+      "failure": "FACT_TEMPLATE"
+    },
+    {
+      "id": "A2-24",
+      "kind": "HTTP_ON_CLICK",
+      "input": [
+        "analysis_id",
+        "dimension_id",
+        "contract_id_optional"
+      ],
+      "operation": "getAnalysisDetails",
+      "success": "DIMENSION_DRAWER",
+      "failure": "TOOL_ERROR_CARD"
+    },
+    {
+      "id": "A2-25",
+      "kind": "HTTP_ON_CLICK",
+      "input": [
+        "handoff.contract_id",
+        "handoff.as_of"
+      ],
+      "operation": "createContractAnalysis",
+      "success": "A1-11"
+    },
+    {
+      "id": "D01",
+      "kind": "HTTP_ON_CLICK",
+      "input": [
+        "analysis_id",
+        "action_type",
+        "note"
+      ],
+      "operation": "createReviewDraft",
+      "success": "CONFIRM_CARD"
+    },
+    {
+      "id": "D02",
+      "kind": "CONTROLLED_HTTP_ON_USER_CONFIRM",
+      "input": [
+        "draft_id",
+        "expected_revision",
+        "Idempotency-Key"
+      ],
+      "operation": "confirmReviewDraft",
+      "success": "WORK_ITEM_CARD",
+      "failure": "TOOL_ERROR_CARD"
+    },
+    {
+      "id": "R01",
+      "kind": "HTTP_ON_CLICK",
+      "input": [
+        "analysis_id"
+      ],
+      "operation": "recheckAnalysis",
+      "success": "NEW_ANALYSIS_CARD",
+      "failure": "TOOL_ERROR_CARD"
+    }
+  ],
+  "terminal_states": [
+    "LOGIN_REQUIRED",
+    "ASK_USER",
+    "ASK_USER_SELECT",
+    "NO_MATCH",
+    "FORMAT_REPAIR_ONCE",
+    "TOOL_ERROR_CARD",
+    "FACT_TEMPLATE",
+    "WAIT_ACTION",
+    "DIMENSION_DRAWER",
+    "CONFIRM_CARD",
+    "WORK_ITEM_CARD",
+    "NEW_ANALYSIS_CARD"
+  ]
+}

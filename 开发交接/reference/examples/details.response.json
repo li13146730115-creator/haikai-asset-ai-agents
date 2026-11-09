@@ -1,0 +1,46 @@
+{
+  "analysis_id": "AN-269e47f00879441d",
+  "dimension_id": "R1",
+  "snapshot_id": "SNAP-cddd88127bd74afc",
+  "data": {
+    "rows": [
+      {
+        "contract_id": "HT-A01",
+        "id": "R1",
+        "status": "COMPLETE",
+        "numerator": 8000000,
+        "denominator": 10000000,
+        "num_unit": "CNY_FEN",
+        "den_unit": "CNY_FEN",
+        "value_bps": 8000,
+        "value_unit": "BASIS_POINT",
+        "known_contract_count": 1,
+        "eligible_contract_count": 1,
+        "source_refs": [
+          "DEMO-B-A01-01",
+          "DEMO-B-A01-02",
+          "DEMO-B-A01-03"
+        ],
+        "evidence": [
+          {
+            "source_id": "DEMO-B-A01-01",
+            "source_type": "BILL"
+          },
+          {
+            "source_id": "DEMO-B-A01-02",
+            "source_type": "BILL"
+          },
+          {
+            "source_id": "DEMO-B-A01-03",
+            "source_type": "BILL"
+          }
+        ],
+        "handoff": {
+          "agent_id": "A1",
+          "contract_id": "HT-A01",
+          "as_of": "2026-11-08"
+        }
+      }
+    ]
+  }
+}

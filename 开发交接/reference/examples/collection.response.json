@@ -1,0 +1,86 @@
+{
+  "schema_version": "p0-v1",
+  "analysis_id": "AN-8d735ed26d374f0b",
+  "request_id": "REQ-ab4231ab94224e7a",
+  "kind": "COLLECTION",
+  "as_of": "2026-11-08",
+  "source_revision": "4f3c16beb9e19d415aca38d9",
+  "snapshot_id": "SNAP-4b08d0abed074808",
+  "captured_at": "2026-11-09T06:17:02.209974+00:00",
+  "rule_version": "R-C01-C02-v1",
+  "metric_version": "R1-R6-v1",
+  "scope": {
+    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+    "effective_project_ids": [
+      "项目A"
+    ],
+    "responsibility": "SELF",
+    "role_scope": [
+      "SIGNATORY"
+    ]
+  },
+  "query_context": {
+    "as_of": "2026-11-08",
+    "list_type": "UNSETTLED",
+    "responsibility": "SELF"
+  },
+  "data": {
+    "contracts": [
+      {
+        "contract_id": "HT-A01",
+        "contract_number": "HT-A01",
+        "project_id": "项目A",
+        "responsible_id": "clerk-a",
+        "receivable_fen": 10000000,
+        "cash_allocated_fen": 8000000,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 2000000,
+        "overdue_fen": 2000000,
+        "rules": [
+          {
+            "rule_id": "R-C01",
+            "status": "MATCHED",
+            "severity": "MEDIUM",
+            "observed_fen": 2000000,
+            "evidence_refs": [
+              "DEMO-B-A01-03"
+            ]
+          },
+          {
+            "rule_id": "R-C02",
+            "status": "PENDING_REVIEW",
+            "severity": "INFO",
+            "observed_fen": 500000,
+            "evidence_refs": [
+              "DEMO-R-A01-5000"
+            ]
+          }
+        ],
+        "handoff": {
+          "agent_id": "A1",
+          "contract_id": "HT-A01",
+          "as_of": "2026-11-08"
+        }
+      }
+    ],
+    "financial": {
+      "receivable_fen": 10000000,
+      "cash_allocated_fen": 8000000,
+      "noncash_settled_fen": 0,
+      "unsettled_fen": 2000000,
+      "overdue_fen": 2000000
+    },
+    "contract_count": 1,
+    "page": {
+      "number": 1,
+      "size": 20,
+      "total": 1,
+      "has_more": false,
+      "statistics_scope": "ALL_MATCHED"
+    },
+    "enabled_rules": [
+      "R-C01",
+      "R-C02"
+    ]
+  }
+}

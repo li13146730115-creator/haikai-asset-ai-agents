@@ -1,0 +1,8 @@
+{
+  "principal_id": "clerk-a",
+  "tenant_id": "DEMO",
+  "role": "CLERK",
+  "projects": [
+    "项目A"
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schema_version": "p0-v1",
+  "analysis_id": "AN-37f82d79270c4abf",
+  "request_id": "REQ-f4919cd3613748e3",
+  "kind": "CONTRACT",
+  "as_of": "2026-11-08",
+  "source_revision": "4f3c16beb9e19d415aca38d9",
+  "snapshot_id": "SNAP-f80097c5324b4b05",
+  "captured_at": "2026-11-09T06:17:02.207760+00:00",
+  "rule_version": "R-C01-C02-v1",
+  "metric_version": "R1-R6-v1",
+  "scope": {
+    "scope_fingerprint": "371fba6b48cb7a8cd2c39173",
+    "effective_project_ids": [
+      "项目A"
+    ],
+    "responsibility": "ALL_VISIBLE",
+    "role_scope": [
+      "SIGNATORY"
+    ]
+  },
+  "query_context": {
+    "contract_id": "HT-A01",
+    "as_of": "2026-11-08"
+  },
+  "data": {
+    "contract": {
+      "id": "HT-A01",
+      "number": "HT-A01",
+      "name": "HT-A01虚构租赁合同",
+      "project_id": "项目A",
+      "responsible_id": "clerk-a",
+      "status": "PERFORMING",
+      "effective_version": "V1",
+      "end_date": "2026-12-31",
+      "timeliness_complete": true,
+      "guarantee_complete": true
+    },
+    "bills": [
+      {
+        "id": "DEMO-B-A01-01",
+        "contract_id": "HT-A01",
+        "fee_code": "RENT",
+        "period_from": "2026-01-01",
+        "period_to": "2026-10-31",
+        "receivable_fen": 7000000,
+        "effective_due_date": "2026-07-31",
+        "effective_at": "2026-01-01",
+        "status": "EFFECTIVE",
+        "parent_id": null,
+        "is_leaf": true,
+        "cash_allocated_fen": 7000000,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 0,
+        "overdue_fen": 0,
+        "overdue_days": 0,
+        "timely_paid_fen": 7000000,
+        "allocation_ids": [
+          "ALLOC-A01-01"
+        ],
+        "allocations": [
+          {
+            "id": "ALLOC-A01-01",
+            "bill_id": "DEMO-B-A01-01",
+            "amount_fen": 7000000,
+            "kind": "CASH",
+            "actual_paid_at": "2026-07-30",
+            "effective_at": "2026-07-30",
+            "status": "POSTED",
+            "reverse_of": null
+          }
+        ],
+        "source_ref": "DEMO-B-A01-01"
+      },
+      {
+        "id": "DEMO-B-A01-02",
+        "contract_id": "HT-A01",
+        "fee_code": "RENT",
+        "period_from": "2026-01-01",
+        "period_to": "2026-10-31",
+        "receivable_fen": 1000000,
+        "effective_due_date": "2026-08-31",
+        "effective_at": "2026-01-01",
+        "status": "EFFECTIVE",
+        "parent_id": null,
+        "is_leaf": true,
+        "cash_allocated_fen": 1000000,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 0,
+        "overdue_fen": 0,
+        "overdue_days": 0,
+        "timely_paid_fen": 0,
+        "allocation_ids": [
+          "ALLOC-A01-02"
+        ],
+        "allocations": [
+          {
+            "id": "ALLOC-A01-02",
+            "bill_id": "DEMO-B-A01-02",
+            "amount_fen": 1000000,
+            "kind": "CASH",
+            "actual_paid_at": "2026-09-05",
+            "effective_at": "2026-09-05",
+            "status": "POSTED",
+            "reverse_of": null
+          }
+        ],
+        "source_ref": "DEMO-B-A01-02"
+      },
+      {
+        "id": "DEMO-B-A01-03",
+        "contract_id": "HT-A01",
+        "fee_code": "RENT",
+        "period_from": "2026-01-01",
+        "period_to": "2026-10-31",
+        "receivable_fen": 2000000,
+        "effective_due_date": "2026-10-31",
+        "effective_at": "2026-01-01",
+        "status": "EFFECTIVE",
+        "parent_id": null,
+        "is_leaf": true,
+        "cash_allocated_fen": 0,
+        "noncash_settled_fen": 0,
+        "unsettled_fen": 2000000,
+        "overdue_fen": 2000000,
+        "overdue_days": 8,
+        "timely_paid_fen": 0,
+        "allocation_ids": [],
+        "allocations": [],
+        "source_ref": "DEMO-B-A01-03"
+      }
+    ],
+    "financial": {
+      "receivable_fen": 10000000,
+      "cash_allocated_fen": 8000000,
+      "noncash_settled_fen": 0,
+      "unsettled_fen": 2000000,
+      "overdue_fen": 2000000
+    },
+    "pending_receipts": [
+      {
+        "id": "DEMO-R-A01-5000",
+        "contract_id": "HT-A01",
+        "amount_fen": 500000,
+        "unallocated_fen": 500000,
+        "actual_paid_at": "2026-11-07",
+        "verified_contract_ref": true
+      }
+    ],
+    "rules": [
+      {
+        "rule_id": "R-C01",
+        "status": "MATCHED",
+        "severity": "MEDIUM",
+        "observed_fen": 2000000,
+        "evidence_refs": [
+          "DEMO-B-A01-03"
+        ]
+      },
+      {
+        "rule_id": "R-C02",
+        "status": "PENDING_REVIEW",
+        "severity": "INFO",
+        "observed_fen": 500000,
+        "evidence_refs": [
+          "DEMO-R-A01-5000"
+        ]
+      }
+    ],
+    "allowed_actions": [
+      "OPEN_SOURCE",
+      "RECHECK",
+      "SAVE_DRAFT"
+    ]
+  }
+}
