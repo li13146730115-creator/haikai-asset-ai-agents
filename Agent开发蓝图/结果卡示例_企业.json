@@ -1,0 +1,123 @@
+{
+  "analysis_id": "DEMO-AN-ENTERPRISE-A-V1",
+  "scope": {
+    "scope_fingerprint": "DEMO-AUTH-ALL-20261108",
+    "authorized_summary": "当前授权项目A及项目B；签约主体企业A"
+  },
+  "as_of": "2026-11-08",
+  "snapshot_id": "DEMO-SNAPSHOT-20261108-V1",
+  "source_watermarks": {
+    "finance": "2026-11-08T09:00:00+08:00",
+    "contract": "2026-11-08T09:00:00+08:00"
+  },
+  "allowed_actions": [
+    "DRILLDOWN",
+    "SAVE_DRAFT",
+    "RECHECK"
+  ],
+  "card_type": "ENTERPRISE",
+  "facts": [
+    {
+      "key": "receivable",
+      "value": "200000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-QUERY-A-V1"
+    },
+    {
+      "key": "cash_allocated",
+      "value": "170000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-QUERY-A-V1"
+    }
+  ],
+  "risks": [],
+  "dimensions": [
+    {
+      "dimension_id": "R1",
+      "num": 170000,
+      "den": 200000,
+      "value": 0.85,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "CNY_YUAN",
+      "den_unit": "CNY_YUAN"
+    },
+    {
+      "dimension_id": "R2",
+      "num": 155000,
+      "den": 200000,
+      "value": 0.775,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "CNY_YUAN",
+      "den_unit": "CNY_YUAN"
+    },
+    {
+      "dimension_id": "R3",
+      "num": 40000,
+      "den": 60000,
+      "value": 0.6666666666666666,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "CNY_YUAN",
+      "den_unit": "CNY_YUAN"
+    },
+    {
+      "dimension_id": "R4",
+      "num": 8,
+      "den": 10,
+      "value": 0.8,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "ITEM",
+      "den_unit": "ITEM"
+    },
+    {
+      "dimension_id": "R5",
+      "num": 1,
+      "den": 3,
+      "value": 0.3333333333333333,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "ITEM",
+      "den_unit": "ITEM"
+    },
+    {
+      "dimension_id": "R6",
+      "num": 20,
+      "den": 25,
+      "value": 0.8,
+      "status": "COMPLETE",
+      "unit": "RATIO",
+      "eligible_set": "DEMO-CONTRACT-SET-A",
+      "source_refs": [
+        "DEMO-QUERY-A-V1"
+      ],
+      "num_unit": "ITEM",
+      "den_unit": "ITEM"
+    }
+  ],
+  "evidence_refs": []
+}

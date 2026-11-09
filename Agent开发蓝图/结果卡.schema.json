@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "card_type": {
+      "enum": [
+        "CONTRACT",
+        "ENTERPRISE",
+        "COLLECTION",
+        "DIMENSION",
+        "ERROR"
+      ]
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "scope_fingerprint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "authorized_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "scope_fingerprint",
+        "authorized_summary"
+      ],
+      "additionalProperties": false
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "source_watermarks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "value": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "status": {
+            "enum": [
+              "COMPLETE",
+              "PARTIAL",
+              "UNAVAILABLE",
+              "NOT_APPLICABLE",
+              "ERROR",
+              "STALE"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "unit",
+          "status",
+          "source_ref"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "status": {
+            "enum": [
+              "MATCHED",
+              "NOT_MATCHED",
+              "SKIPPED_REQUIRED_DATA_MISSING",
+              "PENDING_REVIEW"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "INFO"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "obligor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "message_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "rule_id",
+          "status",
+          "severity",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dimension_id": {
+            "enum": [
+              "R1",
+              "R2",
+              "R3",
+              "R4",
+              "R5",
+              "R6"
+            ]
+          },
+          "num": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "den": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "COMPLETE",
+              "PARTIAL",
+              "UNAVAILABLE",
+              "NOT_APPLICABLE",
+              "ERROR",
+              "STALE"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "eligible_set": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "responsibility": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "window": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "num_unit": {
+            "type": "string"
+          },
+          "den_unit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dimension_id",
+          "num",
+          "den",
+          "value",
+          "status",
+          "unit",
+          "eligible_set"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "COMPLETE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "num": {
+                  "type": "number"
+                },
+                "den": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "value": {
+                  "type": "number"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 100
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "field_or_locator": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "authorized_open_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "evidence_id",
+          "source_type",
+          "source_id",
+          "label"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "DRILLDOWN",
+          "OPEN_SOURCE",
+          "SAVE_DRAFT",
+          "RECHECK",
+          "NONE"
+        ]
+      },
+      "maxItems": 100
+    },
+    "explanation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_type": {
+            "enum": [
+              "FACT_SUMMARY",
+              "RULE_EXPLANATION",
+              "SUGGESTION"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "fact_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "claim_type",
+          "text",
+          "fact_refs",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100
+    }
+  },
+  "required": [
+    "card_type",
+    "analysis_id",
+    "scope",
+    "as_of",
+    "snapshot_id",
+    "source_watermarks",
+    "facts",
+    "risks",
+    "evidence_refs",
+    "allowed_actions"
+  ],
+  "additionalProperties": false
+}

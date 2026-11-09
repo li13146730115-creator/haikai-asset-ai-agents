@@ -1,0 +1,974 @@
+{
+  "schema_version": "agent-tools-1.0",
+  "security": {
+    "identity_injected_by_backend": true,
+    "model_may_not_set": [
+      "principal_id",
+      "tenant_id",
+      "scope_ref",
+      "arbitrary_sql",
+      "arbitrary_url"
+    ]
+  },
+  "common_response": {
+    "required": [
+      "request_id",
+      "schema_version",
+      "snapshot_id",
+      "business_as_of",
+      "query_context",
+      "source_watermarks",
+      "component_status",
+      "data",
+      "evidence_refs"
+    ],
+    "amount_unit": "CNY_fen_or_decimal_string",
+    "ratio_requires": [
+      "num",
+      "den",
+      "unit",
+      "status",
+      "num_unit",
+      "den_unit"
+    ]
+  },
+  "tools": [
+    {
+      "id": "T01",
+      "name": "resolve_business_entity",
+      "read_only": true,
+      "output": [
+        "candidates[].stable_id",
+        "candidates[].display_name",
+        "candidates[].verified_status",
+        "responsibility_status",
+        "mapping_status"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "object_type": {
+            "enum": [
+              "CONTRACT",
+              "ENTERPRISE",
+              "RESOURCE"
+            ]
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "entry_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "fee_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "contract_stages": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "responsibility": {
+                "enum": [
+                  "SELF",
+                  "TEAM",
+                  "ALL_VISIBLE"
+                ]
+              },
+              "has_unsettled": {
+                "type": "boolean"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "page": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "cursor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "size"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "object_type"
+        ],
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "keyword"
+            ]
+          },
+          {
+            "required": [
+              "entry_id"
+            ]
+          },
+          {
+            "required": [
+              "filters"
+            ]
+          }
+        ]
+      },
+      "input_notes": {
+        "object_type": "CONTRACT|ENTERPRISE|RESOURCE",
+        "keyword": "string",
+        "filters": "scoped object",
+        "page": {
+          "size": "integer<=50",
+          "cursor": "string|null"
+        }
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "get_contract_facts",
+      "read_only": true,
+      "output": [
+        "facts_ref",
+        "effective_version",
+        "parties",
+        "resources",
+        "bill_leaf_rows",
+        "receipt_allocations",
+        "events",
+        "completeness",
+        "source_watermarks"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "period": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "format": "date"
+              },
+              "to": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "evidence_categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "contract_id",
+          "as_of"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "contract_id": "stable ID",
+        "as_of": "date",
+        "period": {
+          "from": "date|null",
+          "to": "date|null"
+        },
+        "evidence_categories": "array"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "analyze_contract_performance",
+      "read_only": true,
+      "output": [
+        "risk_items",
+        "pending_items",
+        "rule_execution",
+        "evidence_refs",
+        "rule_coverage"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "facts_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "rule_set_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "contract_id",
+          "as_of",
+          "facts_ref",
+          "rule_set_version"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "contract_id": "stable ID",
+        "as_of": "date",
+        "facts_ref": "T02 reference",
+        "rule_set_version": "published version"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "query_enterprise_insight",
+      "read_only": true,
+      "output": [
+        "analysis_id",
+        "query_ref",
+        "deduped_contract_set",
+        "portrait",
+        "metrics",
+        "enterprise_list",
+        "contract_list",
+        "coverage",
+        "page"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "enterprise_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "fee_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "contract_stages": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "responsibility": {
+                "enum": [
+                  "SELF",
+                  "TEAM",
+                  "ALL_VISIBLE"
+                ]
+              },
+              "has_unsettled": {
+                "type": "boolean"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "period": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "format": "date"
+              },
+              "to": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "role_scope": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "SIGNATORY",
+                "PAYER",
+                "USER",
+                "GUARANTOR",
+                "JOINT_SIGNATORY"
+              ]
+            },
+            "maxItems": 100
+          },
+          "analysis_type": {
+            "enum": [
+              "OVERVIEW",
+              "RISK",
+              "UNSETTLED",
+              "PAYMENT"
+            ]
+          },
+          "page": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "cursor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "size"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "as_of",
+          "role_scope",
+          "analysis_type"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "enterprise_ids": "array|null",
+        "filters": "authorized collection filters",
+        "as_of": "date",
+        "period": {
+          "from": "date|null",
+          "to": "date|null"
+        },
+        "role_scope": "array",
+        "analysis_type": "OVERVIEW|RISK|UNSETTLED|PAYMENT"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "get_enterprise_dimensions",
+      "read_only": true,
+      "output": [
+        "dimensions[].dimension_id",
+        "dimensions[].num",
+        "dimensions[].den",
+        "dimensions[].value",
+        "dimensions[].unit",
+        "dimensions[].status",
+        "dimensions[].eligible_set",
+        "dimensions[].contract_contribution",
+        "dimensions[].source"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "query_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "dimension_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "contract_filter": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "query_ref",
+          "dimension_version"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "query_ref": "T04 reference",
+        "dimension_version": "published version",
+        "contract_filter": "stable IDs|null"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "get_insight_detail",
+      "read_only": true,
+      "output": [
+        "detail_rows",
+        "evidence_refs",
+        "reauthorization"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "dimension_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "allowed_drill_path": {
+            "enum": [
+              "ENTERPRISE>CONTRACT",
+              "ENTERPRISE>CONTRACT>BILL",
+              "ENTERPRISE>CONTRACT>TASK"
+            ]
+          },
+          "contract_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "page": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "cursor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "size"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "analysis_id",
+          "dimension_id",
+          "allowed_drill_path"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "analysis_id": "stable ID",
+        "dimension_id": "string",
+        "allowed_drill_path": "ENTERPRISE>CONTRACT>BILL|TASK",
+        "page": {
+          "size": "integer<=100",
+          "cursor": "string|null"
+        }
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "compare_insight_versions",
+      "read_only": true,
+      "output": [
+        "comparability",
+        "changes",
+        "contract_contribution"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "enterprise_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "left_analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "right_analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "enterprise_id",
+          "left_analysis_id",
+          "right_analysis_id",
+          "dimensions"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "enterprise_id": "stable ID",
+        "left_analysis_id": "stable ID",
+        "right_analysis_id": "stable ID",
+        "dimensions": "array"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "save_analysis_draft",
+      "read_only": false,
+      "output": [
+        "draft_id",
+        "analysis_id",
+        "expires_at",
+        "source_versions"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "purpose": {
+            "enum": [
+              "REVIEW",
+              "REGISTER",
+              "BRIEF"
+            ]
+          },
+          "human_edits": {
+            "type": "object",
+            "properties": {
+              "note": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "suggested_owner_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "analysis_id",
+          "purpose"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "analysis_id": "stable ID",
+        "purpose": "string",
+        "human_edits": "structured object"
+      },
+      "side_effect": "DRAFT_STORAGE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T09",
+      "name": "extract_obligation_candidates",
+      "read_only": true,
+      "output": [
+        "candidates",
+        "document_evidence",
+        "review_status"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "document_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "template_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "contract_id",
+          "document_ids",
+          "template_version"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "contract_id": "stable ID",
+        "document_ids": "authorized array",
+        "template_version": "published version"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T10",
+      "name": "prepare_review_submission",
+      "read_only": false,
+      "output": [
+        "review_package_id",
+        "confirmation_context",
+        "allowed_actions"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "action_type": {
+            "enum": [
+              "REVIEW",
+              "REGISTER",
+              "RECHECK"
+            ]
+          }
+        },
+        "required": [
+          "draft_id",
+          "analysis_id",
+          "action_type"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "draft_id": "stable ID",
+        "analysis_id": "stable ID",
+        "action_type": "REVIEW|REGISTER|RECHECK"
+      },
+      "side_effect": "PREPARE_REVIEW_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "recheck_analysis",
+      "read_only": true,
+      "output": [
+        "new_analysis_id",
+        "diff",
+        "authorization_result"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "scope_change": {
+            "enum": [
+              "NONE",
+              "PROJECT",
+              "PERIOD",
+              "ROLE",
+              "DATA_REFRESH"
+            ]
+          },
+          "requested_filters": {
+            "type": "object",
+            "properties": {
+              "project_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "fee_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "contract_stages": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "maxItems": 100
+              },
+              "responsibility": {
+                "enum": [
+                  "SELF",
+                  "TEAM",
+                  "ALL_VISIBLE"
+                ]
+              },
+              "has_unsettled": {
+                "type": "boolean"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "analysis_id",
+          "scope_change"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "analysis_id": "stable ID",
+        "scope_change": "NONE|PROJECT|PERIOD|ROLE|DATA_REFRESH"
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    },
+    {
+      "id": "T12",
+      "name": "get_scan_batch",
+      "read_only": true,
+      "output": [
+        "scan_rows",
+        "coverage",
+        "rule_version",
+        "watermarks"
+      ],
+      "input_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "batch_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "page": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "cursor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "size"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "batch_id"
+        ],
+        "additionalProperties": false
+      },
+      "input_notes": {
+        "batch_id": "stable ID",
+        "page": {
+          "size": "integer<=100",
+          "cursor": "string|null"
+        }
+      },
+      "side_effect": "READ_OR_DERIVE_ONLY",
+      "runtime_validation": [
+        "reauthorize_each_call",
+        "validate_references_belong_to_current_scope",
+        "check_snapshot_and_source_versions"
+      ]
+    }
+  ],
+  "write_boundary": "Agent may save a draft and prepare a review package. Financial posting, allocation, dispatch and contract changes remain dedicated backend actions requiring explicit confirmation and original-system authorization."
+}

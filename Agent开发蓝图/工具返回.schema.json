@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "schema_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "business_as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "query_context": {
+      "type": "object"
+    },
+    "context_fingerprint": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "source_watermarks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "component_status": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "COMPLETE",
+          "PARTIAL",
+          "UNAVAILABLE",
+          "NOT_APPLICABLE",
+          "ERROR",
+          "STALE"
+        ]
+      }
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "metric_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "data": {
+      "type": "object"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "source_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "field_or_locator": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "authorized_open_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "evidence_id",
+          "source_type",
+          "source_id",
+          "label"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "has_more": {
+          "type": "boolean"
+        },
+        "statistics_scope": {
+          "enum": [
+            "ALL_MATCHED"
+          ]
+        }
+      },
+      "required": [
+        "has_more",
+        "statistics_scope"
+      ],
+      "additionalProperties": false
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "code",
+        "retryable",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "request_id",
+    "schema_version",
+    "snapshot_id",
+    "business_as_of",
+    "query_context",
+    "context_fingerprint",
+    "source_watermarks",
+    "component_status",
+    "data",
+    "evidence_refs"
+  ],
+  "additionalProperties": false
+}

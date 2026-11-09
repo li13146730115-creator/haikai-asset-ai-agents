@@ -1,0 +1,73 @@
+{
+  "synthetic_only": true,
+  "trusted_context_injected_outside_model_args": true,
+  "inputs": {
+    "T01": {
+      "object_type": "CONTRACT",
+      "keyword": "HT-A01"
+    },
+    "T02": {
+      "contract_id": "HT-A01",
+      "as_of": "2026-11-08"
+    },
+    "T03": {
+      "contract_id": "HT-A01",
+      "as_of": "2026-11-08",
+      "facts_ref": "DEMO-FACT-A01-V1",
+      "rule_set_version": "DEMO-RULE-V1"
+    },
+    "T04": {
+      "enterprise_ids": [
+        "A"
+      ],
+      "as_of": "2026-11-08",
+      "role_scope": [
+        "SIGNATORY"
+      ],
+      "analysis_type": "OVERVIEW"
+    },
+    "T05": {
+      "query_ref": "DEMO-QUERY-A-V1",
+      "dimension_version": "DEMO-METRIC-V1"
+    },
+    "T06": {
+      "analysis_id": "DEMO-AN-ENTERPRISE-A-V1",
+      "dimension_id": "R1",
+      "allowed_drill_path": "ENTERPRISE>CONTRACT"
+    },
+    "T07": {
+      "enterprise_id": "A",
+      "left_analysis_id": "DEMO-AN-A-V1",
+      "right_analysis_id": "DEMO-AN-A-V2",
+      "dimensions": [
+        "R1"
+      ]
+    },
+    "T08": {
+      "analysis_id": "DEMO-AN-A01-V1",
+      "purpose": "REVIEW"
+    },
+    "T09": {
+      "contract_id": "HT-A01",
+      "document_ids": [
+        "DEMO-DOC-A01-01"
+      ],
+      "template_version": "DEMO-TEMPLATE-V1"
+    },
+    "T10": {
+      "draft_id": "DEMO-DRAFT-01",
+      "analysis_id": "DEMO-AN-A01-V1",
+      "action_type": "REVIEW"
+    },
+    "T11": {
+      "analysis_id": "DEMO-AN-A01-V1",
+      "scope_change": "DATA_REFRESH"
+    },
+    "T12": {
+      "batch_id": "DEMO-BATCH-01",
+      "page": {
+        "size": 20
+      }
+    }
+  }
+}

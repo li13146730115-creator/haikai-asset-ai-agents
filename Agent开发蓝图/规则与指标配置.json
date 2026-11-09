@@ -1,0 +1,21 @@
+{
+  "schema_version":"metric-rule-1.0",
+  "rules":[
+    {"id":"R-C01","name":"逾期未结","requires":["effective_leaf_bill","effective_due_date","net_unsettled_amount"],"logic":"as_of > effective_due_date AND net_unsettled_amount > 0","boundary":"due date itself is not overdue","missing":"SKIPPED_REQUIRED_DATA_MISSING"},
+    {"id":"R-C02","name":"到账待分配","requires":["verified_receipt","verified_contract_ref","unallocated_amount"],"logic":"unallocated_amount > 0","boundary":"does not reduce bill balance before allocation","missing":"PENDING_REVIEW"},
+    {"id":"R-C03","name":"保证金不足","requires":["effective_required","effective_held"],"logic":"min(contract_held,contract_required) < contract_required","boundary":"no cross-contract overpayment offset","missing":"SKIPPED_REQUIRED_DATA_MISSING"},
+    {"id":"R-C04","name":"义务逾期","requires":["published_obligation","obligor","due_at","completion_evidence"],"logic":"due_at < as_of AND completion_condition_not_met","boundary":"party responsibility separated","missing":"PENDING_REVIEW"},
+    {"id":"R-C05","name":"到期准备不足","requires":["effective_end","published_required_items","preparation_evidence"],"logic":"within configured 1-90 day window AND prepared < applicable","boundary":"management readiness, not customer credit","missing":"SKIPPED_REQUIRED_DATA_MISSING"},
+    {"id":"R-C06","name":"证据待补","requires":["published_evidence_template","verified_evidence_status"],"logic":"required evidence missing, invalid or unverified","boundary":"document existence is not validity","missing":"SKIPPED_REQUIRED_DATA_MISSING"}
+  ],
+  "dimensions":[
+    {"id":"R1","name":"回款达成","formula":"sum(eligible_cash_allocated)/sum(eligible_effective_receivable)","status_rule":"complete when source and denominator complete"},
+    {"id":"R2","name":"付款及时","formula":"sum(amount_paid_on_or_before_effective_due_date)/sum(eligible_due_receivable)","boundary":"use actual payment date; cap per obligation; refunds reverse"},
+    {"id":"R3","name":"保证金覆盖","formula":"sum(min(contract_effective_guarantee,contract_required))/sum(contract_required)","boundary":"aggregate after per-contract cap"},
+    {"id":"R4","name":"义务履行","formula":"sum(completed_evidenced_applicable_due_obligations)/sum(applicable_required_obligations)"},
+    {"id":"R5","name":"到期准备","formula":"sum(prepared_required_items_in_forward_window)/sum(applicable_required_items_in_forward_window)","window":"customer_configurable_1_to_90_days"},
+    {"id":"R6","name":"证据完备","formula":"sum(verified_valid_required_evidence)/sum(applicable_required_evidence)"}
+  ],
+  "statuses":{"COMPLETE":"source and eligible set complete","PARTIAL":"known numerator/denominator but coverage incomplete","UNAVAILABLE":"no source","NOT_APPLICABLE":"eligible set is zero","ERROR":"technical failure","ZERO":"complete with num=0 and den>0"},
+  "aggregation":"sum numerator and denominator; never average contract percentages; deduplicate by bill/contract IDs"
+}

@@ -1,0 +1,99 @@
+{
+  "analysis_id": "DEMO-AN-A01-V1",
+  "scope": {
+    "scope_fingerprint": "DEMO-AUTH-A-20261108",
+    "authorized_summary": "当前授权项目A；合同HT-A01"
+  },
+  "as_of": "2026-11-08",
+  "snapshot_id": "DEMO-SNAPSHOT-20261108-V1",
+  "source_watermarks": {
+    "finance": "2026-11-08T09:00:00+08:00",
+    "contract": "2026-11-08T09:00:00+08:00"
+  },
+  "allowed_actions": [
+    "OPEN_SOURCE",
+    "SAVE_DRAFT",
+    "RECHECK"
+  ],
+  "card_type": "CONTRACT",
+  "facts": [
+    {
+      "key": "receivable",
+      "value": "100000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-FACT-A01-V1"
+    },
+    {
+      "key": "cash_allocated",
+      "value": "80000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-FACT-A01-V1"
+    },
+    {
+      "key": "unsettled",
+      "value": "20000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-FACT-A01-V1"
+    },
+    {
+      "key": "overdue",
+      "value": "20000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-FACT-A01-V1"
+    },
+    {
+      "key": "overdue_days",
+      "value": 8,
+      "unit": "DAY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-FACT-A01-V1"
+    },
+    {
+      "key": "unallocated_receipt",
+      "value": "5000.00",
+      "unit": "CNY",
+      "status": "COMPLETE",
+      "source_ref": "DEMO-R-A01-5000"
+    }
+  ],
+  "risks": [
+    {
+      "rule_id": "R-C01",
+      "status": "MATCHED",
+      "severity": "MEDIUM",
+      "evidence_refs": [
+        "EV-BILL-03"
+      ],
+      "obligor": "SIGNATORY",
+      "message_key": "CONTRACT_OVERDUE"
+    }
+  ],
+  "evidence_refs": [
+    {
+      "evidence_id": "EV-BILL-03",
+      "source_type": "BILL",
+      "source_id": "DEMO-B-A01-03",
+      "source_version": "V1",
+      "label": "HT-A01九至十月应收账单",
+      "field_or_locator": "amount_due/effective_due_date",
+      "authorized_open_ref": "DEMO-OPEN-EV-BILL-03"
+    }
+  ],
+  "explanation": [
+    {
+      "claim_type": "RULE_EXPLANATION",
+      "text": "该笔应收已过有效到期日，建议先核对到账分配。",
+      "fact_refs": [
+        "facts.overdue",
+        "risks.R-C01"
+      ],
+      "evidence_refs": [
+        "EV-BILL-03"
+      ]
+    }
+  ]
+}
