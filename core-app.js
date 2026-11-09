@@ -104,7 +104,7 @@ else if(a==='gotoask'){close();navigate('ask')}
 else if(a==='scenes'){S.scene=v||S.page;showScenes(S.scene)}
 else if(a==='scene-tab')showScenes(v);
 else if(a==='scene-contract'){close();S.tab='合同助手';navigate('contract');question(v)}
-else if(a==='scene-ask'){close();stop(false);S.active=null;navigate('ask');ask(v)}
+else if(a==='scene-ask'){close();stop(false);S.active=null;if(v.includes('查看上次查询结果')){const q='哪些合同欠费需要催缴',answer=M.answer(q,S.scope),ss={id:'s'+Date.now(),title:q,scope:S.scope,time:new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}),messages:[{q,a:answer,shown:answer.text,status:'done'}]};S.sessions.unshift(ss);S.active=ss.id;navigate('ask');ask('按项目分组')}else{navigate('ask');ask(v)}}
 });
 document.addEventListener('submit',ev=>{if(ev.target.id==='ask-form'){ev.preventDefault();ask($('#question').value)}if(ev.target.id==='contract-form'){ev.preventDefault();const q=$('#contract-question').value.trim();if(q)question(q)}});
 document.addEventListener('change',ev=>{if(ev.target.id==='contract-select'){S.contract=ev.target.value;S.reply=null;render()}if(ev.target.id==='scope-select'){stop(false);S.scope=ev.target.value;S.active=null;render();notify('已切换查询范围，新问题将按所选项目查询')}});
