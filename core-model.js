@@ -31,6 +31,13 @@ const days=end=>Math.round((Date.parse(end)-Date.parse(ASOF))/86400000),sum=(xs,
 function visible(scope){return contracts.filter(x=>scope==='all'||x.project===scope)}
 function contract(id){const c=contracts.find(x=>x.id===id);if(!c)throw Error('合同不存在');const bs=bills.filter(x=>x.contract===id);return {...c,name:customers[c.customer],bills:bs,ar:sum(bs,'ar'),paid:sum(bs,'paid'),overdue:sum(bs,'overdue'),balance:sum(bs,'balance'),timely:sum(bs,'timely'),latePaid:sum(bs,'paid')-sum(bs,'timely'),days:days(c.end),unallocated:id==='HT-A01'?5000:0}}
 function summary(scope){const cs=visible(scope).map(x=>contract(x.id)),as=assets.filter(x=>scope==='all'||x.project===scope);const ar=sum(cs,'ar'),paid=sum(cs,'paid'),area=sum(as,'area'),leased=sum(as,'leased');return{ar,paid,overdue:sum(cs,'overdue'),balance:sum(cs,'balance'),contracts:cs.length,customers:new Set(cs.map(x=>x.customer)).size,assets:as.length,area,leased,occupancy:pct(leased,area),rate:pct(paid,ar),expiring:cs.filter(x=>x.days>=0&&x.days<=90).length}}
+function riskSignals(input){
+const c=typeof input==='string'?contract(input):input,rs=[];
+if(c.overdue>0)rs.push({code:'overdue',label:'逾期欠费',tone:'red',detail:`逾期未核销 ${money(c.overdue)}；需核对收款与账单后安排催缴。`,evidence:c.bills.filter(b=>b.overdue>0).map(b=>b.id),question:'还有哪些账单没交费？',action:'billlist'});
+if(c.deposit&&c.deposit[0]<c.deposit[1])rs.push({code:'deposit',label:'保证金不足',tone:'amber',detail:`有效保证金 ${money(c.deposit[0])}，应缴 ${money(c.deposit[1])}，缺口 ${money(c.deposit[1]-c.deposit[0])}。`,evidence:[c.id+' · 保证金条款与有效余额'],question:'保证金交齐了吗？',action:'contractsource'});
+if(c.days>=0&&c.days<=90&&c.renew&&c.renew[0]<c.renew[1])rs.push({code:'renewal',label:'续签准备待完成',tone:'amber',detail:`合同于 ${c.end} 结束，剩余 ${c.days} 天；续签准备完成 ${c.renew[0]} / ${c.renew[1]} 项。`,evidence:[c.id+' · 结束日期与续签准备清单'],question:'合同何时到期，续签准备好了吗？',action:'renew'});
+return rs;
+}
 function radar(id){const c=contract(id);return[
 {key:'payment',label:'回款完成',value:pct(c.paid,c.ar),fact:`已核销 ${c.paid.toLocaleString()} / 应收 ${c.ar.toLocaleString()} 元`,question:'还有哪些账单没交费？'},
 {key:'timely',label:'付款及时',value:pct(c.timely,c.ar),fact:`按期核销 ${c.timely.toLocaleString()} / 到期应收 ${c.ar.toLocaleString()} 元`,question:'历史付款是否及时？'},
@@ -107,6 +114,6 @@ const SCENES=[
 ['Q09','ask','连续追问与会话回看','所有用户','按项目展开；查看上次查询结果','会话ID、上下文、授权范围、结果快照、时间','继承意图 → 补充维度 → 保存快照 → 回看','欠费问题后追问按项目分组仍为欠费分析；右侧点历史恢复原结果。','历史不自动更新；重新查询形成新快照。'],
 ['Q10','ask','数据不足与澄清','所有用户','今年收入同比增长多少？','指标目录、可用期间、数据覆盖','识别口径/来源缺失 → 说明缺口 → 建议替代问题','当前单期样例返回缺少去年同期，不生成增长率。','不支持问题需澄清，不展示伪造图表。']
 ].map(([id,agent,title,role,question,data,flow,accept,boundary])=>({id,agent,title,role,question,data,flow,accept,boundary}));
-const api={ASOF,PERIOD,customers,contracts,bills,assets,devices,points,scopes,visible,contract,summary,radar,answer,SCENES,money,pct};
+const api={ASOF,PERIOD,customers,contracts,bills,assets,devices,points,scopes,visible,contract,summary,riskSignals,radar,answer,SCENES,money,pct};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.CoreModel=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

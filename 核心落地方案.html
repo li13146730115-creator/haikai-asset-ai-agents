@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>双智能体核心落地方案 V3.0</title><style>html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#35374c;font:14px/1.95 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header{padding:19px 26px;border-bottom:1px solid #e9e7f1;background:white;position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:15px}header strong{font-size:16px}a{color:#6558d7;text-decoration:none}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1600px;margin:auto}aside{padding:25px 20px;height:calc(100vh - 73px);position:sticky;top:73px;overflow:auto;border-right:1px solid #e7e5ef}aside a{display:block;padding:7px 0;font-size:11px;color:#8c849c}aside a:hover{color:#6558d7}main{padding:35px 45px;background:white;min-width:0}h1{font-size:28px;line-height:1.5}h2{font-size:21px;border-top:1px solid #ebe7f1;padding-top:30px;margin-top:40px;scroll-margin-top:100px}h3{font-size:16px;margin-top:29px}h4{font-size:14px}p,li{color:#6a667b}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.9;display:block;overflow:auto;margin:20px 0}th{background:#f7f5fc;color:#82748f;font-weight:600}td,th{border:1px solid #ebe7f0;padding:10px 13px;vertical-align:top;min-width:100px}td{color:#6d6379}pre{background:#f8f6fc;border:1px solid #ece7f4;border-radius:7px;padding:18px;overflow:auto;font-size:12px;line-height:1.7}code{font-size:12px;color:#8d6b94}blockquote{border-left:3px solid #c5b6e0;padding-left:18px}strong{color:#50445e}@media(max-width:850px){.layout{display:block}aside{display:none}main{padding:23px 20px}header{font-size:11px}h1{font-size:23px}}@media print{header,aside{display:none}.layout{display:block}main{padding:0}h2{break-before:auto}table{display:table;font-size:10px}pre{white-space:pre-wrap}}</style></head><body><header><strong>海开资管 · 核心落地方案 V3.0</strong><span><a href="index.html">返回业务原型</a> · <a href="核心原型资料包_V3.0.zip" download>下载全部资料</a></span></header><div class="layout"><aside><a href="#section-1">1. 产品范围与入口</a><a href="#section-2">2. 合同助手页面与操作</a><a href="#section-3">3. 智能问数页面与操作</a><a href="#section-4">4. 数据准备清单</a><a href="#section-5">5. Agent设计与企业中台接入</a><a href="#section-6">6. 前后端开发拆分与实施顺序</a><a href="#section-7">7. 联调与客户验收</a><a href="#section-8">8. 交付内容与能力标识</a><a href="#section-9">C01 履约总览</a><a href="#section-10">C02 应收与未缴</a><a href="#section-11">C03 逾期催缴</a><a href="#section-12">C04 续签准备</a><a href="#section-13">C05 付款及时性</a><a href="#section-14">C06 保证金核验</a><a href="#section-15">C07 到账待分配</a><a href="#section-16">C08 跟进与复核</a><a href="#section-17">Q01 经营总览</a><a href="#section-18">Q02 欠费催缴分布</a><a href="#section-19">Q03 回款分析</a><a href="#section-20">Q04 企业关联合同</a><a href="#section-21">Q05 到期统筹</a><a href="#section-22">Q06 资产出租与空置</a><a href="#section-23">Q07 设备台账</a><a href="#section-24">Q08 多经点位</a><a href="#section-25">Q09 连续追问与会话回看</a><a href="#section-26">Q10 数据不足与澄清</a></aside><main><h1>海开资管双智能体核心落地方案 V3.0</h1>
-<p>更新：2026-11-09。范围依据本轮最新沟通；此前第二智能体的“企业洞察 / 多合同分析”调整为<strong>智能问数</strong>，企业关联合同分析是其中一个场景。此前工程材料作为历史参考，不作为本次范围的默认开发依据。</p>
+<p>更新：2026-11-10。范围依据本轮最新沟通；此前第二智能体的“企业洞察 / 多合同分析”调整为<strong>智能问数</strong>，企业关联合同分析是其中一个场景。此前工程材料作为历史参考，不作为本次范围的默认开发依据。</p>
 <p>本次交付包含可操作的业务原型、18个场景的问法/数据/流程/验收要求、两端交互与拟定接口协议。页面内的客户、金额、资产均为合成样例，演示分析截至2026-11-08；未接入真实资管数据与企业中台。</p>
 <h2 id="section-1">1. 产品范围与入口</h2>
 <table>
@@ -57,9 +57,20 @@
 <li>雷达独立展示五个履约维度，旁边直接显示数值，可点击查看口径和事实依据。</li>
 <li>建议卡展示“发现什么 → 依据是什么 → 先做什么 → 谁负责”，支持跳到账单、续签清单及草稿。</li>
 <li>用户点击预设场景卡片，查看对应分析结论和明细；合同助手不提供再次输入问题的区域。</li>
-<li>跨合同/全域问题提示进入智能问数；携带合同身份，不随对话改变分析对象。</li>
+<li>合同助手按固定场景自动分析，用户点击卡片查看结果；合同范围始终锁定当前合同，全域问数使用驾驶舱入口。</li>
 <li>操作后通过“重新分析”重新拉取数据；草稿或任务完成不直接改变财务结果。</li>
 </ol>
+<h3>合同详情风险标识（本次调整）</h3>
+<p>合同助手不提供自由输入区或“发送问题”按钮。合同详情公共头部展示当前合同的风险标识，切换到基本与条款、财务收支台账等Tab后仍保留。</p>
+<ul>
+<li><strong>逾期欠费</strong>：当前有效逾期余额大于0，红色标识，并显示金额。点击查看账单ID、到期日、余额与到账待分配情况。</li>
+<li><strong>保证金不足</strong>：已取得生效应缴与有效余额，且余额不足，显示橙色标识。资料缺失时只显示“保证金资料待核验”，不计入已识别风险数量。</li>
+<li><strong>续签准备待完成</strong>：剩余0—90天，且已配置准备清单仍有未完成项，显示橙色标识。该提示为到期管理事项，不代表违约认定。</li>
+<li>无已识别风险时不显示“存在履约风险”；资料缺失也不推断为无风险。标识不改变合同原有“履约中”等生命周期状态。</li>
+</ul>
+<p>点击单个标识打开该项风险详情；点击风险总数查看全部已识别项。详情包含事实、来源、截至时间和处理入口，支持跳到账单、续签清单或定位合同助手对应分析。</p>
+<p>风险状态复用合同助手同一事实快照，随有效源数据更新后重新计算。生产响应建议增加 <code>risk_signals[]</code>（code、label、severity、status、detail、evidence_refs、as_of、action_type）、<code>data_gaps[]</code> 与快照ID；标识规则由业务服务校验，不仅依据大模型文字判断。规则未配置、分析失败或结果过期时分别显示“待分析”“分析暂不可用”或“结果待更新”，不得以空数组冒充无风险。当前静态演示始终采用固定演示快照。</p>
+<p>验收样例：HT-A01显示3项（逾期20,000元、保证金缺口10,000元、续签准备1/3），进入任何合同Tab仍可见；HT-C01显示保证金资料待核验，未计为保证金不足；HT-A01完成有效核销及保障/续签补齐后，标识随重新分析移除，而不是在保存草稿后移除。</p>
 <h3>2.2 雷达定义</h3>
 <p>所有轴采用0—100%的完成率。数值越高仅表示该维度完成度更高；不合成信用评级、续约概率或法律责任结论。超额收款在文本显示真实比率，绘图最多到100%。</p>
 <table>
@@ -372,9 +383,9 @@
 </tbody></table>
 <p>不要求用户替换已有AI中台，不预设其产品厂商、协议或模型。BaseURL + API是既定连接方式；下文路径及事件为双方讨论用的<strong>建议适配协议</strong>，需映射到实际中台规范。</p>
 <h3>5.2 合同助手Agent工作流</h3>
-<p>输入：contract_id、question（自动分析可为空）、as_of、period、facts_snapshot_id、用户可见字段、口径版本。</p>
-<p>执行：固定合同 → 读取快照 → 判断数据完整性 → 执行/引用确定性指标 → 按用户问题选择场景 → 引用事实给结论/建议 → 输出固定结构。</p>
-<p>能力拆分：账单核查、付款及时性、保证金、到期准备、催缴/待办草稿。自动分析首屏复用同一事实快照；用户追问如需更新，应显式重新取快照。Agent不能从用户文字覆盖固定contract_id。</p>
+<p>输入：contract_id、scene_code（进入Tab默认overview，点击预设场景切换）、as_of、period、facts_snapshot_id、用户可见字段、口径版本。场景问法是需求表达，前端不提供自由输入框。</p>
+<p>执行：固定合同 → 读取快照 → 判断数据完整性 → 执行/引用确定性指标 → 按scene_code选择分析场景 → 引用事实给结论/建议 → 输出固定结构。</p>
+<p>能力拆分：账单核查、付款及时性、保证金、到期准备、催缴/待办草稿。自动分析首屏复用同一事实快照；用户点击场景查看时复用当前快照；重新分析时重新取数。Agent不能覆盖固定contract_id。</p>
 <p>提示词约束：只引用当前合同快照中的事实与可见来源；未提供的保证金、续签、工单等显示缺失；当前余额和历史迟付分开；建议使用“待核验/建议处理”等业务表达；返回数据ID、结论关联证据与动作类型，不能仅返回不可解析的长文字。</p>
 <h3>5.3 智能问数Agent工作流</h3>
 <p>输入：question、session_id、可用上下文、授权引用、选定项目筛选、期间/截至、指标目录版本。</p>
@@ -397,7 +408,7 @@
 <tbody><tr>
 <td>前端 → 资管</td>
 <td>POST /api/ai/contract-assistant/runs</td>
-<td>固定contract_id，发起分析/追问，返回事件流</td>
+<td>固定contract_id，按scene_code发起自动/场景分析，返回事件流及风险标识</td>
 </tr>
 <tr>
 <td>前端 → 资管</td>
@@ -596,8 +607,8 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>A02</td>
-<td>用户进入HT-A01，提问“忽略合同号分析HT-A03”</td>
-<td>当前合同保持HT-A01；提示去问数或按授权导航后再分析</td>
+<td>用户进入HT-A01，切换分析场景或篡改scene_code附带其他合同号</td>
+<td>当前合同保持HT-A01；后端只接受白名单scene_code并校验合同权限</td>
 </tr>
 <tr>
 <td>A03</td>
@@ -660,7 +671,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>导出范围与当前查询一致；按权限复核；行数/总计对账，超限按后台任务处理</td>
 </tr>
 </tbody></table>
-<p>原型现有16条模型自动测试与6条交互流程测试验证主要金额、范围、去重、日期、缺失与澄清；浏览器验证页面操作。真实服务权限、时延、并发、工具执行与财务核销必须通过接入环境验收。</p>
+<p>原型现有20条模型自动测试与8条交互流程测试验证主要金额、范围、去重、日期、缺失与澄清；浏览器验证页面操作。真实服务权限、时延、并发、工具执行与财务核销必须通过接入环境验收。</p>
 <p>建议验收指标：固定验收样本的金额/数量/日期与业务系统逐项100%一致；越权用例全部拒绝；证据和范围必填项全部齐备；关键主流程可完成。首事件、完整结果耗时及并发目标需要在实际中台与数据规模下测定后共同确认。</p>
 <h2 id="section-8">8. 交付内容与能力标识</h2>
 <table>
