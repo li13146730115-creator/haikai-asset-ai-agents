@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>双智能体核心落地方案 V3.2</title><style>html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#35374c;font:14px/1.95 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header{padding:19px 26px;border-bottom:1px solid #e9e7f1;background:white;position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:15px}header strong{font-size:16px}a{color:#6558d7;text-decoration:none}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1600px;margin:auto}aside{padding:25px 20px;height:calc(100vh - 73px);position:sticky;top:73px;overflow:auto;border-right:1px solid #e7e5ef}aside a{display:block;padding:7px 0;font-size:11px;color:#8c849c}aside a:hover{color:#6558d7}main{padding:35px 45px;background:white;min-width:0}h1{font-size:28px;line-height:1.5}h2{font-size:21px;border-top:1px solid #ebe7f1;padding-top:30px;margin-top:40px;scroll-margin-top:100px}h3{font-size:16px;margin-top:29px}h4{font-size:14px}p,li{color:#6a667b}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.9;display:block;overflow:auto;margin:20px 0}th{background:#f7f5fc;color:#82748f;font-weight:600}td,th{border:1px solid #ebe7f0;padding:10px 13px;vertical-align:top;min-width:100px}td{color:#6d6379}pre{background:#f8f6fc;border:1px solid #ece7f4;border-radius:7px;padding:18px;overflow:auto;font-size:12px;line-height:1.7}code{font-size:12px;color:#8d6b94}blockquote{border-left:3px solid #c5b6e0;padding-left:18px}strong{color:#50445e}@media(max-width:850px){.layout{display:block}aside{display:none}main{padding:23px 20px}header{font-size:11px}h1{font-size:23px}}@media print{header,aside{display:none}.layout{display:block}main{padding:0}h2{break-before:auto}table{display:table;font-size:10px}pre{white-space:pre-wrap}}</style></head><body><header><strong>海开资管 · 核心落地方案 V3.2</strong><span><a href="index.html">返回业务原型</a> · <a href="核心原型资料包_V3.0.zip" download>下载全部资料</a></span></header><div class="layout"><aside><a href="#section-1">1. 本次数据范围与核对结果</a><a href="#section-2">2. 合同助手页面与业务流程</a><a href="#section-3">3. 项目规则优先的建议生成</a><a href="#section-4">4. 智能问数页面与场景</a><a href="#section-5">5. 智能体与企业AI中台分工</a><a href="#section-6">6. 问题卡与结果协议</a><a href="#section-7">7. 验收案例</a><a href="#section-8">8. 当前交付与接入边界</a><a href="#section-9">C01 履约总览</a><a href="#section-10">C02 应收与未缴</a><a href="#section-11">C03 逾期催缴</a><a href="#section-12">C04 续签准备</a><a href="#section-13">C05 付款及时性</a><a href="#section-14">C06 保证金核验</a><a href="#section-15">C07 到账待分配</a><a href="#section-16">C08 企业风险与合同变更</a><a href="#section-17">Q01 经营总览</a><a href="#section-18">Q02 欠费催缴分布</a><a href="#section-19">Q03 回款分析</a><a href="#section-20">Q04 企业关联合同</a><a href="#section-21">Q05 到期统筹</a><a href="#section-22">Q06 资产出租与空置</a><a href="#section-23">Q09 连续追问与会话回看</a><a href="#section-24">Q10 数据不足与澄清</a><a href="#section-25">Q11 授权与空结果</a><a href="#section-26">Q12 年底待回收计划</a></aside><main><h1>海开资管双智能体落地方案 V3.2</h1>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>双智能体核心落地方案 V3.3</title><style>html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#35374c;font:14px/1.95 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header{padding:19px 26px;border-bottom:1px solid #e9e7f1;background:white;position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:15px}header strong{font-size:16px}a{color:#6558d7;text-decoration:none}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1600px;margin:auto}aside{padding:25px 20px;height:calc(100vh - 73px);position:sticky;top:73px;overflow:auto;border-right:1px solid #e7e5ef}aside a{display:block;padding:7px 0;font-size:11px;color:#8c849c}aside a:hover{color:#6558d7}main{padding:35px 45px;background:white;min-width:0}h1{font-size:28px;line-height:1.5}h2{font-size:21px;border-top:1px solid #ebe7f1;padding-top:30px;margin-top:40px;scroll-margin-top:100px}h3{font-size:16px;margin-top:29px}h4{font-size:14px}p,li{color:#6a667b}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.9;display:block;overflow:auto;margin:20px 0}th{background:#f7f5fc;color:#82748f;font-weight:600}td,th{border:1px solid #ebe7f0;padding:10px 13px;vertical-align:top;min-width:100px}td{color:#6d6379}pre{background:#f8f6fc;border:1px solid #ece7f4;border-radius:7px;padding:18px;overflow:auto;font-size:12px;line-height:1.7}code{font-size:12px;color:#8d6b94}blockquote{border-left:3px solid #c5b6e0;padding-left:18px}strong{color:#50445e}@media(max-width:850px){.layout{display:block}aside{display:none}main{padding:23px 20px}header{font-size:11px}h1{font-size:23px}}@media print{header,aside{display:none}.layout{display:block}main{padding:0}h2{break-before:auto}table{display:table;font-size:10px}pre{white-space:pre-wrap}}</style></head><body><header><strong>海开资管 · 核心落地方案 V3.3</strong><span><a href="index.html">返回业务原型</a> · <a href="核心原型资料包_V3.0.zip" download>下载全部资料</a></span></header><div class="layout"><aside><a href="#section-1">1. 本次数据范围与核对结果</a><a href="#section-2">2. 合同助手页面与业务流程</a><a href="#section-3">3. 项目规则优先的建议生成</a><a href="#section-4">4. 智能问数页面与场景</a><a href="#section-5">5. 智能体与企业AI中台分工</a><a href="#section-6">6. 问题卡与结果协议</a><a href="#section-7">7. 验收案例</a><a href="#section-8">8. 当前交付与接入边界</a><a href="#section-9">C01 履约总览</a><a href="#section-10">C02 应收与未缴</a><a href="#section-11">C03 逾期催缴</a><a href="#section-12">C04 续签准备</a><a href="#section-13">C05 付款及时性</a><a href="#section-14">C06 保证金核验</a><a href="#section-15">C07 到账待分配</a><a href="#section-16">C08 企业风险与合同变更</a><a href="#section-17">Q01 经营总览</a><a href="#section-18">Q02 欠费催缴分布</a><a href="#section-19">Q03 回款分析</a><a href="#section-20">Q04 企业关联合同</a><a href="#section-21">Q05 到期统筹</a><a href="#section-22">Q06 资产出租与空置</a><a href="#section-23">Q09 连续追问与会话回看</a><a href="#section-24">Q10 数据不足与澄清</a><a href="#section-25">Q11 授权与空结果</a><a href="#section-26">Q12 年底待回收计划</a></aside><main><h1>海开资管双智能体落地方案 V3.3</h1>
 <p>本版按11月11日页面调整意见更新。保留合同详情中的合同助手、驾驶舱下的智能问数及其核心场景。页面使用2026年11月11日从已登录测试系统只读核对的数据快照，非实时生产接口。客户名称、项目、合同编号、资源、期限及账单金额均来自实际页面；未取得的来源显示待核验。</p>
 <h2 id="section-1">1. 本次数据范围与核对结果</h2>
 <table>
@@ -58,13 +58,13 @@
 <p>未复制联系人、电话、账户或证件。页面账单使用“合同号·费用·账期起日”作为阅读标识，sourceId=null，未伪造系统账单ID。项目/资源短码也是前端展示键，生产须由接口返回真实ID。</p>
 <h2 id="section-2">2. 合同助手页面与业务流程</h2>
 <p>入口：合同管理 → 合同台账 → 当前合同详情 → 合同助手Tab。助手固定当前合同，不提供再次输入问题的表单。合同头部展示逾期未缴、即将到期等依据标识；切换原详情Tab时保留风险标识，点击可查看来源。</p>
-<p>指标卡为“租金应收、租金已收、逾期未缴、距合同到期”。租金应收取当前已载入的全周期生成账单，包含未到期记录；租金已收按账单实收对应金额核对；逾期未缴仅取应收日早于截至日且存在待收余额的租金账单。保证金单列。</p>
-<p>雷达五维为“回款完成、付款及时、保证金到位、企业风险、合同变更”。当前有来源的回款比例绘制，其他来源不足显示—。企业风险及变更名称变化不改变其实际含义：外部风险事件不能等同违约，未取得变更记录不能视为零次变更。生产评分方向、分档及映射规则需业务确认，不输出总信用分。</p>
-<p><strong>履约分析与行动建议独立于雷达分组。</strong> 每笔逾期租金账单直接形成一个具体问题，展示费用项、账期、应收日、应收、租金已收、逾期未缴及账龄。临期合同单独形成到期问题。正常轴不占据问题清单，资料缺失集中说明。</p>
-<p>操作流程：进入自动分析 → 列出具体问题 → 查看该笔账单 → 查看项目规则 → 生成建议事项 → 人工核账及办理 → 重新分析。上次分析时间与源数据读取时间分别呈现；刷新原型仅重新组织当前快照，不声称实时同步系统。</p>
+<p>指标卡为“租金应收、租金已收、逾期未缴、未到期待缴”；剩余天数在问题摘要及合同基础信息展示。租金应收取当前已载入的全周期生成账单，包含未到期记录；租金已收按账单实收对应金额核对；逾期未缴仅取应收日早于截至日且存在待收余额的租金账单。保证金单列。金额按分计算，核对关系为：租金应收 = 租金已收 + 逾期未缴 + 未到期待缴；待缴 = 逾期未缴 + 未到期待缴。当前快照无减免；生产有减免、冲减或退款时须单列相应调整项并重算。默认合同为2,151,456 = 0 + 1,075,728 + 1,075,728元。</p>
+<p>雷达五维为“回款完成、付款及时、保证金到位、企业风险、合同变更”。为演示完整图形，默认打开“展示样例”，数值72%、68%、60%、85分、90分均为独立虚拟样例，明确标注不代表当前客户情况，不参与金额、问题判断及问数聚合。点击“原始指标”后按实际来源绘制：当前回款0%，其他来源不足显示—。企业风险及变更名称变化不改变其实际含义：外部风险事件不能等同违约，未取得变更记录不能视为零次变更。生产评分方向、分档及映射规则需业务确认，不输出总信用分。</p>
+<p><strong>履约分析与行动建议独立于雷达分组。</strong> 每笔逾期租金账单直接形成一个具体问题，展示费用项、账期、应收日、应收、租金已收、逾期未缴及账龄。临期合同单独形成到期问题。正常轴不占据问题清单；保证金资料待核验独立列为核验事项，不计入已识别风险。所有问题默认收起，标题显示事实摘要及“逾期未缴／需优先催缴”“即将到期／需跟进安排”“保障待核验／需重点核验”等标签。点击标题展开，展示账单、分析、最终建议、建议来源和办理入口，再次点击收起。只有真实余额证明保证金不足时才能标记“保障不足”。</p>
+<p>操作流程：进入自动分析（后台查询规则并生成建议）→ 展示折叠问题卡 → 展开查看账单与最终建议 → 人工核账及办理 → 重新分析。上次分析时间与源数据读取时间分别呈现；刷新原型仅重新组织当前快照，不声称实时同步系统。</p>
 <p>默认乐于竞合同直接列出4笔逾期租金：265,248.00、268,195.20、271,142.40、271,142.40元，合计1,075,728.00元，分别对应2026年四个季度。2027年未到期租金不进入逾期问题清单。城华两份合同均在2026-12-31结束，距快照日50天，需单独确认续签或退出安排。</p>
 <h2 id="section-3">3. 项目规则优先的建议生成</h2>
-<p>建议流程按照项目、具体事项类型、规则有效期、版本及适用阶段匹配。页面先打开规则核对卡，再生成建议事项。</p>
+<p>建议流程按照项目、具体事项类型、规则有效期、版本及适用阶段匹配。进入或刷新时后台完成匹配并返回最终建议，用户展开问题即可看到具体负责人、动作、期限及留痕要求；“查看建议依据”是辅助核对入口，不是生成建议的前置操作。未取得规则时提供明确标注的AI参考建议，不将其称为项目已生效规则。</p>
 <table>
 <thead>
 <tr>
@@ -121,6 +121,7 @@
     &quot;issue_type&quot;: &quot;rent_overdue&quot;,
     &quot;title&quot;: &quot;具体账期租金逾期未缴&quot;,
     &quot;bill_id&quot;: &quot;真实账单ID，快照未取得时为null&quot;,
+    &quot;display&quot;: {&quot;collapsed_by_default&quot;: true, &quot;badges&quot;: [&quot;逾期未缴&quot;, &quot;需优先催缴&quot;]},
     &quot;facts&quot;: {&quot;period&quot;: &quot;账期&quot;, &quot;due_date&quot;: &quot;应收日&quot;, &quot;balance&quot;: 265248},
     &quot;evidence&quot;: [{&quot;source&quot;: &quot;rent_bill&quot;, &quot;source_id&quot;: null, &quot;status&quot;: &quot;snapshot_only&quot;}],
     &quot;policy_check&quot;: {&quot;status&quot;: &quot;unavailable&quot;, &quot;policy_id&quot;: null, &quot;version&quot;: null},
@@ -143,6 +144,21 @@
 <td>A01</td>
 <td>打开乐于竞合同</td>
 <td>新维度名称、租金已收、逾期未缴；4笔逾期账单直接列出</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>核对应收、已收、逾期、未到期</td>
+<td>5份合同及项目汇总均按分闭合，默认合同等式2151456=0+1075728+1075728</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>首次查看问题，展开后再次点击</td>
+<td>所有卡默认收起，展开立即显示最终建议，不需先点生成；再次点击收起</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>切换雷达展示样例与原始指标</td>
+<td>样例五轴非零且明确虚拟来源；实际数据原值保留，未知不补0</td>
 </tr>
 <tr>
 <td>A02</td>
@@ -186,7 +202,7 @@
 </tr>
 <tr>
 <td>Q02</td>
-<td>点击三条历史异常会话</td>
+<td>点击右侧顶部“异常返回示例”中的三条会话</td>
 <td>分别显示empty、denied、missing，内容页可回看，无伪造指标</td>
 </tr>
 <tr>
@@ -212,7 +228,7 @@
 </tbody></table>
 <h2 id="section-8">8. 当前交付与接入边界</h2>
 <p>交付包含业务页面、离线页面、真实快照、核心方案、18个场景、XMind及源码资料包。当前页面使用静态只读快照及本地历史/草稿，流式展示为前端模拟；未调用企业AI中台或生产写接口。开发应按以上工具、字段、规则状态及结果结构接入，正式发送、派单、续签及财务处理由原系统完成。</p>
-<h1>双智能体核心场景清单 V3.2</h1>
+<h1>双智能体核心场景清单 V3.3</h1>
 <h2 id="section-9">C01 履约总览</h2>
 <table>
 <thead>
