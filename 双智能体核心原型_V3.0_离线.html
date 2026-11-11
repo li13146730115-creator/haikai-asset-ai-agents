@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="海开资管合同助手与智能问数业务原型：合同详情Tab、驾驶舱对话、历史结果与场景实施说明。"><title>海开资管 · 双智能体业务原型 V3.1</title><style>:root{--brand:#6558e9;--ink:#292d40;--muted:#7c8195;--line:#e8eaf1;--bg:#f5f6fa;--red:#c95158;--amber:#ad782a;--green:#25856d}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer;border:1px solid #dfe1eb;border-radius:6px;padding:8px 13px;background:white;color:var(--ink);transition:background .15s,border-color .15s}button:hover{border-color:#b9b2f6;background:#f7f6ff}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #c6bffe;outline-offset:3px}a{color:var(--brand);text-decoration:none}.primary{color:white;background:var(--brand);border-color:var(--brand)}.primary:hover{background:#574acb;color:#fff}.link{border:0;background:none;color:var(--brand);padding:2px 0;text-align:left}.quiet{background:transparent;border-color:transparent}.small{font-size:12px}.muted{color:var(--muted)}h1,h2,h3,h4,p{margin:0}h1{font-size:23px;font-weight:650;letter-spacing:.3px}h2{font-size:18px;font-weight:650}h3{font-size:15px;font-weight:600}h4{font-size:14px}.topbar{height:66px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 25px;gap:15px;position:sticky;top:0;z-index:10}.brand{display:flex;gap:11px;align-items:center;font-size:19px;font-weight:700;letter-spacing:1px}.brand small{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}.top-actions{display:flex;gap:15px;align-items:center}.avatar{width:31px;height:31px;border-radius:50%;background:#eeebff;display:grid;place-items:center;font-size:12px;color:var(--brand)}.tag{font-size:11px;display:inline-block;background:#f1efff;color:#7466c6;border-radius:4px;padding:2px 7px;white-space:nowrap}.tag.red{background:#fff0f0;color:var(--red)}.tag.amber{background:#fff7e8;color:var(--amber)}.tag.green{background:#eaf7f1;color:var(--green)}.frame{display:grid;grid-template-columns:178px minmax(0,1fr);min-height:calc(100vh - 66px)}.sidebar{background:white;border-right:1px solid var(--line);padding:27px 13px;display:flex;flex-direction:column;position:sticky;top:66px;align-self:start;height:calc(100vh - 66px)}.nav-label{font-size:11px;color:#9a9daf;letter-spacing:1px;margin:0 12px 9px}.nav-label.spaced{margin-top:29px}.navbtn{width:100%;text-align:left;border:0;background:none;padding:11px 12px;margin:3px 0;font-size:13px}.navbtn.selected{color:var(--brand);background:#f1efff;font-weight:600}.nav-sub{display:block;font-size:11px;font-weight:400;color:#9995b3;margin-top:3px}.side-bottom{margin-top:auto;padding:18px 11px 0;border-top:1px solid var(--line);font-size:11px;color:#999daf}.side-bottom b{display:block;color:#6f738b;font-weight:500;margin-bottom:6px}.main{padding:24px 27px 36px;min-width:0;max-width:1700px;width:100%;margin:auto}.breadcrumb{font-size:12px;color:#9296a9;margin-bottom:17px}.title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}.title-row h1 .tag{vertical-align:middle;margin-left:9px}.title-row p{font-size:12px;color:var(--muted);margin-top:6px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.select-control{border:1px solid #dfe1eb;background:#fff;padding:8px 10px;border-radius:6px;max-width:100%;color:var(--ink)}.contract-meta{display:flex;gap:26px;flex-wrap:wrap;font-size:12px;padding:15px 18px;background:white;border:1px solid var(--line);border-radius:7px}.contract-meta span{color:var(--muted);margin-right:7px}.tabs{display:flex;gap:27px;border-bottom:1px solid #dedfe9;margin:16px 0 21px;overflow:auto;white-space:nowrap}.tabs button{border:0;background:none;border-bottom:2px solid transparent;border-radius:0;padding:12px 0;color:#7e8295;font-size:13px}.tabs button.selected{color:var(--brand);font-weight:600;border-bottom-color:var(--brand)}.assistant-header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:17px}.assistant-header h2{display:inline}.assistant-header p{font-size:12px;color:var(--muted);margin-top:4px}.pulse{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:6px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0 20px}.kpi{background:white;border:1px solid var(--line);border-radius:8px;padding:15px 18px;min-width:0}.kpi-label{font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between}.kpi-value{font-size:25px;font-weight:650;letter-spacing:-.4px;margin:7px 0 4px;line-height:1.4;word-break:break-word;font-variant-numeric:tabular-nums}.kpi-value small{font-size:12px;margin-left:5px;font-weight:400;color:var(--muted)}.kpi-note{font-size:11px;color:#9498aa}.red-text{color:var(--red)}.amber-text{color:var(--amber)}.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:18px;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.card-head small{font-size:11px;color:var(--muted)}.overview-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1.2fr);gap:18px;align-items:stretch}.overview-grid>.card{margin-bottom:18px}.radar-layout{display:grid;grid-template-columns:minmax(210px,1.1fr) minmax(125px,.9fr);align-items:center;gap:9px}.radar{width:100%;height:auto;display:block;max-width:330px;margin:auto}.radar text{font-family:inherit;fill:#7d8094;font-size:11px}.axis-list{display:flex;flex-direction:column;gap:10px}.axis-button{border:0;background:none;padding:5px 0;font-size:11px;display:flex;justify-content:space-between;gap:10px;text-align:left;color:var(--muted)}.axis-button b{color:var(--brand);font-variant-numeric:tabular-nums;font-size:12px}.caption{font-size:11px;color:#999aad;margin-top:13px}.summary-lead{font-size:15px;line-height:1.9;margin-bottom:15px}.summary-lead strong{color:var(--red);font-weight:600}.recommendations{display:grid;gap:10px}.recommendation{display:grid;grid-template-columns:25px 1fr auto;gap:8px;align-items:start;border-top:1px solid #f0f0f5;padding-top:13px;font-size:12px}.step-num{font-size:11px;color:#8c82cf;background:#f2effd;width:22px;height:22px;display:grid;place-items:center;border-radius:50%}.recommendation small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.note{border:1px solid #eee2c6;background:#fffaf0;color:#957638;border-radius:6px;padding:12px 14px;font-size:12px;margin:12px 0}.scenarios-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.scenario-quick{display:block;text-align:left;padding:15px;border:1px solid var(--line);border-radius:6px;background:#fff}.scenario-quick b{font-size:13px;font-weight:550;display:block;margin-bottom:5px}.scenario-quick p{font-size:11px;color:var(--muted);line-height:1.8}.scenario-quick>span{font-size:11px;color:var(--brand);display:inline-block;margin-top:8px}.table-wrap{overflow:auto;width:100%}table{border-collapse:collapse;width:100%;text-align:left;font-size:12px;min-width:540px}th{background:#f8f9fc;color:#888da0;font-weight:500;padding:11px 12px;font-size:11px}td{padding:13px 12px;border-bottom:1px solid #f0f1f6;color:#575d75;vertical-align:top}td small{display:block;color:#999eae;margin-top:3px;font-size:10px}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin:0}.fields dt{font-size:11px;color:var(--muted);margin-bottom:5px}.fields dd{font-size:13px;margin:0;overflow-wrap:anywhere}.timeline{border-left:1px solid #e1ddec;padding-left:21px;margin:12px 0 0 7px;display:grid;gap:19px}.timeline p{font-size:12px}.timeline small{font-size:11px;color:var(--muted)}.empty{padding:40px 18px;text-align:center;color:var(--muted);font-size:12px}.scope-strip{display:flex;align-items:center;gap:12px;font-size:12px;margin-bottom:18px;color:var(--muted)}.query-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:19px;align-items:start}.conversation{border:1px solid var(--line);background:white;border-radius:9px;overflow:hidden;min-width:0}.conversation-top{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.conversation-top h3{font-size:13px}.chat-log{height:calc(100vh - 382px);min-height:380px;max-height:900px;overflow:auto;scroll-behavior:smooth;padding:26px 24px}.welcome{padding:28px 4px 20px;max-width:750px;margin:auto}.welcome .eyebrow{font-size:11px;letter-spacing:2px;color:#9c92d5;margin-bottom:12px}.welcome h2{font-size:26px;line-height:1.5;font-weight:600}.welcome>p{font-size:13px;color:#9195a7;margin:12px 0 24px;line-height:1.9}.domain-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.domain-pills span{border:1px solid #ebe9f5;border-radius:4px;font-size:11px;padding:4px 9px;color:#948bac}.suggestions{display:grid;grid-template-columns:1fr 1fr;gap:11px}.suggestions button{text-align:left;line-height:1.8;font-size:12px;padding:14px;border-color:#eae9f2;background:#fbfbfe}.suggestions small{display:block;color:#b1adbf;font-size:10px;margin-top:7px}.composer{padding:15px 20px 12px;border-top:1px solid var(--line);background:white}.input-frame{border:1px solid #dcd8f0;border-radius:8px;padding:10px 12px;background:#fdfdff}.input-frame:focus-within{border-color:#9d91e6;box-shadow:0 0 0 3px #f4f1ff}.input-frame textarea{width:100%;resize:vertical;min-height:46px;max-height:140px;border:0;background:none;outline:none;color:var(--ink);font-size:13px;display:block}.input-frame textarea:focus-visible{outline:none}.input-bottom{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#a3a1b3;margin-top:7px}.input-bottom button{padding:5px 14px;font-size:12px}.composer-note{font-size:10px;color:#aaa8b6;margin-top:8px}.history-panel{background:white;border:1px solid var(--line);border-radius:9px;padding:19px 15px;min-height:510px;position:sticky;top:90px}.history-panel h3{font-size:14px}.history-panel>p{font-size:11px;color:var(--muted);margin:7px 0 17px}.history-label{font-size:10px;color:#aaa8bb;margin:18px 8px 8px}.history-item{display:block;width:100%;text-align:left;padding:12px;border:1px solid transparent;background:none;border-radius:6px;margin:5px 0}.history-item.selected{background:#f3f0ff;border-color:#e7e0fb}.history-item b{font-weight:500;font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.history-item small{font-size:10px;color:#9993ad;display:block;margin-top:6px}.history-footer{border-top:1px solid var(--line);padding-top:15px;margin-top:23px;font-size:10px;color:#a4a0b4;line-height:1.9}.user-message{display:flex;justify-content:flex-end;margin:5px 0 22px}.user-message>div{padding:11px 16px;background:#f1efff;border-radius:9px 9px 2px 9px;max-width:86%;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.answer-message{margin-bottom:25px}.answer-meta{font-size:11px;color:#8b82b4;display:flex;gap:8px;align-items:center;margin-bottom:10px}.ai-badge{border:1px solid #ded8f5;color:#8c7dce;border-radius:4px;font-size:9px;padding:1px 4px}.answer-body{font-size:13px;line-height:1.95;white-space:pre-wrap}.answer-result{margin-top:17px;border:1px solid var(--line);border-radius:7px;padding:17px}.answer-result h3{font-size:14px;margin-bottom:12px}.answer-result .kpis{gap:8px;margin:12px 0}.answer-result .kpi{padding:11px 12px;background:#fafafe;border:0;border-radius:5px}.answer-result .kpi-value{font-size:19px}.answer-result .kpi-label{font-size:10px}.answer-result table{font-size:11px;min-width:480px}.answer-result th{font-size:10px}.answer-result td{padding:11px 8px}.answer-actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap}.answer-actions button{font-size:11px}.result-stamp{font-size:10px;color:#a5a1b5}.followups{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.followups button{font-size:11px;padding:5px 10px;border-color:#e8e3f4;background:#fdfcfe;color:#83779e}.bar-chart{padding:13px 0 5px}.bar-title{font-size:11px;color:var(--muted);margin-bottom:10px}.bar-row{display:grid;grid-template-columns:75px 1fr 85px;gap:10px;align-items:center;margin:9px 0;font-size:11px;color:#8b849e}.bar-track{height:10px;background:#f4f1f9;border-radius:3px;overflow:hidden}.bar-fill{height:100%;background:#afa2e8;border-radius:3px}.bar-value{text-align:right;color:#797082;font-variant-numeric:tabular-nums}.stream-line{display:inline-block;width:2px;height:13px;background:var(--brand);vertical-align:middle;margin-left:3px;animation:blink .7s infinite}.progress-text{font-size:11px;color:#a29ab6;margin:10px 0}.contract-chatbox{display:grid;grid-template-columns:1fr auto;gap:12px}.contract-chatbox input{border:1px solid #ddd9ed;padding:11px 13px;border-radius:6px;min-width:0;background:#fdfdff;font-size:13px}.contract-answer{border-left:3px solid #d4cbed;background:#faf8fe;padding:16px 18px;margin:17px 0 0;font-size:13px;line-height:1.95}.contract-answer h4{margin-bottom:7px}.contract-answer p{white-space:pre-wrap}.contract-answer .row{margin-top:11px}.overlay:empty{display:none}.overlay-screen{position:fixed;inset:0;background:#25233c55;z-index:30;display:flex;justify-content:flex-end}.drawer{width:min(740px,94vw);height:100%;background:#fff;box-shadow:-12px 0 45px #29213d1f;display:flex;flex-direction:column;animation:slide .18s ease}.drawer-head{padding:22px 27px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}.drawer-head p{font-size:11px;color:var(--muted);margin-top:3px}.drawer-body{padding:24px 27px;overflow:auto;flex:1}.drawer-body h3{margin:22px 0 10px}.drawer-body h3:first-child{margin-top:0}.drawer-body p,.drawer-body li{font-size:13px;line-height:1.95}.drawer-body ul{padding-left:20px}.drawer-body .note{font-size:12px}.drawer-body textarea{width:100%;min-height:240px;border:1px solid #dcd8eb;border-radius:6px;padding:15px;font-size:13px;line-height:2;resize:vertical;color:#55536c}.drawer-foot{padding:16px 27px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);gap:10px}.scene-card{border:1px solid var(--line);border-radius:7px;padding:18px;margin-bottom:15px}.scene-card h3{margin:0 0 9px}.scene-card dl{margin:0}.scene-card dt{font-size:10px;color:#aaa4b5;margin-top:10px}.scene-card dd{font-size:12px;margin:3px 0 0;color:#686177;line-height:1.9}.scene-tabs{position:sticky;top:0;background:white;padding-bottom:15px;display:flex;gap:9px;z-index:1}.scene-tabs button{font-size:12px}.source-list{font-size:12px;display:grid;gap:10px}.source-list>div{padding:12px;background:#f8f7fc;border:1px solid #efedf5;border-radius:6px;overflow-wrap:anywhere}.flow-list{display:grid;gap:9px;margin:18px 0}.flow-list>div{border-left:3px solid #c4b8ec;background:#f8f6fd;padding:13px 16px;font-size:12px;line-height:1.9}.flow-list small{display:block;font-size:11px;color:var(--muted)}#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#343147;color:white;border-radius:7px;font-size:12px;padding:12px 20px;z-index:100;opacity:0;pointer-events:none;transition:opacity .2s}#toast.visible{opacity:1}.mini-space{margin-top:14px}.missing-axis{font-size:11px;color:var(--amber);margin-top:9px}.break{overflow-wrap:anywhere}.draft-list{margin-top:16px;background:#f8f6fe;padding:12px 14px;border-radius:6px;font-size:12px;color:#77668c}.demo-bar{font-size:10px;color:#a19aac;display:flex;justify-content:space-between;gap:10px;margin-top:20px}.helper{font-size:12px;color:#8d839f;line-height:1.9}.wide-only{display:inline}@keyframes blink{50%{opacity:0}}@keyframes slide{from{transform:translateX(25px);opacity:.5}to{transform:translateX(0);opacity:1}}@media(min-width:1600px){.main{padding:28px 38px}.chat-log{min-height:480px}.radar-layout{grid-template-columns:1.2fr .8fr}}@media(max-width:1200px){.frame{grid-template-columns:150px 1fr}.main{padding:20px}.brand small{display:none}.query-layout{grid-template-columns:minmax(0,1fr) 225px;gap:14px}.radar-layout{grid-template-columns:1fr}.radar{max-width:240px}.axis-list{display:grid;grid-template-columns:1fr 1fr}.kpi{padding:13px}.kpi-value{font-size:22px}.recommendation{grid-template-columns:22px 1fr}.recommendation button{grid-column:2;justify-self:start}.scenarios-grid{grid-template-columns:repeat(2,1fr)}.top-actions{gap:9px}}@media(max-width:900px){.sidebar{width:auto;height:auto;position:static;padding:10px 15px;display:flex;flex-direction:row;gap:10px;border-right:0;border-bottom:1px solid var(--line)}.frame{display:block}.sidebar .nav-label,.side-bottom{display:none}.navbtn{width:auto;margin:0}.nav-sub{display:none}.topbar{padding:0 17px}.top-actions .wide-only{display:none}.overview-grid{grid-template-columns:1fr}.radar-layout{grid-template-columns:1fr 1fr}.query-layout{grid-template-columns:minmax(0,1fr) 210px}.main{padding:19px 16px}.contract-meta{gap:12px 22px}.title-row{flex-wrap:wrap}.chat-log{padding:20px 16px}.welcome h2{font-size:22px}.suggestions{grid-template-columns:1fr}.answer-result .kpis{grid-template-columns:1fr 1fr}.history-panel{top:75px}.fields{grid-template-columns:1fr 1fr}}@media(max-width:650px){body{font-size:13px}.topbar{height:58px}.brand{font-size:16px}.top-actions span.small,.avatar{display:none}.top-actions button{font-size:11px;padding:6px 8px}.query-layout{grid-template-columns:1fr}.history-panel{position:static;min-height:0}.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi-value{font-size:22px}.scenarios-grid{grid-template-columns:1fr}.radar-layout{grid-template-columns:1fr 1fr}.title-row h1{font-size:20px}.tabs{gap:20px}.assistant-header{align-items:flex-start}.assistant-header button{font-size:11px}.contract-meta{font-size:11px}.card{padding:17px}.chat-log{height:520px;min-height:300px}.suggestions{grid-template-columns:1fr 1fr}.suggestions button{padding:10px;font-size:11px}.answer-result{padding:12px}.bar-row{grid-template-columns:65px 1fr 65px}.fields{grid-template-columns:1fr 1fr}.history-item{max-width:100%}.contract-chatbox{grid-template-columns:1fr}.drawer-head,.drawer-body{padding:19px}.demo-bar{flex-direction:column}}
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="海开资管合同助手与智能问数业务原型：合同详情Tab、驾驶舱对话、历史结果与场景实施说明。"><title>海开资管 · 双智能体业务原型 V3.2</title><style>:root{--brand:#6558e9;--ink:#292d40;--muted:#7c8195;--line:#e8eaf1;--bg:#f5f6fa;--red:#c95158;--amber:#ad782a;--green:#25856d}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer;border:1px solid #dfe1eb;border-radius:6px;padding:8px 13px;background:white;color:var(--ink);transition:background .15s,border-color .15s}button:hover{border-color:#b9b2f6;background:#f7f6ff}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #c6bffe;outline-offset:3px}a{color:var(--brand);text-decoration:none}.primary{color:white;background:var(--brand);border-color:var(--brand)}.primary:hover{background:#574acb;color:#fff}.link{border:0;background:none;color:var(--brand);padding:2px 0;text-align:left}.quiet{background:transparent;border-color:transparent}.small{font-size:12px}.muted{color:var(--muted)}h1,h2,h3,h4,p{margin:0}h1{font-size:23px;font-weight:650;letter-spacing:.3px}h2{font-size:18px;font-weight:650}h3{font-size:15px;font-weight:600}h4{font-size:14px}.topbar{height:66px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 25px;gap:15px;position:sticky;top:0;z-index:10}.brand{display:flex;gap:11px;align-items:center;font-size:19px;font-weight:700;letter-spacing:1px}.brand small{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:8px}.top-actions{display:flex;gap:15px;align-items:center}.avatar{width:31px;height:31px;border-radius:50%;background:#eeebff;display:grid;place-items:center;font-size:12px;color:var(--brand)}.tag{font-size:11px;display:inline-block;background:#f1efff;color:#7466c6;border-radius:4px;padding:2px 7px;white-space:nowrap}.tag.red{background:#fff0f0;color:var(--red)}.tag.amber{background:#fff7e8;color:var(--amber)}.tag.green{background:#eaf7f1;color:var(--green)}.frame{display:grid;grid-template-columns:178px minmax(0,1fr);min-height:calc(100vh - 66px)}.sidebar{background:white;border-right:1px solid var(--line);padding:27px 13px;display:flex;flex-direction:column;position:sticky;top:66px;align-self:start;height:calc(100vh - 66px)}.nav-label{font-size:11px;color:#9a9daf;letter-spacing:1px;margin:0 12px 9px}.nav-label.spaced{margin-top:29px}.navbtn{width:100%;text-align:left;border:0;background:none;padding:11px 12px;margin:3px 0;font-size:13px}.navbtn.selected{color:var(--brand);background:#f1efff;font-weight:600}.nav-sub{display:block;font-size:11px;font-weight:400;color:#9995b3;margin-top:3px}.side-bottom{margin-top:auto;padding:18px 11px 0;border-top:1px solid var(--line);font-size:11px;color:#999daf}.side-bottom b{display:block;color:#6f738b;font-weight:500;margin-bottom:6px}.main{padding:24px 27px 36px;min-width:0;max-width:1700px;width:100%;margin:auto}.breadcrumb{font-size:12px;color:#9296a9;margin-bottom:17px}.title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}.title-row h1 .tag{vertical-align:middle;margin-left:9px}.title-row p{font-size:12px;color:var(--muted);margin-top:6px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.select-control{border:1px solid #dfe1eb;background:#fff;padding:8px 10px;border-radius:6px;max-width:100%;color:var(--ink)}.contract-meta{display:flex;gap:26px;flex-wrap:wrap;font-size:12px;padding:15px 18px;background:white;border:1px solid var(--line);border-radius:7px}.contract-meta span{color:var(--muted);margin-right:7px}.tabs{display:flex;gap:27px;border-bottom:1px solid #dedfe9;margin:16px 0 21px;overflow:auto;white-space:nowrap}.tabs button{border:0;background:none;border-bottom:2px solid transparent;border-radius:0;padding:12px 0;color:#7e8295;font-size:13px}.tabs button.selected{color:var(--brand);font-weight:600;border-bottom-color:var(--brand)}.assistant-header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:17px}.assistant-header h2{display:inline}.assistant-header p{font-size:12px;color:var(--muted);margin-top:4px}.pulse{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:6px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0 20px}.kpi{background:white;border:1px solid var(--line);border-radius:8px;padding:15px 18px;min-width:0}.kpi-label{font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between}.kpi-value{font-size:25px;font-weight:650;letter-spacing:-.4px;margin:7px 0 4px;line-height:1.4;word-break:break-word;font-variant-numeric:tabular-nums}.kpi-value small{font-size:12px;margin-left:5px;font-weight:400;color:var(--muted)}.kpi-note{font-size:11px;color:#9498aa}.red-text{color:var(--red)}.amber-text{color:var(--amber)}.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:18px;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.card-head small{font-size:11px;color:var(--muted)}.overview-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1.2fr);gap:18px;align-items:stretch}.overview-grid>.card{margin-bottom:18px}.radar-layout{display:grid;grid-template-columns:minmax(210px,1.1fr) minmax(125px,.9fr);align-items:center;gap:9px}.radar{width:100%;height:auto;display:block;max-width:330px;margin:auto}.radar text{font-family:inherit;fill:#7d8094;font-size:11px}.axis-list{display:flex;flex-direction:column;gap:10px}.axis-button{border:0;background:none;padding:5px 0;font-size:11px;display:flex;justify-content:space-between;gap:10px;text-align:left;color:var(--muted)}.axis-button b{color:var(--brand);font-variant-numeric:tabular-nums;font-size:12px}.caption{font-size:11px;color:#999aad;margin-top:13px}.summary-lead{font-size:15px;line-height:1.9;margin-bottom:15px}.summary-lead strong{color:var(--red);font-weight:600}.recommendations{display:grid;gap:10px}.recommendation{display:grid;grid-template-columns:25px 1fr auto;gap:8px;align-items:start;border-top:1px solid #f0f0f5;padding-top:13px;font-size:12px}.step-num{font-size:11px;color:#8c82cf;background:#f2effd;width:22px;height:22px;display:grid;place-items:center;border-radius:50%}.recommendation small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.note{border:1px solid #eee2c6;background:#fffaf0;color:#957638;border-radius:6px;padding:12px 14px;font-size:12px;margin:12px 0}.scenarios-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.scenario-quick{display:block;text-align:left;padding:15px;border:1px solid var(--line);border-radius:6px;background:#fff}.scenario-quick b{font-size:13px;font-weight:550;display:block;margin-bottom:5px}.scenario-quick p{font-size:11px;color:var(--muted);line-height:1.8}.scenario-quick>span{font-size:11px;color:var(--brand);display:inline-block;margin-top:8px}.table-wrap{overflow:auto;width:100%}table{border-collapse:collapse;width:100%;text-align:left;font-size:12px;min-width:540px}th{background:#f8f9fc;color:#888da0;font-weight:500;padding:11px 12px;font-size:11px}td{padding:13px 12px;border-bottom:1px solid #f0f1f6;color:#575d75;vertical-align:top}td small{display:block;color:#999eae;margin-top:3px;font-size:10px}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin:0}.fields dt{font-size:11px;color:var(--muted);margin-bottom:5px}.fields dd{font-size:13px;margin:0;overflow-wrap:anywhere}.timeline{border-left:1px solid #e1ddec;padding-left:21px;margin:12px 0 0 7px;display:grid;gap:19px}.timeline p{font-size:12px}.timeline small{font-size:11px;color:var(--muted)}.empty{padding:40px 18px;text-align:center;color:var(--muted);font-size:12px}.scope-strip{display:flex;align-items:center;gap:12px;font-size:12px;margin-bottom:18px;color:var(--muted)}.query-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:19px;align-items:start}.conversation{border:1px solid var(--line);background:white;border-radius:9px;overflow:hidden;min-width:0}.conversation-top{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.conversation-top h3{font-size:13px}.chat-log{height:calc(100vh - 382px);min-height:380px;max-height:900px;overflow:auto;scroll-behavior:smooth;padding:26px 24px}.welcome{padding:28px 4px 20px;max-width:750px;margin:auto}.welcome .eyebrow{font-size:11px;letter-spacing:2px;color:#9c92d5;margin-bottom:12px}.welcome h2{font-size:26px;line-height:1.5;font-weight:600}.welcome>p{font-size:13px;color:#9195a7;margin:12px 0 24px;line-height:1.9}.domain-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.domain-pills span{border:1px solid #ebe9f5;border-radius:4px;font-size:11px;padding:4px 9px;color:#948bac}.suggestions{display:grid;grid-template-columns:1fr 1fr;gap:11px}.suggestions button{text-align:left;line-height:1.8;font-size:12px;padding:14px;border-color:#eae9f2;background:#fbfbfe}.suggestions small{display:block;color:#b1adbf;font-size:10px;margin-top:7px}.composer{padding:15px 20px 12px;border-top:1px solid var(--line);background:white}.input-frame{border:1px solid #dcd8f0;border-radius:8px;padding:10px 12px;background:#fdfdff}.input-frame:focus-within{border-color:#9d91e6;box-shadow:0 0 0 3px #f4f1ff}.input-frame textarea{width:100%;resize:vertical;min-height:46px;max-height:140px;border:0;background:none;outline:none;color:var(--ink);font-size:13px;display:block}.input-frame textarea:focus-visible{outline:none}.input-bottom{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#a3a1b3;margin-top:7px}.input-bottom button{padding:5px 14px;font-size:12px}.composer-note{font-size:10px;color:#aaa8b6;margin-top:8px}.history-panel{background:white;border:1px solid var(--line);border-radius:9px;padding:19px 15px;min-height:510px;position:sticky;top:90px}.history-panel h3{font-size:14px}.history-panel>p{font-size:11px;color:var(--muted);margin:7px 0 17px}.history-label{font-size:10px;color:#aaa8bb;margin:18px 8px 8px}.history-item{display:block;width:100%;text-align:left;padding:12px;border:1px solid transparent;background:none;border-radius:6px;margin:5px 0}.history-item.selected{background:#f3f0ff;border-color:#e7e0fb}.history-item b{font-weight:500;font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.history-item small{font-size:10px;color:#9993ad;display:block;margin-top:6px}.history-footer{border-top:1px solid var(--line);padding-top:15px;margin-top:23px;font-size:10px;color:#a4a0b4;line-height:1.9}.user-message{display:flex;justify-content:flex-end;margin:5px 0 22px}.user-message>div{padding:11px 16px;background:#f1efff;border-radius:9px 9px 2px 9px;max-width:86%;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.answer-message{margin-bottom:25px}.answer-meta{font-size:11px;color:#8b82b4;display:flex;gap:8px;align-items:center;margin-bottom:10px}.ai-badge{border:1px solid #ded8f5;color:#8c7dce;border-radius:4px;font-size:9px;padding:1px 4px}.answer-body{font-size:13px;line-height:1.95;white-space:pre-wrap}.answer-result{margin-top:17px;border:1px solid var(--line);border-radius:7px;padding:17px}.answer-result h3{font-size:14px;margin-bottom:12px}.answer-result .kpis{gap:8px;margin:12px 0}.answer-result .kpi{padding:11px 12px;background:#fafafe;border:0;border-radius:5px}.answer-result .kpi-value{font-size:19px}.answer-result .kpi-label{font-size:10px}.answer-result table{font-size:11px;min-width:480px}.answer-result th{font-size:10px}.answer-result td{padding:11px 8px}.answer-actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap}.answer-actions button{font-size:11px}.result-stamp{font-size:10px;color:#a5a1b5}.followups{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.followups button{font-size:11px;padding:5px 10px;border-color:#e8e3f4;background:#fdfcfe;color:#83779e}.bar-chart{padding:13px 0 5px}.bar-title{font-size:11px;color:var(--muted);margin-bottom:10px}.bar-row{display:grid;grid-template-columns:75px 1fr 85px;gap:10px;align-items:center;margin:9px 0;font-size:11px;color:#8b849e}.bar-track{height:10px;background:#f4f1f9;border-radius:3px;overflow:hidden}.bar-fill{height:100%;background:#afa2e8;border-radius:3px}.bar-value{text-align:right;color:#797082;font-variant-numeric:tabular-nums}.stream-line{display:inline-block;width:2px;height:13px;background:var(--brand);vertical-align:middle;margin-left:3px;animation:blink .7s infinite}.progress-text{font-size:11px;color:#a29ab6;margin:10px 0}.contract-chatbox{display:grid;grid-template-columns:1fr auto;gap:12px}.contract-chatbox input{border:1px solid #ddd9ed;padding:11px 13px;border-radius:6px;min-width:0;background:#fdfdff;font-size:13px}.contract-answer{border-left:3px solid #d4cbed;background:#faf8fe;padding:16px 18px;margin:17px 0 0;font-size:13px;line-height:1.95}.contract-answer h4{margin-bottom:7px}.contract-answer p{white-space:pre-wrap}.contract-answer .row{margin-top:11px}.overlay:empty{display:none}.overlay-screen{position:fixed;inset:0;background:#25233c55;z-index:30;display:flex;justify-content:flex-end}.drawer{width:min(740px,94vw);height:100%;background:#fff;box-shadow:-12px 0 45px #29213d1f;display:flex;flex-direction:column;animation:slide .18s ease}.drawer-head{padding:22px 27px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}.drawer-head p{font-size:11px;color:var(--muted);margin-top:3px}.drawer-body{padding:24px 27px;overflow:auto;flex:1}.drawer-body h3{margin:22px 0 10px}.drawer-body h3:first-child{margin-top:0}.drawer-body p,.drawer-body li{font-size:13px;line-height:1.95}.drawer-body ul{padding-left:20px}.drawer-body .note{font-size:12px}.drawer-body textarea{width:100%;min-height:240px;border:1px solid #dcd8eb;border-radius:6px;padding:15px;font-size:13px;line-height:2;resize:vertical;color:#55536c}.drawer-foot{padding:16px 27px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);gap:10px}.scene-card{border:1px solid var(--line);border-radius:7px;padding:18px;margin-bottom:15px}.scene-card h3{margin:0 0 9px}.scene-card dl{margin:0}.scene-card dt{font-size:10px;color:#aaa4b5;margin-top:10px}.scene-card dd{font-size:12px;margin:3px 0 0;color:#686177;line-height:1.9}.scene-tabs{position:sticky;top:0;background:white;padding-bottom:15px;display:flex;gap:9px;z-index:1}.scene-tabs button{font-size:12px}.source-list{font-size:12px;display:grid;gap:10px}.source-list>div{padding:12px;background:#f8f7fc;border:1px solid #efedf5;border-radius:6px;overflow-wrap:anywhere}.flow-list{display:grid;gap:9px;margin:18px 0}.flow-list>div{border-left:3px solid #c4b8ec;background:#f8f6fd;padding:13px 16px;font-size:12px;line-height:1.9}.flow-list small{display:block;font-size:11px;color:var(--muted)}#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#343147;color:white;border-radius:7px;font-size:12px;padding:12px 20px;z-index:100;opacity:0;pointer-events:none;transition:opacity .2s}#toast.visible{opacity:1}.mini-space{margin-top:14px}.missing-axis{font-size:11px;color:var(--amber);margin-top:9px}.break{overflow-wrap:anywhere}.draft-list{margin-top:16px;background:#f8f6fe;padding:12px 14px;border-radius:6px;font-size:12px;color:#77668c}.demo-bar{font-size:10px;color:#a19aac;display:flex;justify-content:space-between;gap:10px;margin-top:20px}.helper{font-size:12px;color:#8d839f;line-height:1.9}.wide-only{display:inline}@keyframes blink{50%{opacity:0}}@keyframes slide{from{transform:translateX(25px);opacity:.5}to{transform:translateX(0);opacity:1}}@media(min-width:1600px){.main{padding:28px 38px}.chat-log{min-height:480px}.radar-layout{grid-template-columns:1.2fr .8fr}}@media(max-width:1200px){.frame{grid-template-columns:150px 1fr}.main{padding:20px}.brand small{display:none}.query-layout{grid-template-columns:minmax(0,1fr) 225px;gap:14px}.radar-layout{grid-template-columns:1fr}.radar{max-width:240px}.axis-list{display:grid;grid-template-columns:1fr 1fr}.kpi{padding:13px}.kpi-value{font-size:22px}.recommendation{grid-template-columns:22px 1fr}.recommendation button{grid-column:2;justify-self:start}.scenarios-grid{grid-template-columns:repeat(2,1fr)}.top-actions{gap:9px}}@media(max-width:900px){.sidebar{width:auto;height:auto;position:static;padding:10px 15px;display:flex;flex-direction:row;gap:10px;border-right:0;border-bottom:1px solid var(--line)}.frame{display:block}.sidebar .nav-label,.side-bottom{display:none}.navbtn{width:auto;margin:0}.nav-sub{display:none}.topbar{padding:0 17px}.top-actions .wide-only{display:none}.overview-grid{grid-template-columns:1fr}.radar-layout{grid-template-columns:1fr 1fr}.query-layout{grid-template-columns:minmax(0,1fr) 210px}.main{padding:19px 16px}.contract-meta{gap:12px 22px}.title-row{flex-wrap:wrap}.chat-log{padding:20px 16px}.welcome h2{font-size:22px}.suggestions{grid-template-columns:1fr}.answer-result .kpis{grid-template-columns:1fr 1fr}.history-panel{top:75px}.fields{grid-template-columns:1fr 1fr}}@media(max-width:650px){body{font-size:13px}.topbar{height:58px}.brand{font-size:16px}.top-actions span.small,.avatar{display:none}.top-actions button{font-size:11px;padding:6px 8px}.query-layout{grid-template-columns:1fr}.history-panel{position:static;min-height:0}.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi-value{font-size:22px}.scenarios-grid{grid-template-columns:1fr}.radar-layout{grid-template-columns:1fr 1fr}.title-row h1{font-size:20px}.tabs{gap:20px}.assistant-header{align-items:flex-start}.assistant-header button{font-size:11px}.contract-meta{font-size:11px}.card{padding:17px}.chat-log{height:520px;min-height:300px}.suggestions{grid-template-columns:1fr 1fr}.suggestions button{padding:10px;font-size:11px}.answer-result{padding:12px}.bar-row{grid-template-columns:65px 1fr 65px}.fields{grid-template-columns:1fr 1fr}.history-item{max-width:100%}.contract-chatbox{grid-template-columns:1fr}.drawer-head,.drawer-body{padding:19px}.demo-bar{flex-direction:column}}
 
 .contract-risk-strip{background:#fff8f6;border:1px solid #f2dcd5;border-radius:7px;padding:13px 17px;margin:-3px 0 15px;display:flex;gap:14px;justify-content:space-between;align-items:center}.risk-strip-main{display:flex;gap:13px;align-items:center;flex-wrap:wrap}.risk-summary{color:#bb4d50;border:0;background:none;padding:0;font-size:12px;font-weight:600;white-space:nowrap}.risk-tags{display:flex;gap:7px;flex-wrap:wrap}.risk-chip{font-size:11px;border:1px solid #eacac9;padding:4px 9px;border-radius:4px;background:#fff0ee;color:#b65357}.risk-chip.amber{background:#fff6e6;border-color:#eddcba;color:#9c722f}.risk-chip.pending{background:#f6f5fa;border-color:#e1deeb;color:#8c819c}.risk-strip-meta{display:flex;gap:11px;align-items:center;flex-wrap:wrap;font-size:10px;color:#ad9490;white-space:nowrap}.risk-summary:hover{background:none;color:#983f42}.risk-chip:hover{border-color:#c88f94;background:#ffebe7}@media(max-width:900px){.contract-risk-strip{align-items:flex-start;flex-direction:column;gap:8px}}
 /* V3.1: evidence-led contract analysis and compact query workspace. */
@@ -8,187 +8,733 @@
 @media(max-width:1100px){.report-layout{grid-template-columns:minmax(240px,.8fr) minmax(0,1.4fr)}.analysis-item summary{padding:13px 12px}.analysis-content{padding:0 12px 13px}.report-layout .axis-list{grid-template-columns:1fr}.query-layout{grid-template-columns:minmax(0,1fr) 205px}}
 @media(max-width:850px){.report-layout{grid-template-columns:1fr}.report-layout .radar-layout{grid-template-columns:1fr 1fr}.report-layout .axis-list{display:flex;flex-direction:column}.report-scroll{max-height:none}.analysis-toolbar{font-size:10px}.query-layout{grid-template-columns:1fr}.history-panel{max-height:330px;position:static;min-height:0}.query-chips{padding:12px 14px}.chat-log{height:620px;max-height:70vh}}
 @media(max-width:550px){.assistant-header{flex-direction:column;gap:12px}.analysis-toolbar{text-align:left;width:100%;grid-template-columns:1fr auto}.report-layout .radar-layout{grid-template-columns:1fr}.report-layout .axis-list{display:grid;grid-template-columns:1fr 1fr}.analysis-item summary{font-size:12px}.query-context{font-size:10px}.question-chip{font-size:10px;padding:5px 8px}}
+/* V3.2: actionable issues are independent of radar axes. */
+.issue-list{padding-right:8px}.issue-card{border:1px solid #e7e3ef;border-radius:10px;padding:18px;margin:0 0 16px;background:#fff}.issue-heading{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}.issue-heading>div{flex:1}.issue-heading h4{font-size:14px;margin:0 0 6px;line-height:1.7}.issue-heading p{margin:0;color:#8a8193;font-size:12px}.issue-number{width:27px;flex-shrink:0;color:#8370c1;line-height:26px}.issue-card .table-wrap{margin:10px 0}.issue-card td,.issue-card th{padding:9px;font-size:11px;min-width:70px}.issue-card .advice-block{margin:14px 0}.issue-analysis{font-size:12px;color:#8c8296;line-height:1.9}.report-scroll{max-height:680px}.issue-card .row{flex-wrap:wrap}@media(max-width:700px){.issue-card{padding:13px}.issue-heading{flex-wrap:wrap}.report-scroll{max-height:none}}
 </style></head><body><div id="app"></div><div id="overlay"></div><div id="toast" role="status"></div><script>(function(root){
 'use strict';
-const ASOF='2026-11-08',PERIOD='2026-01-01 至 2026-11-08';
-const customers={A:'远景科技（模拟）',B:'恒瑞服务（模拟）',C:'海辰商贸（模拟）'};
-const contracts=[
-{id:'HT-A01',customer:'A',project:'A',asset:'AS-A01',area:1800,end:'2026-12-31',deposit:[20000,30000],renew:[1,3],follow:[1,2],owner:'王晓',room:'A座 101—103'},
-{id:'HT-A02',customer:'A',project:'A',asset:'AS-A02',area:1200,end:'2026-11-30',deposit:[20000,20000],renew:[2,3],follow:[0,0],owner:'王晓',room:'A座 201—202'},
-{id:'HT-A03',customer:'A',project:'B',asset:'AS-B01',area:1200,end:'2027-03-31',deposit:[0,10000],renew:null,follow:[0,1],owner:'李辰',room:'B座 101—102'},
-{id:'HT-B01',customer:'B',project:'A',asset:'AS-A03',area:1000,end:'2027-06-30',deposit:[30000,30000],renew:null,follow:[1,1],owner:'王晓',room:'A座 301'},
-{id:'HT-B02',customer:'B',project:'B',asset:'AS-B02',area:1000,end:'2026-11-20',deposit:[20000,20000],renew:[3,3],follow:[0,0],owner:'李辰',room:'B座 201'},
-{id:'HT-C01',customer:'C',project:'B',asset:'AS-B03',area:600,end:'2027-01-31',deposit:null,renew:[0,3],follow:[0,1],owner:'李辰',room:'B座 301'},
-{id:'HT-C02',customer:'C',project:'B',asset:'AS-B03',area:400,end:'2027-08-31',deposit:null,renew:null,follow:[0,0],owner:'李辰',room:'B座 302'}];
-const bills=[
-['B-A01-01','HT-A01',70000,70000,70000,'2026-07-31','2026.01—07'],
-['B-A01-02','HT-A01',10000,10000,0,'2026-08-31','2026.08'],
-['B-A01-03','HT-A01',20000,0,0,'2026-10-31','2026.09—10'],
-['B-A02-01','HT-A02',80000,80000,80000,'2026-10-31','2026.01—10'],
-['B-A03-01','HT-A03',20000,10000,5000,'2026-11-03','2026.09—10'],
-['B-B01-01','HT-B01',120000,114000,108000,'2026-10-31','2026.01—10'],
-['B-B02-01','HT-B02',80000,80000,80000,'2026-10-31','2026.01—10'],
-['B-C01-01','HT-C01',60000,48000,42000,'2026-10-31','2026.01—10'],
-['B-C02-01','HT-C02',40000,40000,40000,'2026-10-31','2026.01—10']
-].map(([id,contract,ar,paid,timely,due,period])=>({id,contract,ar,paid,timely,due,period,fee:'租金',balance:ar-paid,overdue:due<ASOF?ar-paid:0}));
-const assets=[
-['AS-A01','A','A座一层','办公',1800,1800],['AS-A02','A','A座二层','办公',1200,1200],['AS-A03','A','A座三层','办公',1000,1000],['AS-A04','A','A座四层','商业',1000,0],
-['AS-B01','B','B座一层','办公',1200,1200],['AS-B02','B','B座二层','商业',1000,1000],['AS-B03','B','B座三层','办公',1000,1000],['AS-B04','B','B座四层','商业',1800,0]
-].map(([id,project,name,type,area,leased])=>({id,project,name,type,area,leased}));
-const days=end=>Math.round((Date.parse(end)-Date.parse(ASOF))/86400000),sum=(xs,k)=>xs.reduce((s,x)=>s+x[k],0),pct=(n,d)=>d?Math.round(n/d*10000)/100:null;
-function visible(scope){return contracts.filter(x=>scope==='all'||x.project===scope)}
-function contract(id){const c=contracts.find(x=>x.id===id);if(!c)throw Error('合同不存在');const bs=bills.filter(x=>x.contract===id);return {...c,name:customers[c.customer],bills:bs,ar:sum(bs,'ar'),paid:sum(bs,'paid'),overdue:sum(bs,'overdue'),balance:sum(bs,'balance'),timely:sum(bs,'timely'),latePaid:sum(bs,'paid')-sum(bs,'timely'),days:days(c.end),unallocated:id==='HT-A01'?5000:0}}
-function summary(scope){const cs=visible(scope).map(x=>contract(x.id)),as=assets.filter(x=>scope==='all'||x.project===scope);const ar=sum(cs,'ar'),paid=sum(cs,'paid'),area=sum(as,'area'),leased=sum(as,'leased');return{ar,paid,overdue:sum(cs,'overdue'),balance:sum(cs,'balance'),contracts:cs.length,customers:new Set(cs.map(x=>x.customer)).size,assets:as.length,area,leased,occupancy:pct(leased,area),rate:pct(paid,ar),expiring:cs.filter(x=>x.days>=0&&x.days<=90).length}}
-function riskSignals(input){
-const c=typeof input==='string'?contract(input):input,rs=[];
-if(c.overdue>0)rs.push({code:'overdue',label:'逾期欠费',tone:'red',detail:`逾期未核销 ${money(c.overdue)}；需核对收款与账单后安排催缴。`,evidence:c.bills.filter(b=>b.overdue>0).map(b=>b.id),question:'还有哪些账单没交费？',action:'billlist'});
-if(c.deposit&&c.deposit[0]<c.deposit[1])rs.push({code:'deposit',label:'保证金不足',tone:'amber',detail:`有效保证金 ${money(c.deposit[0])}，应缴 ${money(c.deposit[1])}，缺口 ${money(c.deposit[1]-c.deposit[0])}。`,evidence:[c.id+' · 保证金条款与有效余额'],question:'保证金交齐了吗？',action:'contractsource'});
-if(c.days>=0&&c.days<=90&&c.renew&&c.renew[0]<c.renew[1])rs.push({code:'renewal',label:'续签准备待完成',tone:'amber',detail:`合同于 ${c.end} 结束，剩余 ${c.days} 天；续签准备完成 ${c.renew[0]} / ${c.renew[1]} 项。`,evidence:[c.id+' · 结束日期与续签准备清单'],question:'合同何时到期，续签准备好了吗？',action:'renew'});
-const ep=enterpriseProfiles[c.customer],ch=changeProfiles[c.id];
-if(ep&&ep.riskLevel>=3)rs.push({code:'enterprise',label:'企业经营风险需关注',tone:'red',detail:`主体风险等级 ${ep.riskLevel}/5，经营异常 ${ep.abnormal} 项、司法风险 ${ep.judicial} 项。外部信息需核验，不等同于本合同违约。`,evidence:ep.refs,question:'企业经营风险如何？',action:'enterprise'});
-if(ch&&ch.events.length>=2)rs.push({code:'changes',label:'合同变更较频繁',tone:'amber',detail:`当前合同观察期内有 ${ch.events.length} 次已生效变更，需核对条款与账单同步情况；变更本身不代表违约。`,evidence:ch.events.map(x=>x.id),question:'合同变更是否频繁？',action:'changes'});
-return rs;
-}
-const money=n=>'¥'+Number(n).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
-const scopes={all:'全部授权项目',A:'海淀科技园',B:'创智中心'};
-function queryBase(q,scope='all',context={}){
-const s=summary(scope),cs=visible(scope).map(x=>contract(x.id));let kind='clarify';
-if(/设备|电梯|消防|多经|点位|广告|快递/.test(q))kind='unsupported';
-else if(/股价|股票|天气/.test(q))kind='clarify';
-else if(/同比|环比|预测|去年|上月|本月|\d{1,2}月|202[0-5]/.test(q))kind='missing';
-else if(/远景|恒瑞|海辰|企业|客商|客户/.test(q)&&!/多少家/.test(q))kind='enterprise';
-else if(/欠|逾期|催缴|未缴|没缴|未收/.test(q))kind='overdue';
-else if(/续签|到期/.test(q))kind='expiry';
-else if(/空置|出租率|可租|资产|房源/.test(q)&&!/总览|概览/.test(q))kind='asset';
-else if(/回款|应收|已收|实收|核销|收缴/.test(q))kind='payment';
-else if(/整体|经营|总览|概览|多少份|多少家/.test(q))kind='overview';
-else if(/按项目|展开|明细|为什么|继续|按企业/.test(q)&&['overview','overdue','payment','expiry','asset','enterprise'].includes(context.kind))kind=context.kind;
-const base={kind,scope,question:q,period:PERIOD,asof:ASOF,columns:[],rows:[],metrics:[],chart:[],evidence:[],followups:[]};
-const metric=(label,value,unit='元')=>({label,value,unit});
-const cr=(r,values)=>({id:r.id,values});
-const byProject=field=>['A','B'].filter(p=>scope==='all'||scope===p).map(p=>({label:scopes[p],value:summary(p)[field]}));
-if(kind==='unsupported')return{...base,title:'该问题不在当前问数范围内',text:'当前支持资产、客商、合同、账单与收款分析；该类业务暂未纳入本次智能问数。可改问回款、欠费、到期合同或资产出租情况。',followups:['当前整体经营概览','哪些合同欠费需要催缴','资产出租率与空置情况']};
-if(kind==='missing')return{...base,title:'当前缺少所需期间的数据',text:'演示数据仅包含当前期间汇总快照，无法计算同比、环比、月度切片或未来预测。落地需补充完整历史账单、核销日期和统一比较口径。可以先查看当前回款、欠费或出租率。',followups:['当前整体经营概览','当前回款情况']};
-if(kind==='clarify')return{...base,title:'请明确要分析的业务范围',text:'可以查询资产出租、客商关联合同、合同到期、应收核销或逾期催缴。请说明关注的指标、项目或企业。此演示按预设场景识别问题。',followups:['当前整体经营概览','哪些合同欠费需要催缴','资产出租率与空置情况']};
-if(kind==='overview')Object.assign(base,{title:'经营总览 · 从数据定位下一步',text:`${scopes[scope]}共有 ${s.assets} 项资产、${s.customers} 家签约客商、${s.contracts} 份履约合同。租金应收 ${money(s.ar)}，已核销 ${money(s.paid)}，回款率 ${s.rate}%；当前逾期未核销 ${money(s.overdue)}。建议优先核对未分配到账，再处理催缴与90天内到期合同。`,metrics:[metric('租金应收',s.ar),metric('已核销',s.paid),metric('逾期未核销',s.overdue),metric('面积出租率',s.occupancy,'%')],columns:['项目','合同数','应收（元）','已核销（元）','逾期（元）'],rows:['A','B'].filter(p=>scope==='all'||scope===p).map(p=>{const t=summary(p);return{values:[scopes[p],t.contracts,money(t.ar),money(t.paid),money(t.overdue)]}}),chart:byProject('ar'),chartTitle:'各项目租金应收（元）',evidence:[`合同台账：${cs.length}份合成合同`,`租金账单：${bills.filter(b=>cs.some(c=>c.id===b.contract)).length}条合成账单`,`资产台账：${s.assets}项可租资产`],followups:['哪些合同欠费需要催缴','90天内到期合同有哪些','资产出租率与空置情况']});
-if(kind==='overdue'||kind==='payment'){
-const rs=kind==='overdue'?cs.filter(x=>x.overdue>0).sort((a,b)=>b.overdue-a.overdue):cs;
-Object.assign(base,{title:kind==='overdue'?'逾期催缴清单 · 先核账，再跟进':'租金回款分析 · 可追溯至合同账单',text:kind==='overdue'?`当前有 ${rs.length} 份合同存在逾期未核销，合计 ${money(s.overdue)}。逾期口径为到期日早于 ${ASOF} 且仍未核销的账单余额。${cs.some(r=>r.id==='HT-A01')?'HT-A01 另有 5,000 元已到账待分配，核销确认前保留原逾期金额。':'已到账但未核销的款项需由财务确认分配。'}`:`应收 ${money(s.ar)}，已核销 ${money(s.paid)}，回款率 ${s.rate}%。实收到账与核销分配应分别呈现；本卡回款率采用已核销/应收。`,metrics:kind==='overdue'?[metric('逾期未核销',s.overdue),metric('涉及合同',rs.length,'份'),metric('逾期客商',new Set(rs.map(x=>x.customer)).size,'家')]:[metric('应收',s.ar),metric('已核销',s.paid),metric('回款率',s.rate,'%')],columns:['合同 / 客商','项目','应收（元）','已核销（元）','逾期（元）'],rows:rs.map(r=>cr(r,[r.id+' / '+r.name,scopes[r.project],money(r.ar),money(r.paid),money(r.overdue)])),chart:byProject(kind==='overdue'?'overdue':'paid'),chartTitle:kind==='overdue'?'各项目逾期未核销（元）':'各项目已核销（元）',evidence:rs.flatMap(r=>r.bills.map(b=>b.id+' · '+b.due)),followups:kind==='overdue'?['按项目分组','远景科技旗下合同回款情况','90天内到期合同有哪些']:['哪些合同欠费需要催缴','资产出租率与空置情况']});
-}
-if(kind==='expiry'){
-const rs=cs.filter(x=>x.days>=0&&x.days<=90).sort((a,b)=>a.days-b.days);
-Object.assign(base,{title:'90天内到期合同 · 续签与退出准备',text:`${scopes[scope]}有 ${rs.length} 份合同在90天内到期。到期不等于必然续签，应结合意向确认、方案审批、协议签署及欠费核验推进。点击合同可查看单份合同的准备清单。`,metrics:[metric('90天内到期',rs.length,'份'),metric('30天内到期',rs.filter(x=>x.days<=30).length,'份'),metric('到期合同逾期',sum(rs,'overdue'))],columns:['合同 / 客商','到期日','剩余天数','准备清单','逾期（元）'],rows:rs.map(r=>cr(r,[r.id+' / '+r.name,r.end,r.days+'天',r.renew?r.renew.join(' / ')+'项':'不适用',money(r.overdue)])),evidence:rs.map(r=>r.id+' · 合同结束日 / 续签清单'),followups:['哪些合同欠费需要催缴','当前整体经营概览']});
-}
-if(kind==='asset'){
-const rs=assets.filter(x=>scope==='all'||x.project===scope);
-Object.assign(base,{title:'资产出租与空置 · 面积口径',text:`当前可租面积 ${s.area.toLocaleString()} ㎡，已出租 ${s.leased.toLocaleString()} ㎡，空置 ${(s.area-s.leased).toLocaleString()} ㎡，面积出租率 ${s.occupancy}%。使用资产台账去重后的面积快照，同一资产关联多合同不重复计面积。`,metrics:[metric('可租面积',s.area,'㎡'),metric('已租面积',s.leased,'㎡'),metric('空置面积',s.area-s.leased,'㎡'),metric('面积出租率',s.occupancy,'%')],columns:['资产编号 / 名称','项目','类型','可租面积（㎡）','已租面积（㎡）'],rows:rs.map(r=>({values:[r.id+' / '+r.name,scopes[r.project],r.type,r.area,r.leased]})),chart:byProject('occupancy'),chartTitle:'各项目面积出租率（%）',evidence:rs.map(r=>r.id+' · 可租 / 已租面积'),followups:['90天内到期合同有哪些','当前回款情况']});
-}
-if(kind==='enterprise'){
-const key=/恒瑞/.test(q)?'B':/海辰/.test(q)?'C':/远景/.test(q)?'A':context.kind==='enterprise'?context.customer:null;
-if(!key)return{...base,kind:'clarify',title:'请选择要分析的客商',text:'可查询远景科技、恒瑞服务或海辰商贸，按客商主数据ID关联其签约合同。企业名称重名时需先选择主体。',followups:['远景科技旗下合同回款情况','恒瑞服务旗下合同回款情况','海辰商贸旗下合同回款情况']};
-const rs=cs.filter(x=>x.customer===key),ar=sum(rs,'ar'),paid=sum(rs,'paid');
-Object.assign(base,{customer:key,title:customers[key]+' · 关联合同分析',text:`在${scopes[scope]}范围，该客商关联 ${rs.length} 份合同，租金应收 ${money(ar)}，已核销 ${money(paid)}，回款率 ${pct(paid,ar)??'—'}%。仅汇总当前授权范围内的签约合同；租金与保证金分别核算。`,metrics:[metric('应收',ar),metric('已核销',paid),metric('逾期未核销',sum(rs,'overdue')),metric('关联合同',rs.length,'份')],columns:['合同','项目 / 资源','应收（元）','已核销（元）','逾期（元）'],rows:rs.map(r=>cr(r,[r.id,scopes[r.project]+' / '+r.room,money(r.ar),money(r.paid),money(r.overdue)])),chart:rs.map(r=>({label:r.id,value:pct(r.paid,r.ar)})),chartTitle:'各合同回款率（%）',evidence:rs.map(r=>r.id+' · 签约客商ID '+key),followups:['哪些合同欠费需要催缴','90天内到期合同有哪些']});
-}
-return base;
-}
-
-// All external profiles, changes and project policies below are synthetic demonstration fixtures.
-const enterpriseProfiles={
-A:{riskLevel:3,abnormal:1,judicial:1,status:'存续',updated:'2026-11-08 09:00',refs:['EXT-A-01 · 经营异常样例','EXT-A-02 · 司法风险样例'],source:'企业信息接口（企查查接入拟定，当前为模拟）'},
-B:{riskLevel:0,abnormal:0,judicial:0,status:'存续',updated:'2026-11-08 09:00',refs:['EXT-B-01 · 主体核验样例'],source:'企业信息接口（当前为模拟）'},C:null};
-const changeProfiles=Object.fromEntries(contracts.map(c=>[c.id,c.id==='HT-C01'?null:{events:c.id==='HT-A01'?[{id:'CH-A01-01',date:'2026-03-01',type:'租金调整',detail:'生效租金条款调整，已同步对应账单',status:'已生效'},{id:'CH-A01-02',date:'2026-07-01',type:'付款周期调整',detail:'付款周期调整，已完成审批',status:'已生效'}]:[]} ]));
-const projectPolicies={A:{id:'COL-HD-01',version:'V1（演示）',name:'海淀科技园催缴分级规则',stages:[{maxDays:7,name:'付款提醒',action:'核账后电话或短信提醒',evidence:'保留通话纪要、短信送达截图和付款反馈'},{maxDays:30,name:'书面催缴',action:'核账后发送书面催缴通知并约定付款时间',evidence:'保留通知版本、发送或送达记录、客户承诺'},{maxDays:90,name:'专项跟进',action:'负责人复核未履约原因，组织专项沟通',evidence:'保留对账确认、沟通纪要及审批意见'},{maxDays:Infinity,name:'升级评估',action:'提交负责人及法务评估后续处置',evidence:'保留核账、历次送达与法务审核记录'}]},B:null};
-const scheduledBills=[{id:'F-A-01',project:'A',contract:'HT-B01',due:'2026-12-01',ar:60000,paid:0},{id:'F-B-01',project:'B',contract:'HT-C02',due:'2026-12-01',ar:30000,paid:0}];
-function radar(id){const c=contract(id),ep=enterpriseProfiles[c.customer],ch=changeProfiles[id];return[
-{key:'payment',label:'回款完成',value:pct(c.paid,c.ar),unit:'%',fact:`已核销 ${money(c.paid)} / 应收 ${money(c.ar)}`,formula:'有效核销金额 / 当前期间生效应收 × 100%',question:'还有哪些账单没交费？'},
-{key:'timely',label:'付款及时',value:pct(c.timely,c.ar),unit:'%',fact:`按期核销 ${money(c.timely)} / 到期应收 ${money(c.ar)}`,formula:'按期到账并核销金额 / 到期应收 × 100%；历史迟付不等于当前欠费',question:'历史付款是否及时？'},
-{key:'deposit',label:'保证金到位',value:c.deposit?pct(...c.deposit):null,unit:'%',fact:c.deposit?`有效 ${money(c.deposit[0])} / 应缴 ${money(c.deposit[1])}`:'保证金记录缺失，待核验',formula:'有效保证金 / 当前生效应缴 × 100%；缺失不补0',question:'保证金交齐了吗？'},
-{key:'enterprise',label:'主体经营',value:ep?(5-ep.riskLevel)*20:null,unit:'分',fact:ep?`主体风险等级 ${ep.riskLevel}/5；经营异常 ${ep.abnormal} 项、司法风险 ${ep.judicial} 项`:'企业信息未取得，不能判断主体风险',formula:'演示映射：(5－主体风险等级) × 20；越高表示风险信号越少，非信用评级；生产分级需业务确认',question:'企业经营风险如何？'},
-{key:'stability',label:'合同稳定',value:ch?Math.max(0,100-ch.events.length*15):null,unit:'分',fact:ch?`观察期：2026-01-01 至 ${ASOF}；当前合同已生效变更 ${ch.events.length} 次`:'合同变更记录未取得，不当作零变更',formula:'演示映射：max(0, 100－已生效变更次数 × 15)；新签合同不算当前合同变更，变更不直接认定违约',question:'合同变更是否频繁？'}]}
-function collectionAdvice(id){const c=typeof id==='string'?contract(id):id,policy=projectPolicies[c.project];const overdueBills=c.bills.filter(b=>b.overdue>0);const age=Math.max(0,...overdueBills.map(b=>-days(b.due)));if(!c.overdue)return{source:'当前账单事实',configured:!!policy,age,stage:'无需逾期催缴',action:'当前无逾期未核销余额，按付款节点持续跟踪。',evidence:'保持账单与核销记录可追溯。',policy:null};
-const stage=policy?.stages.find(s=>age<=s.maxDays);return{source:policy?`项目规则 · ${policy.id} · ${policy.version}`:'AI建议 · 项目未配置催缴规则',configured:!!policy,age,stage:stage?.name||'先核账并沟通',action:stage?.action||'建议财务先核对账单与到账，由经办人与客户确认未付款原因及计划；处置方式由负责人确认。',evidence:stage?.evidence||'建议保留对账记录、付款凭证、沟通纪要与客户回复。',policy:policy?.id||null}}
-function contractReport(id){const c=contract(id),axes=radar(id),ep=enterpriseProfiles[c.customer],ch=changeProfiles[id],ad=collectionAdvice(c),gap=c.deposit?Math.max(0,c.deposit[1]-c.deposit[0]):null;
-const blocks=[
-{key:'payment',title:'回款与账龄',status:c.overdue?'需要跟进':'已结清',fact:`当前应收 ${money(c.ar)}，已核销 ${money(c.paid)}，逾期未核销 ${money(c.overdue)}。${c.overdue?'最长逾期 '+ad.age+' 天。':''}`,analysis:c.overdue?`逾期来自 ${c.bills.filter(b=>b.overdue>0).map(b=>b.id).join('、')}。${c.unallocated?'另有 '+money(c.unallocated)+' 到账待分配，未核销前保留原余额；不能把已到账与已核销混用。':'应先确认收款流水与账单关联，再确定催缴金额。'}`:'当前有效账单均已结清，不能仅因历史迟付继续标记当前欠费。',advice:c.overdue?`先由财务复核金额，再由 ${c.owner} 按“${ad.stage}”跟进：${ad.action}。沟通时列明合同、账单、费用期与复核后的金额，确认客户预计付款日；${ad.evidence}。`:'按下期账单到期节点提醒付款，继续保留收款及核销凭证。',source:ad.source,action:'billlist',label:'核对账单与到账'},
-{key:'timely',title:'付款行为',status:c.latePaid?'关注历史迟付':'按期履行',fact:`按期核销 ${money(c.timely)}，历史迟付且已结清 ${money(c.latePaid)}；按期完成率 ${pct(c.timely,c.ar)}%。`,analysis:c.latePaid?`当前存在历史迟付事实。${ep&&ep.riskLevel>=3?'叠加主体经营风险信号，后续付款节点应重点跟踪；这不构成未来欠款的确定预测。':'历史迟付需与当前欠费分开判断；已结清款项不重复催缴。'}`:'已核销部分未发现历史迟付样例；仅反映当前数据覆盖期。',advice:c.latePaid?'下个付款节点前主动确认付款计划；若再次迟付，记录原因与承诺日期。续签谈判时可评估付款周期及保障安排，具体条件由业务审批。':'按约定节点持续核对到账，不因当前及时就免除后续监测。',source:'账单到期日 + 核销对应实际到账日',action:'billlist',label:'查看付款依据'},
-{key:'deposit',title:'保证金保障',status:gap===null?'资料待核验':gap?'保障不足':'已到位',fact:gap===null?'应缴或有效保证金记录未取得，无法计算缺口。':`应缴 ${money(c.deposit[1])}，有效 ${money(c.deposit[0])}，缺口 ${money(gap)}。`,analysis:gap===null?'缺失数据不能按0元，也不能据此认定保证金已交齐。':gap?'当前保障金额低于生效约定，需结合到账、退还和抵扣流水核查。':'保障余额与应缴匹配；保证金不计入租金回款。',advice:gap===null?'由财务补齐条款与保证金流水后复核。':gap?'核对退款及抵扣后，向客商确认补缴情形与时间；续签时结合迟付和主体情况评估保障条件，不能自动变更现有应缴。':'继续核对后续退款、抵扣及保证函有效期。',source:'生效保证金条款与有效余额',action:'contractsource',label:'查看保证金依据'},
-{key:'enterprise',title:'企业经营与外部风险',status:ep?ep.riskLevel>=3?'需重点核验':'当前未见异常样例':'数据未取得',fact:ep?`${c.name}，登记状态 ${ep.status}；经营异常 ${ep.abnormal} 项、司法风险 ${ep.judicial} 项；数据更新 ${ep.updated}。`:'当前未取得签约主体的企业经营信息。',analysis:ep?(ep.riskLevel>=3?'主体风险与付款及时性需要联合观察：即使部分账单已结清，也需核验异常事项的时间、有效性及与履约的关联；外部命中不直接认定合同违约。':'当前覆盖的外部样例未见风险信号；这不能保证主体未来无风险。'):'尚不能做主体风险判断，不输出“企业优质”或“风险可控”。',advice:ep?'按统一主体标识核验原始事件，记录核验结论。涉及续签、增加保证金或法律措施时提交业务及法务复核，不由AI自动决定。':'补齐已授权的企业信息接口及主体标识映射，再分析。',source:ep?.source||'企业信息来源缺失',action:'enterprise',label:'查看企业信息与风险依据'},
-{key:'stability',title:'合同条款与变更',status:ch?ch.events.length>=2?'关注变更频次':'当前较稳定':'数据未取得',fact:ch?`本合同观察期内 ${ch.events.length} 次已生效变更${ch.events.length?'，涉及 '+ch.events.map(x=>x.type).join('、'):''}。`:'未取得当前合同的版本与变更记录。',analysis:ch?ch.events.length>=2?'多次调整反映条款执行需要跟踪，应核对每次审批、生效日期与账单同步；不把其他新签合同算作本合同变更，不直接以频次认定违约。':'当前样例未记录已生效变更；仍应以完整版本记录复核。':'无法判断条款稳定性，不能按“零次变更”处理。',advice:ch?'复核当前生效版本、租金、付款周期与主体是否一致；发现账单未同步时交由合同经办与财务校正后重新分析。':'补齐当前合同的生效版本和审批记录；若系统以重签替代变更，只记录关联关系，暂不计变更次数。',source:'当前合同版本/审批/生效记录（演示）',action:'changes',label:'查看变更记录'}];
-const expiry=c.days>=0&&c.days<=90?{title:'到期与下一份合同安排',fact:`合同于 ${c.end} 到期，剩余 ${c.days} 天；准备项 ${c.renew?c.renew.join('/'):'来源缺失'}。`,advice:`由 ${c.owner} 核实续签意向与新合同发起状态。${c.overdue||c.latePaid?'结合欠费、历史迟付和主体经营信息，提交是否续签及保障条件的评估；不自动建议具体保证金倍数。':'提前安排续签或退出结算。'}到期提醒继续保留，不占用雷达维度。`}:null;
-return{axes,blocks,expiry,advice:ad,good:axes.filter(a=>a.value!==null&&a.value>=90).length,attention:axes.filter(a=>a.value!==null&&a.value>=60&&a.value<90).length,risk:axes.filter(a=>a.value!==null&&a.value<60).length,missing:axes.filter(a=>a.value===null).length}}
-function answer(q,scope='all',context={}){
-const mentioned=['A','B'].filter(p=>(p==='A'?/海淀科技园|项目A/:/创智中心|项目B/).test(q));
-const forbidden=/新城中心|未授权项目|无权限项目/.test(q)||mentioned.some(p=>scope!=='all'&&p!==scope);
-if(forbidden)return{kind:'denied',scope,question:q,asof:ASOF,period:PERIOD,title:'当前无此项目的查询授权',text:'当前账号无权查询该项目。未返回该项目的金额、数量或明细；如因工作需要，请联系管理员核实授权。',columns:[],rows:[],metrics:[],chart:[],evidence:[],followups:['当前整体经营概览','哪些合同欠费需要催缴']};
-const resolved=mentioned.length===1?mentioned[0]:mentioned.length>1?'all':/全部|整体|各项目/.test(q)?scope:context.scope&&scope==='all'?context.scope:scope;
-if(/设备|电梯|消防|多经|点位|广告|快递/.test(q))return queryBase(q,resolved,context);
-const noData=/超过\s*(100万|1000000)/.test(q)&&/欠|逾期/.test(q);
-if(noData)return{kind:'empty',scope:resolved,question:q,asof:ASOF,period:PERIOD,title:'当前范围无符合条件的合同',text:'在当前授权范围及数据期间，未找到逾期未核销金额超过100万元的合同。查询已完成；无符合条件的记录与数据缺失是不同状态。',columns:[],rows:[],metrics:[],chart:[],evidence:['授权合同与有效账单；筛选：逾期未核销 > 1,000,000元'],followups:['哪些合同欠费需要催缴','当前回款情况']};
-const route=/年底|年末/.test(q)&&!/同比|预测/.test(q)?'yearend':/合同规模|合同数量|多少合同|合同类指标/.test(q)?'contracts':/资产规模/.test(q)?'asset':null;
-if(route&&route!=='yearend'&&/同比|环比|预测|去年|本月|上月/.test(q))return queryBase(q,resolved,context);
-let a=queryBase(route==='asset'?'资产出租率':route==='contracts'?'整体经营概览':q,resolved,context);
-if(route==='contracts'){const cs=visible(resolved).map(x=>contract(x.id));a={...a,kind:'contracts',title:'合同规模与到期分布',text:`当前授权查询范围共有 ${cs.length} 份履约合同，关联 ${new Set(cs.map(x=>x.customer)).size} 家客商；90天内到期 ${cs.filter(x=>x.days>=0&&x.days<=90).length} 份。`,metrics:[{label:'履约合同',value:cs.length,unit:'份'},{label:'签约客商',value:new Set(cs.map(x=>x.customer)).size,unit:'家'},{label:'90天内到期',value:cs.filter(x=>x.days>=0&&x.days<=90).length,unit:'份'}],columns:['合同 / 客商','项目','到期日','剩余天数'],rows:cs.map(c=>({id:c.id,values:[c.id+' / '+c.name,scopes[c.project],c.end,c.days+'天']})),chart:[],evidence:cs.map(c=>c.id+' · 生效合同台账'),followups:['90天内到期合同有哪些','哪些合同欠费需要催缴']};}
-if(route==='yearend'){const f=scheduledBills.filter(b=>resolved==='all'||b.project===resolved),cs=visible(resolved).map(x=>contract(x.id)),due=sum(f,'ar'),out=sum(cs,'balance');a={...a,kind:'yearend',title:'年底前待回收账单 · 已生成计划',text:`截至 ${ASOF}，已到期未核销 ${money(out)}；已生成、年底前到期但当前未到期的账单 ${money(due)}，合计待回收 ${money(out+due)}。这是账单计划余额，不是未来收入或实际到账预测。`,metrics:[{label:'已到期未核销',value:out,unit:'元'},{label:'年底前未到期账单',value:due,unit:'元'},{label:'合计待回收',value:out+due,unit:'元'}],columns:['账单 / 合同','项目','到期日','待回收（元）','状态'],rows:[...cs.flatMap(c=>c.bills.filter(b=>b.balance>0).map(b=>({id:c.id,values:[b.id+' / '+c.id,scopes[c.project],b.due,money(b.balance),'已到期']}))),...f.map(b=>({id:b.contract,values:[b.id+' / '+b.contract,scopes[b.project],b.due,money(b.ar-b.paid),'未到期']}))],chart:[],evidence:['有效账单 + 已生成未来账单（合成样例），观察至2026-12-31'],followups:['哪些合同欠费需要催缴','90天内到期合同有哪些']};}
-const s=summary(resolved),cs=visible(resolved).map(x=>contract(x.id));
-if(a.rows.length){
-if(['overview','payment','overdue'].includes(a.kind)){const top=cs.filter(c=>c.overdue>0).sort((a,b)=>b.overdue-a.overdue);a.insights=[`当前回款率 ${s.rate}%，未核销 ${money(s.balance)}。${resolved==='all'?'创智中心逾期占应收11%，高于海淀科技园8.67%；应关注比例与金额两个口径。':''}`,top.length?`优先核对 ${top.slice(0,2).map(c=>c.id+'（'+money(c.overdue)+'）').join('、')}。最长逾期 ${Math.max(...top.flatMap(c=>c.bills.filter(b=>b.overdue>0).map(b=>-days(b.due))))} 天；当前样例不支持认定多月拖欠或持续恶化。`:'当前未发现逾期未核销账单。'];}
-else if(a.kind==='asset')a.insights=[`空置面积 ${s.area-s.leased}㎡，占可租面积 ${pct(s.area-s.leased,s.area)}%。${resolved==='all'?'创智中心空置1,800㎡、出租率64%，海淀科技园空置1,000㎡、出租率80%。':''}可先核对可租状态及资源属性，再安排招商；资产面积按资源ID去重。`];
-else if(a.kind==='yearend')a.insights=['已逾期款项先核账并按项目规则跟进；未到期账单按付款节点提前沟通。待回收额不含尚未生成的账单，不把保证金混入租金。'];
-else if(a.kind==='contracts'||a.kind==='expiry')a.insights=[`先按结束日安排意向确认、续签或退出，结合该合同欠费与保证金核验；到期不代表自动续签。可点合同进入履约分析。`];
-else a.insights=['按同一客商主数据ID关联合同；金额先在账单层聚合，避免一企业多合同、多资源关系重复累加。可下钻单合同核对风险与付款依据。'];
-}
-return a;
-}
-const SCENES=[
-['C01','contract','履约总览','一线 / 管理者','这份合同目前有哪些需要处理的？','当前合同、账单、核销、保证金、企业信息、变更、项目规则','锁定合同 → 拉取事实 → 计算指标 → 中台解释 → 结果卡','HT-A01显示逾期20,000元、保证金缺口10,000元、53天到期。','仅当前合同；缺失维度单列，不产出信用评级。'],
-['C02','contract','应收与未缴','收费 / 财务','这份合同哪些账单还没交费？','账单ID、费用项、计费期、应收、到期日、核销分配','账单余额汇总 → 区分未到期/逾期 → 下钻明细','HT-A01仅B-A01-03欠20,000元；历史迟付已结清账单不算欠费。','作废账单排除；到账待分配不自动抵减。'],
-['C03','contract','逾期催缴','一线 / 负责人','需要催缴吗？帮我写一份催缴内容','逾期账单、客户、负责人、已到账待分配、催缴记录','核账提示 → 选择账单 → 生成草稿 → 人工复核','草稿引用合同号、账单号及20,000元；提示先核对5,000元待分配到账。','原型仅本地草稿；实际发出走原业务确认流程。'],
-['C04','contract','续签准备','招商 / 管理者','合同快到期了吗，续签准备得怎样？','结束日、90天阈值、续签意向、方案审批、协议状态','计算剩余天数 → 检查准备清单 → 形成待办建议','HT-A01剩余53天，准备完成1/3项。','准备进度不是续签概率，不自动延长合同。'],
-['C05','contract','付款及时性','财务 / 管理者','历史付款是否及时？','账单到期日、核销分配、对应到账日期','按期分配金额统计 → 识别迟付 → 展示事实','HT-A01按期核销70,000元，已核销80,000元，迟付已结清10,000元。','按期核销/到期应收；补录时间不替代实际到账时间。'],
-['C06','contract','保证金核验','财务 / 一线','保证金是否交齐？','保证金条款、应缴、有效到账、退还/抵扣记录','适用性判断 → 有效余额 → 缺口与来源','HT-A01缺口10,000元；HT-C01显示来源缺失。','保证金不混入租金回款；未知值不填0。'],
-['C07','contract','到账待分配','财务','客户说已付款，为什么仍欠费？','收款流水、核销分配、到账日期、合同关联','区分到账与核销 → 展示差异 → 提示核对','HT-A01保留20,000元逾期，同时展示5,000元待分配。','需要财务正式核销后刷新，不自动修改账。'],
-['C08','contract','企业风险与条款稳定','负责人 / 管理者','企业是否有经营风险，合同变更是否频繁？','统一主体标识、外部风险事件、当前合同版本与生效变更','主体匹配 → 事件核验 → 分项指标 → 与付款行为联合解读','HT-A01主体演示分40、合同稳定70；HT-C01缺失时显示待核验。','分级是演示规则，变更不等同违约；外部命中需核验，不作信用评级。'],
-['Q01','ask','经营总览','管理者','当前整体经营情况如何？','资产、客商、合同、租金账单、核销','授权过滤 → 多域聚合 → 结论/指标/项目表','7合同、3客商、应收500,000元、核销452,000元。','每个指标明确口径与截至时间。'],
-['Q02','ask','欠费催缴分布','一线 / 管理者','目前哪些合同欠费，需要催缴？','账单、核销、到期日、合同、客商、项目','余额过滤 → 合同/项目聚合 → 合同下钻','4份合同逾期48,000元；海淀科技园 26,000元、B 22,000元。','授权项目内查询；零余额不进入催缴清单。'],
-['Q03','ask','回款分析','财务 / 管理者','各项目回款情况怎么样？','应收账单、核销、项目归属','统一期间 → 项目分组 → 金额/回款率','海淀科技园应收300,000元、核销274,000元、回款率91.33%。','不以银行流水总额替代已核销。'],
-['Q04','ask','企业关联合同','招商 / 管理者','远景科技签了哪些合同，回款怎么样？','客商ID、签约关系、合同、账单、核销','主体消歧 → 关联合同 → 分合同对比/总计','全部范围远景3份合同，应收200,000元；创智中心仅1份、20,000元。','同名需澄清；同合同多资源关联不得重复汇总。'],
-['Q05','ask','到期统筹','招商 / 管理者','90天内哪些合同到期？','合同结束日、合同状态、负责人、准备清单','到期窗口过滤 → 按剩余天数排序 → 单合同跳转','固定日期下4份合同在90天内到期，2份在30天内。','到期日与续签状态分开展示。'],
-['Q06','ask','资产出租与空置','招商 / 管理者','资产出租率多少，哪里空置？','可租资产、面积快照、有效租用关系','资产去重 → 可租/已租面积 → 项目/资产明细','可租10,000㎡，已租7,200㎡，出租率72%。','台账数量与面积出租率不混用。'],
-['Q09','ask','连续追问与会话回看','所有用户','按项目展开；查看上次查询结果','会话ID、上下文、授权范围、结果快照、时间','继承意图 → 补充维度 → 保存快照 → 回看','欠费问题后追问按项目分组仍为欠费分析；右侧点历史恢复原结果。','历史不自动更新；重新查询形成新快照。'],
-['Q10','ask','数据不足与澄清','所有用户','今年收入同比增长多少？','指标目录、可用期间、数据覆盖','识别口径/来源缺失 → 说明缺口 → 建议替代问题','当前单期样例返回缺少去年同期，不生成增长率。','不支持问题需澄清，不展示伪造图表。'],
-['Q11','ask','授权与空结果','业务 / 管理者','新城中心回款情况；逾期超过100万元的合同','服务端授权范围、指标查询状态、筛选条件','先鉴权 → 有权再查询 → 区分拒绝/空结果/来源缺失','无权限不返回指标；无匹配合同明确为空，不伪造数值。','页面不提供授权项目选择器；生产权限必须在服务端执行。'],
-['Q12','ask','年底待回收计划','财务 / 管理者','年底前还有多少账单待回收？','已到期账单、年底前已生成未到期账单、核销分配','区分到期状态 → 计算计划余额 → 账单下钻','逾期48,000元 + 未到期90,000元 = 138,000元。','账单计划不等于实际回款预测，未生成账单不纳入。']
-].map(([id,agent,title,role,question,data,flow,accept,boundary])=>({id,agent,title,role,question,data,flow,accept,boundary}));
-const api={ASOF,PERIOD,customers,contracts,bills,assets,scopes,visible,contract,summary,riskSignals,radar,answer,enterpriseProfiles,changeProfiles,projectPolicies,scheduledBills,collectionAdvice,contractReport,SCENES,money,pct};
+const fixture={
+  "asof": "2026-11-11",
+  "customers": {
+    "A": "北京乐于竞网络科技有限公司",
+    "B": "北京城华房地产开发有限公司",
+    "C": "北京天拓斯特科技有限公司",
+    "D": "清超卓影（北京）医疗科技有限公司"
+  },
+  "contracts": [
+    {
+      "id": "BJGK-20251000601",
+      "customer": "A",
+      "project": "A",
+      "area": 921,
+      "start": "2026-01-01",
+      "end": "2027-12-31",
+      "room": "503",
+      "asset": "A-503",
+      "owner": "合同经办（待接口映射）",
+      "deposit": null,
+      "renew": null,
+      "follow": null,
+      "status": "履约中"
+    },
+    {
+      "id": "BJGK-20251200704",
+      "customer": "B",
+      "project": "B",
+      "area": 341.94,
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "room": "1007",
+      "asset": "B-1007",
+      "owner": "合同经办（待接口映射）",
+      "deposit": null,
+      "renew": null,
+      "follow": null,
+      "status": "履约中"
+    },
+    {
+      "id": "BJGK-20251200705",
+      "customer": "B",
+      "project": "A",
+      "area": 2639.79,
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "room": "801",
+      "asset": "A-801",
+      "owner": "合同经办（待接口映射）",
+      "deposit": null,
+      "renew": null,
+      "follow": null,
+      "status": "履约中"
+    },
+    {
+      "id": "BJGK-20250800439",
+      "customer": "C",
+      "project": "A",
+      "area": 361,
+      "start": "2025-11-16",
+      "end": "2027-11-15",
+      "room": "305",
+      "asset": "A-305",
+      "owner": "合同经办（待接口映射）",
+      "deposit": null,
+      "renew": null,
+      "follow": null,
+      "status": "履约中"
+    },
+    {
+      "id": "BJGK-20251000602",
+      "customer": "D",
+      "project": "A",
+      "area": 810,
+      "start": "2026-01-01",
+      "end": "2027-12-31",
+      "room": "403",
+      "asset": "A-403",
+      "owner": "合同经办（待接口映射）",
+      "deposit": null,
+      "renew": null,
+      "follow": null,
+      "status": "履约中"
+    }
+  ],
+  "bills": [
+    {
+      "id": "BJGK-20251000601 · 租金 · 2026-01-01",
+      "contract": "BJGK-20251000601",
+      "ar": 265248,
+      "paid": 0,
+      "balance": 265248,
+      "due": "2026-01-01",
+      "period": "2026-01-01 至 2026-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2026-04-01",
+      "contract": "BJGK-20251000601",
+      "ar": 268195.2,
+      "paid": 0,
+      "balance": 268195.2,
+      "due": "2026-04-01",
+      "period": "2026-04-01 至 2026-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2026-07-01",
+      "contract": "BJGK-20251000601",
+      "ar": 271142.4,
+      "paid": 0,
+      "balance": 271142.4,
+      "due": "2026-07-01",
+      "period": "2026-07-01 至 2026-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2026-10-01",
+      "contract": "BJGK-20251000601",
+      "ar": 271142.4,
+      "paid": 0,
+      "balance": 271142.4,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2027-01-01",
+      "contract": "BJGK-20251000601",
+      "ar": 265248,
+      "paid": 0,
+      "balance": 265248,
+      "due": "2027-01-01",
+      "period": "2027-01-01 至 2027-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2027-04-01",
+      "contract": "BJGK-20251000601",
+      "ar": 268195.2,
+      "paid": 0,
+      "balance": 268195.2,
+      "due": "2027-04-01",
+      "period": "2027-04-01 至 2027-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2027-07-01",
+      "contract": "BJGK-20251000601",
+      "ar": 271142.4,
+      "paid": 0,
+      "balance": 271142.4,
+      "due": "2027-07-01",
+      "period": "2027-07-01 至 2027-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 租金 · 2027-10-01",
+      "contract": "BJGK-20251000601",
+      "ar": 271142.4,
+      "paid": 0,
+      "balance": 271142.4,
+      "due": "2027-10-01",
+      "period": "2027-10-01 至 2027-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200704 · 租金 · 2026-01-01",
+      "contract": "BJGK-20251200704",
+      "ar": 184647.6,
+      "paid": 0,
+      "balance": 184647.6,
+      "due": "2026-01-01",
+      "period": "2026-01-01 至 2026-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200704 · 租金 · 2026-04-01",
+      "contract": "BJGK-20251200704",
+      "ar": 186699.24,
+      "paid": 0,
+      "balance": 186699.24,
+      "due": "2026-04-01",
+      "period": "2026-04-01 至 2026-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200704 · 租金 · 2026-07-01",
+      "contract": "BJGK-20251200704",
+      "ar": 188750.88,
+      "paid": 0,
+      "balance": 188750.88,
+      "due": "2026-07-01",
+      "period": "2026-07-01 至 2026-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200704 · 租金 · 2026-10-01",
+      "contract": "BJGK-20251200704",
+      "ar": 188750.88,
+      "paid": 0,
+      "balance": 188750.88,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 租金 · 2026-01-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1069114.95,
+      "paid": 0,
+      "balance": 1069114.95,
+      "due": "2026-01-01",
+      "period": "2026-01-01 至 2026-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 租金 · 2026-04-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1080994.01,
+      "paid": 0,
+      "balance": 1080994.01,
+      "due": "2026-04-01",
+      "period": "2026-04-01 至 2026-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 租金 · 2026-07-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1092873.06,
+      "paid": 0,
+      "balance": 1092873.06,
+      "due": "2026-07-01",
+      "period": "2026-07-01 至 2026-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 租金 · 2026-10-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1092873.06,
+      "paid": 0,
+      "balance": 1092873.06,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2025-11-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2025-11-01",
+      "period": "2025-11-16 至 2026-02-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2026-02-16",
+      "contract": "BJGK-20250800439",
+      "ar": 102812.8,
+      "paid": 0,
+      "balance": 102812.8,
+      "due": "2026-02-01",
+      "period": "2026-02-16 至 2026-05-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2026-05-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2026-05-01",
+      "period": "2026-05-16 至 2026-08-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2026-08-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2026-08-01",
+      "period": "2026-08-16 至 2026-11-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2026-11-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2026-11-01",
+      "period": "2026-11-16 至 2027-02-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2027-02-16",
+      "contract": "BJGK-20250800439",
+      "ar": 102812.8,
+      "paid": 0,
+      "balance": 102812.8,
+      "due": "2027-02-01",
+      "period": "2027-02-16 至 2027-05-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2027-05-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2027-05-01",
+      "period": "2027-05-16 至 2027-08-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 租金 · 2027-08-16",
+      "contract": "BJGK-20250800439",
+      "ar": 106278.4,
+      "paid": 0,
+      "balance": 106278.4,
+      "due": "2027-08-01",
+      "period": "2027-08-16 至 2027-11-15",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2026-01-01",
+      "contract": "BJGK-20251000602",
+      "ar": 233280,
+      "paid": 0,
+      "balance": 233280,
+      "due": "2026-01-01",
+      "period": "2026-01-01 至 2026-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2026-04-01",
+      "contract": "BJGK-20251000602",
+      "ar": 235872,
+      "paid": 0,
+      "balance": 235872,
+      "due": "2026-04-01",
+      "period": "2026-04-01 至 2026-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2026-07-01",
+      "contract": "BJGK-20251000602",
+      "ar": 238464,
+      "paid": 0,
+      "balance": 238464,
+      "due": "2026-07-01",
+      "period": "2026-07-01 至 2026-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2026-10-01",
+      "contract": "BJGK-20251000602",
+      "ar": 238464,
+      "paid": 0,
+      "balance": 238464,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2027-01-01",
+      "contract": "BJGK-20251000602",
+      "ar": 233280,
+      "paid": 0,
+      "balance": 233280,
+      "due": "2027-01-01",
+      "period": "2027-01-01 至 2027-03-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2027-04-01",
+      "contract": "BJGK-20251000602",
+      "ar": 235872,
+      "paid": 0,
+      "balance": 235872,
+      "due": "2027-04-01",
+      "period": "2027-04-01 至 2027-06-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2027-07-01",
+      "contract": "BJGK-20251000602",
+      "ar": 238464,
+      "paid": 0,
+      "balance": 238464,
+      "due": "2027-07-01",
+      "period": "2027-07-01 至 2027-09-30",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 租金 · 2027-10-01",
+      "contract": "BJGK-20251000602",
+      "ar": 238464,
+      "paid": 0,
+      "balance": 238464,
+      "due": "2027-10-01",
+      "period": "2027-10-01 至 2027-12-31",
+      "fee": "租金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    }
+  ],
+  "depositBills": [
+    {
+      "id": "BJGK-20251000601 · 保证金 · 2026-09-01",
+      "contract": "BJGK-20251000601",
+      "ar": 268932,
+      "paid": 0,
+      "balance": 268932,
+      "due": "2026-09-01",
+      "period": "2026-09-01 至 2026-09-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 保证金 · 2026-10-01",
+      "contract": "BJGK-20251000601",
+      "ar": 268932,
+      "paid": 0,
+      "balance": 268932,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-10-31",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000601 · 保证金 · 2026-11-01",
+      "contract": "BJGK-20251000601",
+      "ar": 268932,
+      "paid": 0,
+      "balance": 268932,
+      "due": "2026-11-01",
+      "period": "2026-11-01 至 2026-11-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 保证金 · 2026-09-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1271175.93,
+      "paid": 0,
+      "balance": 1271175.93,
+      "due": "2026-09-01",
+      "period": "2026-09-01 至 2026-09-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 保证金 · 2026-10-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1271175.93,
+      "paid": 0,
+      "balance": 1271175.93,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-10-31",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251200705 · 保证金 · 2026-11-01",
+      "contract": "BJGK-20251200705",
+      "ar": 1271175.93,
+      "paid": 0,
+      "balance": 1271175.93,
+      "due": "2026-11-01",
+      "period": "2026-11-01 至 2026-11-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 保证金 · 2026-09-01",
+      "contract": "BJGK-20250800439",
+      "ar": 105411.99,
+      "paid": 0,
+      "balance": 105411.99,
+      "due": "2026-09-01",
+      "period": "2026-09-01 至 2026-09-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 保证金 · 2026-10-01",
+      "contract": "BJGK-20250800439",
+      "ar": 105411.99,
+      "paid": 0,
+      "balance": 105411.99,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-10-31",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20250800439 · 保证金 · 2026-11-01",
+      "contract": "BJGK-20250800439",
+      "ar": 105411.99,
+      "paid": 0,
+      "balance": 105411.99,
+      "due": "2026-11-01",
+      "period": "2026-11-01 至 2026-11-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 保证金 · 2026-09-01",
+      "contract": "BJGK-20251000602",
+      "ar": 236520,
+      "paid": 0,
+      "balance": 236520,
+      "due": "2026-09-01",
+      "period": "2026-09-01 至 2026-09-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 保证金 · 2026-10-01",
+      "contract": "BJGK-20251000602",
+      "ar": 236520,
+      "paid": 0,
+      "balance": 236520,
+      "due": "2026-10-01",
+      "period": "2026-10-01 至 2026-10-31",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    },
+    {
+      "id": "BJGK-20251000602 · 保证金 · 2026-11-01",
+      "contract": "BJGK-20251000602",
+      "ar": 236520,
+      "paid": 0,
+      "balance": 236520,
+      "due": "2026-11-01",
+      "period": "2026-11-01 至 2026-11-30",
+      "fee": "保证金",
+      "timely": null,
+      "source": "测试系统账单管理页面",
+      "sourceId": null
+    }
+  ]
+};
+const SCENES=[{"id":"C01","agent":"contract","title":"履约总览","role":"一线 / 管理者","question":"这份合同目前有哪些需要处理的？","data":"当前合同、账单、核销、保证金、企业信息、变更、项目规则","flow":"单合同事实 → 独立问题清单 → 项目规则查询 → 建议事项","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"仅当前合同；缺失维度单列，不产出信用评级。"},{"id":"C02","agent":"contract","title":"应收与未缴","role":"收费 / 财务","question":"这份合同哪些账单还没交费？","data":"账单ID、费用项、计费期、应收、到期日、核销分配","flow":"账单余额汇总 → 区分未到期/逾期 → 下钻明细","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"作废账单排除；到账待分配不自动抵减。"},{"id":"C03","agent":"contract","title":"逾期催缴","role":"一线 / 负责人","question":"需要催缴吗？帮我写一份催缴内容","data":"逾期账单、客户、负责人、已到账待分配、催缴记录","flow":"核账提示 → 选择账单 → 生成草稿 → 人工复核","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"原型仅本地草稿；实际发出走原业务确认流程。"},{"id":"C04","agent":"contract","title":"续签准备","role":"招商 / 管理者","question":"合同快到期了吗，续签准备得怎样？","data":"结束日、90天阈值、续签意向、方案审批、协议状态","flow":"计算剩余天数 → 检查准备清单 → 形成待办建议","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"准备进度不是续签概率，不自动延长合同。"},{"id":"C05","agent":"contract","title":"付款及时性","role":"财务 / 管理者","question":"历史付款是否及时？","data":"账单到期日、核销分配、对应到账日期","flow":"按期分配金额统计 → 识别迟付 → 展示事实","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"按期核销/到期应收；补录时间不替代实际到账时间。"},{"id":"C06","agent":"contract","title":"保证金核验","role":"财务 / 一线","question":"保证金是否交齐？","data":"保证金条款、应缴、有效到账、退还/抵扣记录","flow":"适用性判断 → 有效余额 → 缺口与来源","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"保证金不混入租金回款；未知值不填0。"},{"id":"C07","agent":"contract","title":"到账待分配","role":"财务","question":"客户说已付款，为什么仍欠费？","data":"收款流水、核销分配、到账日期、合同关联","flow":"区分到账与核销 → 展示差异 → 提示核对","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"需要财务正式核销后刷新，不自动修改账。"},{"id":"C08","agent":"contract","title":"企业风险与合同变更","role":"负责人 / 管理者","question":"企业是否有经营风险，合同变更是否频繁？","data":"统一主体标识、外部风险事件、当前合同版本与生效变更","flow":"主体匹配 → 事件核验 → 分项指标 → 与付款行为联合解读","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"当前未取得外部风险及变更接口，显示待核验，不生成虚构异常。"},{"id":"Q01","agent":"ask","title":"经营总览","role":"管理者","question":"当前整体经营情况如何？","data":"资产、客商、合同、租金账单、核销","flow":"授权过滤 → 多域聚合 → 结论/指标/项目表","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"每个指标明确口径与截至时间。"},{"id":"Q02","agent":"ask","title":"欠费催缴分布","role":"一线 / 管理者","question":"目前哪些合同欠费，需要催缴？","data":"账单、核销、到期日、合同、客商、项目","flow":"余额过滤 → 合同/项目聚合 → 合同下钻","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"授权项目内查询；零余额不进入催缴清单。"},{"id":"Q03","agent":"ask","title":"回款分析","role":"财务 / 管理者","question":"各项目回款情况怎么样？","data":"应收账单、核销、项目归属","flow":"统一期间 → 项目分组 → 金额/回款率","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"不以银行流水总额替代已核销。"},{"id":"Q04","agent":"ask","title":"企业关联合同","role":"招商 / 管理者","question":"北京城华房地产开发有限公司签了哪些合同，回款怎么样？","data":"客商ID、签约关系、合同、账单、核销","flow":"主体消歧 → 关联合同 → 分合同对比/总计","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"同名需澄清；同合同多资源关联不得重复汇总。"},{"id":"Q05","agent":"ask","title":"到期统筹","role":"招商 / 管理者","question":"90天内哪些合同到期？","data":"合同结束日、合同状态、负责人、准备清单","flow":"到期窗口过滤 → 按剩余天数排序 → 单合同跳转","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"到期日与续签状态分开展示。"},{"id":"Q06","agent":"ask","title":"资产出租与空置","role":"招商 / 管理者","question":"资产出租率多少，哪里空置？","data":"可租资产、面积快照、有效租用关系","flow":"资产去重 → 可租/已租面积 → 项目/资产明细","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"当前仅载入合同占用资源；未取得完整可租资产，不能计算出租率。"},{"id":"Q09","agent":"ask","title":"连续追问与会话回看","role":"所有用户","question":"按项目展开；查看上次查询结果","data":"会话ID、上下文、授权范围、结果快照、时间","flow":"继承意图 → 补充维度 → 保存快照 → 回看","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"历史不自动更新；重新查询形成新快照。"},{"id":"Q10","agent":"ask","title":"数据不足与澄清","role":"所有用户","question":"今年收入同比增长多少？","data":"指标目录、可用期间、数据覆盖","flow":"识别口径/来源缺失 → 说明缺口 → 建议替代问题","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"不支持问题需澄清，不展示伪造图表。"},{"id":"Q11","agent":"ask","title":"授权与空结果","role":"业务 / 管理者","question":"未授权项目回款情况；逾期超过1亿元的合同","data":"服务端授权范围、指标查询状态、筛选条件","flow":"先鉴权 → 有权再查询 → 区分拒绝/空结果/来源缺失","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"页面不提供授权项目选择器；生产权限必须在服务端执行。"},{"id":"Q12","agent":"ask","title":"年底待回收计划","role":"财务 / 管理者","question":"年底前还有多少账单待回收？","data":"已到期账单、年底前已生成未到期账单、核销分配","flow":"区分到期状态 → 计算计划余额 → 账单下钻","accept":"按2026-11-11读取的4家客户、5份合同快照复核；仅对已取得来源输出结论。","boundary":"账单计划不等于实际回款预测，未生成账单不纳入。"}];
+const ASOF=fixture.asof,PERIOD='已载入合同的租金账单全周期（含未到期账单）';
+const {customers,contracts}=fixture,scopes={all:'当前载入的5份合同',A:'海开园1号楼',B:'海开园配套商业'};
+const days=end=>Math.round((Date.parse(end)-Date.parse(ASOF))/86400000),sum=(xs,k)=>Math.round(xs.reduce((n,x)=>n+(x[k]||0),0)*100)/100,pct=(n,d)=>d?Math.round(n/d*10000)/100:null,money=n=>n===null||n===undefined?'—':'¥'+Number(n).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const bills=fixture.bills.map(b=>({...b,overdue:b.due<ASOF?b.balance:0})),depositBills=fixture.depositBills;
+const assets=contracts.map(c=>({id:c.asset,project:c.project,name:c.room,type:'合同关联资源',area:c.area,leased:c.area}));
+const enterpriseProfiles=Object.fromEntries(Object.keys(customers).map(k=>[k,null])),changeProfiles=Object.fromEntries(contracts.map(c=>[c.id,null])),projectPolicies={A:null,B:null},scheduledBills=[];
+function visible(scope){return contracts.filter(c=>scope==='all'||c.project===scope)}
+function contract(id){const c=contracts.find(c=>c.id===id);if(!c)throw Error('合同不存在');const bs=bills.filter(b=>b.contract===id);return {...c,name:customers[c.customer],bills:bs,ar:sum(bs,'ar'),paid:sum(bs,'paid'),overdue:sum(bs,'overdue'),balance:sum(bs,'balance'),timely:null,latePaid:null,days:days(c.end),unallocated:null}}
+function summary(scope){const cs=visible(scope).map(c=>contract(c.id)),ar=sum(cs,'ar'),paid=sum(cs,'paid');return {ar,paid,balance:sum(cs,'balance'),overdue:sum(cs,'overdue'),contracts:cs.length,customers:new Set(cs.map(c=>c.customer)).size,assets:cs.length,area:sum(cs,'area'),leased:sum(cs,'area'),occupancy:null,rate:pct(paid,ar),expiring:cs.filter(c=>c.days>=0&&c.days<=90).length}}
+function collectionAdvice(input,override){const c=typeof input==='string'?contract(input):input,p=override===undefined?projectPolicies[c.project]:override,age=Math.max(0,...c.bills.filter(b=>b.overdue>0).map(b=>-days(b.due))),stage=p?.stages?.find(s=>age<=s.maxDays);return {configured:!!stage,policy:stage?p.id:null,age,stage:stage?.name||'核账并确认付款计划',source:stage?'项目规则 · '+p.id+' · '+p.version:'AI参考建议 · 当前未取得项目规则配置',action:stage?.action||'先核对账单与收款凭证，确认未缴原因；由合同经办与客户约定付款计划，升级处置需负责人审批。',evidence:stage?.evidence||'保留对账记录、付款凭证、沟通纪要与客户回复。'}}
+function riskSignals(input){const c=typeof input==='string'?contract(input):input,rs=[];if(c.overdue>0)rs.push({code:'overdue',label:'逾期未缴',tone:'red',detail:`${c.bills.filter(b=>b.overdue>0).length}笔租金账单逾期未缴，合计 ${money(c.overdue)}。`,evidence:c.bills.filter(b=>b.overdue>0).map(b=>b.id),question:'哪些账单逾期未缴？',action:'billlist'});if(c.days>=0&&c.days<=90)rs.push({code:'renewal',label:'合同即将到期',tone:'amber',detail:`${c.end}到期，剩余${c.days}天；续签办理状态尚未取得。`,evidence:[c.id+' · 合同结束日期'],question:'合同何时到期？',action:'renew'});return rs}
+function radar(id){const c=contract(id);return [{key:'payment',label:'回款完成',value:pct(c.paid,c.ar),unit:'%',fact:`租金已收 ${money(c.paid)} / 全周期已生成租金应收 ${money(c.ar)}`,formula:'租金已收 / 已载入租金应收 ×100%；含未到期账单',question:'还有哪些账单没交费？'},{key:'timely',label:'付款及时',value:null,unit:'%',fact:'未取得付款实际到账日，无法判断及时性',formula:'需真实到账日、应收日及有效收款对应关系；不以未取得替代0',question:'历史付款是否及时？'},{key:'deposit',label:'保证金到位',value:null,unit:'%',fact:'已取得部分保证金账单，但未取得完整应缴条款及有效保障余额',formula:'完整有效保证金 / 生效应缴；不能用单条账单替代保障余额',question:'保证金交齐了吗？'},{key:'enterprise',label:'企业风险',value:null,unit:'分',fact:'未取得企查查等已授权风险事件',formula:'须接入并核验外部事件，当前不评分',question:'企业风险如何？'},{key:'stability',label:'合同变更',value:null,unit:'分',fact:'未取得完整生效变更及版本记录',formula:'仅统计当前合同生效变更，重签不算变更；当前不评分',question:'合同变更是否频繁？'}]}
+function contractReport(id){const c=contract(id),ad=collectionAdvice(c),issues=[];for(const b of c.bills.filter(b=>b.overdue>0)){issues.push({key:'bill-'+b.due,title:`${b.period}租金逾期未缴`,status:'待跟进',fact:`${money(b.balance)} · 应收日 ${b.due} · 逾期 ${-days(b.due)} 天`,analysis:'依据测试系统当前账单待收余额列出。请复核收款凭证、减免及账单状态后确定催缴金额。',advice:ad.action+' '+ad.evidence,source:ad.source,action:'bill',value:b.id,label:'查看该笔账单',bill:b,ruleType:'collection'});}if(c.days>=0&&c.days<=90)issues.push({key:'expiry',title:`合同将于${c.end}到期`,status:'待确认安排',fact:`剩余${c.days}天；续签意向、审批和新合同状态未取得。`,analysis:'到期时间来自真实合同台账，不推断续签意向或成功概率。',advice:'建议确认续签或退出意向，再结合欠费核验安排审批、签约或退出结算。',source:'AI参考建议 · 当前未取得到期管理项目规则',action:'renew',label:'查看到期信息',ruleType:'expiry'});
+const axes=radar(id),blocks=[{key:'enterprise',title:'企业风险数据待核验',fact:'未取得外部风险来源',analysis:'不输出真实客户的虚构经营异常或司法风险',advice:'接入已授权企业风险接口并核对主体标识',source:'来源未取得',action:'enterprise'},{key:'stability',title:'合同变更记录待核验',fact:'未取得完整变更记录',analysis:'不将未取得解释为零次变更',advice:'复用合同版本与生效变更接口',source:'来源未取得',action:'changes'}];return {issues,blocks,axes,advice:ad,expiry:null,good:axes.filter(a=>a.value>=90&&a.value!==null).length,attention:axes.filter(a=>a.value>=60&&a.value<90).length,risk:axes.filter(a=>a.value!==null&&a.value<60).length,missing:axes.filter(a=>a.value===null).length}}
+function answer(q,scope='all',context={}){const projectKeys=['A','B'].filter(p=>q.includes(scopes[p]));let resolved=projectKeys.length===1?projectKeys[0]:projectKeys.length?scope:context.scope||scope;const base={scope:resolved,question:q,asof:ASOF,period:PERIOD,columns:[],rows:[],metrics:[],chart:[],evidence:[],followups:['哪些合同欠费需要催缴','90天内到期合同有哪些']};
+const blank=(kind,title,text)=>({...base,kind,title,text});if(/未授权项目|新城中心|无权限项目/.test(q)||projectKeys.some(p=>scope!=='all'&&p!==scope))return blank('denied','当前无此项目的查询授权','未查询目标项目数据，未返回金额、数量或明细。此为历史异常状态展示案例。');
+if(/设备|多经|点位|电梯|消防/.test(q))return blank('unsupported','该业务暂未纳入当前问数','可查询当前载入的合同、客户和租金账单。');
+if(/同比|环比|本月|上月|去年|预测/.test(q))return blank('missing','当前缺少可比期间数据','当前快照没有完整可比期间与统一口径，暂不能生成同比或环比。');
+if(/超过\s*(1亿|10000万|100000000)/.test(q))return {...blank('empty','当前范围无符合条件的合同','查询完成：当前载入的5份合同中，没有租金逾期未缴超过1亿元的合同。'),evidence:['已载入合同租金账单快照']};
+let kind=/合同规模|多少份|多少家/.test(q)?'contracts':/年底|年末|待回收/.test(q)?'yearend':/到期|续签/.test(q)?'expiry':/欠|逾期|催缴|未缴|未收/.test(q)?'overdue':/空置|资产|出租率/.test(q)?'asset':/乐于竞|城华|天拓|清超|客户|企业|客商/.test(q)?'enterprise':/回款|应收|已收|核销/.test(q)?'payment':/整体|概览|总览|经营/.test(q)?'overview':/展开|按项目|继续|明细/.test(q)?context.kind||'clarify':'clarify';
+const cs=visible(resolved).map(c=>contract(c.id)),s=summary(resolved),metric=(label,value,unit='元')=>({label,value,unit}),row=c=>({id:c.id,values:[c.id+' / '+c.name,scopes[c.project],money(c.ar),money(c.paid),money(c.overdue)]});let a={...base,kind,title:'',text:'',insights:[]};
+if(kind==='clarify')return blank(kind,'请明确业务问题','可查询合同规模、租金回款、未缴账单、到期合同或客户关联合同。');
+if(kind==='asset')return {...blank('missing','完整资产台账尚未载入',`目前仅取得5份合同的关联资源及签约面积，共${summary('all').area}㎡，无法据此计算全部可租面积、空置或出租率。`),followups:['合同规模','当前整体经营概览']};
+let rs=cs;if(kind==='enterprise'){const key=Object.keys(customers).find(k=>q.includes(customers[k])||q.includes(({A:'乐于竞',B:'城华',C:'天拓',D:'清超'})[k]))||context.customer;if(!key)return blank('clarify','请指定客户名称','可查询北京乐于竞、北京城华、北京天拓斯特、清超卓影四家客户。');rs=cs.filter(c=>c.customer===key);a.customer=key;a.title=customers[key]+' · 关联合同';}
+else if(kind==='overdue'){rs=cs.filter(c=>c.overdue>0).sort((a,b)=>b.overdue-a.overdue);a.title='逾期未缴合同清单';}
+else if(kind==='expiry'){rs=cs.filter(c=>c.days>=0&&c.days<=90);a.title='90天内到期合同';a.columns=['合同 / 客户','项目','结束日期','剩余天数'];a.rows=rs.map(c=>({id:c.id,values:[c.id+' / '+c.name,scopes[c.project],c.end,c.days+'天']}));a.metrics=[metric('到期合同',rs.length,'份')];a.text=`${scopes[resolved]}中有${rs.length}份合同在90天内到期。`;}
+else if(kind==='yearend'){const bs=bills.filter(b=>cs.some(c=>c.id===b.contract)&&b.due<='2026-12-31'),over=sum(bs.filter(b=>b.due<ASOF),'balance'),future=sum(bs.filter(b=>b.due>=ASOF),'balance');a.title='年底前已生成租金账单待回收';a.metrics=[metric('逾期未缴',over),metric('未到期待缴',future),metric('年底前待回收',over+future)];a.text=`已生成账单按应收日统计：逾期未缴${money(over)}，年底前未到期${money(future)}。`;a.columns=['合同 / 客户','账期','应收日','待缴金额'];a.rows=bs.map(b=>({id:b.contract,values:[b.contract+' / '+contract(b.contract).name,b.period,b.due,money(b.balance)]}));}
+else a.title=kind==='contracts'?'合同规模与客户分布':kind==='payment'?'各项目租金回款情况':'当前载入数据经营概览';
+if(!a.columns.length){a.columns=['合同 / 客户','项目','租金应收','租金已收','逾期未缴'];a.rows=rs.map(row);const ar=sum(rs,'ar'),paid=sum(rs,'paid'),over=sum(rs,'overdue');a.metrics=[metric('租金应收',ar),metric('租金已收',paid),metric('逾期未缴',over),metric('关联合同',rs.length,'份')];a.text=`${scopes[resolved]}内共${rs.length}份合同、${new Set(rs.map(c=>c.customer)).size}家客户。已载入租金应收${money(ar)}，租金已收${money(paid)}，逾期未缴${money(over)}。`;}
+a.insights=[`统计范围为已核对的4家客户、5份合同，当前选择：${scopes[resolved]}。租金与保证金分别计算，账单应收包含全周期已生成记录；逾期仅取应收日早于${ASOF}且有待收余额的租金账单。`,kind==='expiry'?'建议先确认续签或退出意向，再核验欠费及保证金资料。':'建议先核账，再查询对应项目生效规则生成建议事项；规则未取得时使用明确标注的AI参考建议。'];a.evidence=rs.map(c=>c.id+' · 测试系统合同台账/账单管理 · '+ASOF);return a;}
+const api={ASOF,PERIOD,customers,contracts,bills,depositBills,assets,scopes,visible,contract,summary,riskSignals,radar,answer,enterpriseProfiles,changeProfiles,projectPolicies,scheduledBills,collectionAdvice,contractReport,SCENES,money,pct};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.CoreModel=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 </script><script>(function(){
 'use strict';
 const M=window.CoreModel,$=s=>document.querySelector(s),e=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-const S={page:location.hash.startsWith('#ask')?'ask':'contract',contract:'HT-A01',tab:'合同助手',scope:'all',sessions:[],active:null,busy:false,timer:null,reply:null,scene:'contract',drafts:[],returnAsk:false,analysisTimes:{}};
+const S={page:location.hash.startsWith('#ask')?'ask':'contract',contract:'BJGK-20251000601',tab:'合同助手',scope:'all',sessions:[],active:null,busy:false,timer:null,reply:null,scene:'contract',drafts:[],returnAsk:false,analysisTimes:{},issueAdvice:{}};
 const btn=(label,action,value='',cls='')=>`<button type="button" class="${cls}" data-action="${action}" data-value="${e(value)}">${e(label)}</button>`;
 const tag=(s,c='')=>`<span class="tag ${c}">${e(s)}</span>`;
 const kpis=items=>`<div class="kpis">${items.map(x=>`<div class="kpi"><div class="kpi-label">${e(x.label)}${x.tag?tag(x.tag,x.tone):''}</div><div class="kpi-value ${x.tone==='red'?'red-text':''}">${e(typeof x.value==='number'?x.value.toLocaleString('zh-CN'):x.value)}${x.unit?`<small>${e(x.unit)}</small>`:''}</div>${x.note?`<div class="kpi-note">${e(x.note)}</div>`:''}</div>`).join('')}</div>`;
 const card=(title,body,action='')=>`<section class="card"><div class="card-head"><h3>${e(title)}</h3>${action}</div>${body}</section>`;
 const table=(cols,rows)=>`<div class="table-wrap"><table><thead><tr>${cols.map(c=>`<th>${e(c)}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length}" class="empty">当前范围没有符合条件的记录</td></tr>`}</tbody></table></div>`;
 function notify(t){$('#toast').textContent=t;$('#toast').classList.add('visible');setTimeout(()=>$('#toast').classList.remove('visible'),2800)}
-function save(){try{localStorage.setItem('haikai-core-v3',JSON.stringify(S.sessions.map(x=>({...x,messages:x.messages.map(m=>({...m,status:m.status==='streaming'?'stopped':m.status}))}))))}catch{notify('浏览器未允许保存，会话本次仍可查看')}}
+function save(){try{localStorage.setItem('haikai-core-v32',JSON.stringify(S.sessions.map(x=>({...x,messages:x.messages.map(m=>({...m,status:m.status==='streaming'?'stopped':m.status}))}))))}catch{notify('浏览器未允许保存，会话本次仍可查看')}}
 function seed(){
 try{S.analysisTimes=JSON.parse(localStorage.getItem('haikai-analysis-times')||'{}')||{}}catch{}
-let saved=[];try{const v=JSON.parse(localStorage.getItem('haikai-core-v3')||'[]');if(Array.isArray(v))saved=v.filter(x=>Array.isArray(x.messages)&&M.scopes[x.scope])}catch{}
-const demos=[['demo-overview','当前整体经营概览','16:40'],['demo-overdue','哪些合同欠费需要催缴','16:39'],['demo-contracts','合同规模与到期分布','16:38'],['demo-payment','各项目回款情况怎么样','16:35'],['demo-assets','资产规模与空置情况','16:32'],['demo-yearend','年底前还有多少账单待回收？','16:30'],['demo-empty','逾期超过100万元的合同有哪些？','16:28'],['demo-denied','新城中心回款情况如何？','16:25'],['demo-missing','今年收入同比增长多少？','16:20']].map(([id,q,time])=>{const a=M.answer(q==='合同规模与到期分布'?'合同规模':q,'all');return{id,title:q,scope:'all',time,messages:[{q,a,shown:a.text,status:'done'}]}});
+let saved=[];try{const v=JSON.parse(localStorage.getItem('haikai-core-v32')||'[]');if(Array.isArray(v))saved=v.filter(x=>Array.isArray(x.messages)&&M.scopes[x.scope])}catch{}
+const demos=[['demo-overview','当前整体经营概览','16:40'],['demo-overdue','哪些合同欠费需要催缴','16:39'],['demo-contracts','合同规模与到期分布','16:38'],['demo-payment','各项目回款情况怎么样','16:35'],['demo-customers','北京城华房地产开发有限公司关联合同情况','16:32'],['demo-yearend','年底前还有多少账单待回收？','16:30'],['demo-empty','逾期超过1亿元的合同有哪些？','16:28'],['demo-denied','未授权项目回款情况如何？','16:25'],['demo-missing','今年收入同比增长多少？','16:20']].map(([id,q,time])=>{const a=M.answer(q==='合同规模与到期分布'?'合同规模':q,'all');return{id,title:q,scope:'all',time,messages:[{q,a,shown:a.text,status:'done'}]}});
 S.sessions=[...demos,...saved.filter(x=>!demos.some(d=>d.id===x.id))].slice(0,30);S.active='demo-overview';}
-function analysisTime(){return S.analysisTimes[S.contract]||'2026-11-11 16:40:00'}
+function analysisTime(){return S.analysisTimes[S.contract]||'2026-11-11 读取快照'}
 function refreshAnalysis(){S.analysisTimes[S.contract]=new Date().toLocaleString('sv-SE',{timeZone:'Asia/Shanghai'});try{localStorage.setItem('haikai-analysis-times',JSON.stringify(S.analysisTimes))}catch{}S.reply=null;render();notify('已重新生成本合同分析；演示源数据截至 '+M.ASOF+'，源数据时点未变')}
-function shell(){return `<header class="topbar"><div class="brand">海开智慧 <small>资产经营管理平台</small></div><div class="top-actions">${tag('V3.1 交互原型')}<span class="small muted wide-only">合成样例 · 会议优化版</span>${btn('场景与流程','scenes','','quiet small')}<div class="avatar">管</div></div></header><div class="frame"><aside class="sidebar"><p class="nav-label">合同管理</p><button class="navbtn ${S.page==='contract'?'selected':''}" data-action="page" data-value="contract">合同详情<span class="nav-sub">合同助手 · 当前合同</span></button><p class="nav-label spaced">经营驾驶舱</p><button class="navbtn ${S.page==='ask'?'selected':''}" data-action="page" data-value="ask">智能问数<span class="nav-sub">全部授权业务数据</span></button><div class="side-bottom"><b>双智能体 · 业务工作区</b>合同履约有据可查<br>经营问题逐层追问<br><br>当前为前端模拟演示<br>真实数据由企业中台返回</div></aside><main class="main" id="main">${S.page==='contract'?contractPage():queryPage()}</main></div>`}
+function shell(){return `<header class="topbar"><div class="brand">海开智慧 <small>资产经营管理平台</small></div><div class="top-actions">${tag('V3.2 交互原型')}<span class="small muted wide-only">测试系统快照 · 4家客户 · 5份合同</span>${btn('场景与流程','scenes','','quiet small')}<div class="avatar">管</div></div></header><div class="frame"><aside class="sidebar"><p class="nav-label">合同管理</p><button class="navbtn ${S.page==='contract'?'selected':''}" data-action="page" data-value="contract">合同详情<span class="nav-sub">合同助手 · 当前合同</span></button><p class="nav-label spaced">经营驾驶舱</p><button class="navbtn ${S.page==='ask'?'selected':''}" data-action="page" data-value="ask">智能问数<span class="nav-sub">全部授权业务数据</span></button><div class="side-bottom"><b>双智能体 · 业务工作区</b>合同履约有据可查<br>经营问题逐层追问<br><br>当前为测试系统只读快照<br>生产接口由企业中台承接</div></aside><main class="main" id="main">${S.page==='contract'?contractPage():queryPage()}</main></div>`}
 function render(){const input=$('#question')?.value;$('#app').innerHTML=shell();if(input&&$('#question'))$('#question').value=input;if(S.page==='ask')scrollChat()}
 function radar(c){const axes=M.radar(c.id),cx=145,cy=134,r=85;const pt=(i,k)=>[cx+Math.sin(i*Math.PI*2/5)*r*k,cy-Math.cos(i*Math.PI*2/5)*r*k];const str=p=>p.map(x=>x.toFixed(1)).join(',');let grid=[.25,.5,.75,1].map(k=>`<polygon points="${axes.map((_,i)=>str(pt(i,k))).join(' ')}" fill="none" stroke="#e9e5f4"/>`).join('');
 grid+=axes.map((a,i)=>`<line x1="${cx}" y1="${cy}" x2="${pt(i,1)[0]}" y2="${pt(i,1)[1]}" stroke="#efecf6"/>`).join('');
 const valid=axes.every(a=>a.value!==null);if(valid)grid+=`<polygon points="${axes.map((a,i)=>str(pt(i,Math.min(a.value,100)/100))).join(' ')}" fill="#a494e529" stroke="#a190dc" stroke-width="2"/>`;
 else axes.forEach((a,i)=>{const next=(i+1)%5;if(a.value!==null&&axes[next].value!==null){const p=pt(i,Math.min(a.value,100)/100),p2=pt(next,Math.min(axes[next].value,100)/100);grid+=`<line x1="${p[0]}" y1="${p[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#a190dc" stroke-width="2"/>`}});
 grid+=axes.map((a,i)=>{const p=pt(i,1.32),v=pt(i,Math.min(a.value??0,100)/100);return `${a.value!==null?`<circle cx="${v[0]}" cy="${v[1]}" r="3" fill="#a190dc"/>`:''}<text x="${p[0]}" y="${p[1]+4}" text-anchor="middle">${e(a.label)}</text>`}).join('');
-return `<div class="radar-layout"><svg class="radar" viewBox="0 0 290 266" role="img" aria-label="五维履约雷达；比例与规则映射分独立展示，缺失值不绘制"><title>合同履约五维指标</title>${grid}</svg><div class="axis-list">${axes.map(a=>`<button class="axis-button" data-action="cq" data-value="${e(a.question)}"><span>${e(a.label)}</span><b>${a.value===null?'—':a.value+(a.unit||'%')}</b></button>`).join('')}</div></div><p class="caption">越外侧表示该项表现越好；前三项为比例，后两项为演示规则映射分，不合成总分。点击维度查看依据。</p>${!valid?'<p class="missing-axis">— 为数据缺失或不适用，未按0分绘制；详见维度说明。</p>':''}`}
-function billTable(c){return table(['账单 / 计费期','应收（元）','已核销（元）','未核销（元）','到期日 / 状态'],c.bills.map(b=>[`${btn(b.id,'bill',b.id,'link')}<small>${e(b.fee)} · ${e(b.period)}</small>`,M.money(b.ar),M.money(b.paid),`<span class="${b.balance?'red-text':''}">${M.money(b.balance)}</span>`,`${e(b.due)}<small>${b.overdue?tag('逾期'+Math.abs(Math.round((Date.parse(M.ASOF)-Date.parse(b.due))/86400000))+'天','red'):tag('已结清','green')}</small>`]))}
+return `<div class="radar-layout"><svg class="radar" viewBox="0 0 290 266" role="img" aria-label="五维履约雷达；比例与规则映射分独立展示，缺失值不绘制"><title>合同履约五维指标</title>${grid}</svg><div class="axis-list">${axes.map(a=>`<button class="axis-button" data-action="cq" data-value="${e(a.question)}"><span>${e(a.label)}</span><b>${a.value===null?'—':a.value+(a.unit||'%')}</b></button>`).join('')}</div></div><p class="caption">仅绘制已取得来源的指标；企业风险与合同变更待接入后按确认口径呈现。点击维度查看依据。</p>${!valid?'<p class="missing-axis">— 为数据缺失或不适用，未按0分绘制；详见维度说明。</p>':''}`}
+function billTable(c){return table(['账单 / 计费期','应收（元）','租金已收（元）','待缴（元）','到期日 / 状态'],c.bills.map(b=>[`${btn(b.id,'bill',b.id,'link')}<small>${e(b.fee)} · ${e(b.period)}</small>`,M.money(b.ar),M.money(b.paid),`<span class="${b.balance?'red-text':''}">${M.money(b.balance)}</span>`,`${e(b.due)}<small>${b.overdue?tag('逾期'+Math.abs(Math.round((Date.parse(M.ASOF)-Date.parse(b.due))/86400000))+'天','red'):b.balance?tag('未到期','amber'):tag('已结清','green')}</small>`]))}
 function riskHeader(c){const rs=M.riskSignals(c),unknown=!c.deposit;
 if(!rs.length&&!unknown)return '';
 return `<section class="contract-risk-strip" aria-label="合同风险标识"><div class="risk-strip-main">${rs.length?`<button class="risk-summary" data-action="risk" data-value="all">存在履约风险 · ${rs.length}项</button>`:''}<div class="risk-tags">${rs.map(r=>`<button class="risk-chip ${r.tone}" data-action="risk" data-value="${r.code}">${e(r.label)}${r.code==='overdue'?' · '+M.money(c.overdue):''}</button>`).join('')}${unknown?'<button class="risk-chip pending" data-action="risk" data-value="unknown">保证金资料待核验</button>':''}</div></div><div class="risk-strip-meta">${rs.length?btn('查看风险详情','risk','all','link small'):''}<span>分析截至 ${M.ASOF}</span></div></section>`}
@@ -197,15 +743,16 @@ if(code==='unknown')body+=`<div class="note">保证金应缴或有效余额来�
 else body+=`<p class="helper mini-space">风险标识来自当前合同的可核验事实；点击处理入口查看明细。续签准备提示用于到期管理，不代表已认定违约。</p>`+rs.map(r=>`<article class="scene-card"><h3>${tag(r.label,r.tone)}</h3><p>${e(r.detail)}</p>${r.code==='overdue'&&c.unallocated?`<div class="note">另有 ${M.money(c.unallocated)} 已到账待分配，需先核账再确认催缴金额，当前不自动冲减逾期余额。</div>`:''}<p class="caption">依据：${r.evidence.map(e).join('；')}</p><div class="row mini-space">${btn(r.action==='billlist'?'查看账单与收款':r.action==='renew'?'查看续签清单':r.action==='enterprise'?'查看企业信息':r.action==='changes'?'查看变更记录':'查看分析依据',r.action,'','link small')}${btn('定位助手分析','risk-assistant',r.code,'link small')}</div></article>`).join('');
 if(code==='unknown')body+=btn('查看当前合同依据','contractsource','','link small');
 drawer('合同风险详情 · '+c.id,body);}
-function contractPage(){const c=M.contract(S.contract);const title=`<div class="breadcrumb">合同管理 / 合同台账 / 合同详情</div><div class="title-row"><div><h1>资产租赁合同 <span class="tag">履约中</span></h1><p>${e(c.id)} · ${e(c.name)} · 收入类租赁合同</p></div><div class="row">${S.returnAsk?btn('返回问数结果','page','ask','small'):''}<label class="small muted">演示合同 <select class="select-control" id="contract-select" aria-label="切换演示合同">${M.contracts.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${x.id} · ${e(M.customers[x.customer])}</option>`).join('')}</select></label></div></div>${riskHeader(c)}<div class="contract-meta"><div><span>项目</span>${M.scopes[c.project]}</div><div><span>资源</span>${e(c.room)}</div><div><span>计租面积</span>${c.area.toLocaleString()}㎡</div><div><span>结束日期</span>${c.end}</div><div><span>负责人</span>${e(c.owner)}</div></div><nav class="tabs" role="tablist" aria-label="合同详情">${['基本与条款','财务收支台账','资产与工单','变更历史','生命周期','合同助手'].map(t=>`<button role="tab" aria-selected="${S.tab===t}" class="${S.tab===t?'selected':''}" data-action="tab" data-value="${e(t)}">${e(t)}</button>`).join('')}</nav>`;
-let body='';if(S.tab==='合同助手')body=assistant(c);else if(S.tab==='财务收支台账')body=card('应收与核销明细',billTable(c))+card('到账待分配',c.unallocated?`<p class="small">RC-A01-01 · 2026-11-07到账 ${M.money(c.unallocated)} · 已确认合同关联，待财务分配核销。</p><p class="caption">尚未分配至账单，未抵减账单未核销金额。</p>`:'<p class="small muted">当前无已确认合同关联的待分配到账样例。</p>');
-else if(S.tab==='基本与条款')body=card('合同基础信息',fields([['合同编号',c.id],['签约客商',c.name],['合同期间','2026-01-01 至 '+c.end],['付款约定','以生效账单与核销分配为准'],['有效保证金',c.deposit?M.money(c.deposit[0]):'来源未提供'],['应缴保证金',c.deposit?M.money(c.deposit[1]):'来源未提供'],['负责人',c.owner],['关联资产',c.asset],['续签准备窗口','合同结束日前90天']]))+card('条款依据','<p class="small muted">本原型采用结构化条款样例。生产接入时应返回生效合同版本、条款ID及原文定位；无法定位时显示证据缺失。</p>');
+function contractPage(){const c=M.contract(S.contract);const title=`<div class="breadcrumb">合同管理 / 合同台账 / 合同详情</div><div class="title-row"><div><h1>资产租赁合同 <span class="tag">履约中</span></h1><p>${e(c.id)} · ${e(c.name)} · 收入类租赁合同</p></div><div class="row">${S.returnAsk?btn('返回问数结果','page','ask','small'):''}<label class="small muted">合同 <select class="select-control" id="contract-select" aria-label="切换合同">${M.contracts.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${x.id} · ${e(M.customers[x.customer])}</option>`).join('')}</select></label></div></div>${riskHeader(c)}<div class="contract-meta"><div><span>项目</span>${M.scopes[c.project]}</div><div><span>资源</span>${e(c.room)}</div><div><span>计租面积</span>${c.area.toLocaleString()}㎡</div><div><span>结束日期</span>${c.end}</div><div><span>负责人</span>${e(c.owner)}</div></div><nav class="tabs" role="tablist" aria-label="合同详情">${['基本与条款','财务收支台账','资产与工单','变更历史','生命周期','合同助手'].map(t=>`<button role="tab" aria-selected="${S.tab===t}" class="${S.tab===t?'selected':''}" data-action="tab" data-value="${e(t)}">${e(t)}</button>`).join('')}</nav>`;
+let body='';if(S.tab==='合同助手')body=assistant(c);else if(S.tab==='财务收支台账')body=card('应收与核销明细',billTable(c))+card('到账待分配',c.unallocated?`<p class="small">RC-A01-01 · 2026-11-07到账 ${M.money(c.unallocated)} · 已确认合同关联，待财务分配核销。</p><p class="caption">尚未分配至账单，未抵减账单待缴金额。</p>`:'<p class="small muted">当前未取得本合同的待分配到账明细，不能认定为无待分配款项。</p>');
+else if(S.tab==='基本与条款')body=card('合同基础信息',fields([['合同编号',c.id],['签约客商',c.name],['合同期间',c.start+' 至 '+c.end],['付款约定','以生效账单与核销分配为准'],['有效保证金',c.deposit?M.money(c.deposit[0]):'来源未提供'],['应缴保证金',c.deposit?M.money(c.deposit[1]):'来源未提供'],['负责人',c.owner],['关联资产',c.asset],['续签准备窗口','合同结束日前90天']]))+card('条款依据','<p class="small muted">合同基础信息取自测试系统台账；完整条款尚未载入。生产接入时应返回生效合同版本、条款ID及原文定位；无法定位时显示证据缺失。</p>');
 else if(S.tab==='资产与工单')body=card('合同关联资产',fields([['资产编号',c.asset],['房号',c.room],['占用面积',c.area+'㎡'],['项目',M.scopes[c.project]]]))+card('工单数据','<p class="small muted">当前演示未提供完整维修工单与履约义务关联。暂不输出故障率、维修及时性或责任认定。</p>');
 else if(S.tab==='变更历史'){const ch=M.changeProfiles[c.id];body=card('当前合同变更历史',ch?table(['变更单','生效日期','类型','说明'],ch.events.map(x=>[e(x.id),x.date,e(x.type),e(x.detail)]))+'<p class="caption">仅统计当前合同已生效记录；重签不当作本合同变更。示例记录不是生产数据。</p>':'<p class="small muted">变更来源未取得，不能认定为零次变更。</p>');}
-else body=card('合同生命周期',`<div class="timeline"><div><p>已签约 / 履约中</p><small>开始日期：2026-01-01</small></div><div><p>${c.days<=90?'已进入续签准备窗口':'尚未进入90天续签准备窗口'}</p><small>截止 ${M.ASOF}，距结束日期 ${c.days} 天</small></div><div><p>合同结束</p><small>${c.end}；续签或退出需执行原业务流程</small></div></div>`);
-return title+body+`<div class="demo-bar"><span>当前合同锁定：${c.id} · 分析截至 ${M.ASOF}</span><span>原型演示，金额与客户均为合成样例</span></div>`}
+else body=card('合同生命周期',`<div class="timeline"><div><p>已签约 / 履约中</p><small>开始日期：${c.start}</small></div><div><p>${c.days>=0&&c.days<=90?'已进入续签准备窗口':'尚未进入90天续签准备窗口'}</p><small>截止 ${M.ASOF}，距结束日期 ${c.days} 天</small></div><div><p>合同结束</p><small>${c.end}；续签或退出需执行原业务流程</small></div></div>`);
+return title+body+`<div class="demo-bar"><span>当前合同锁定：${c.id} · 分析截至 ${M.ASOF}</span><span>测试系统只读快照 · 真实客户及合同 · 不代表全量经营数据</span></div>`}
 function fields(xs){return `<dl class="fields">${xs.map(([a,b])=>`<div><dt>${e(a)}</dt><dd>${e(b)}</dd></div>`).join('')}</dl>`}
-function assistant(c){const r=M.contractReport(c.id);return `<div class="assistant-header"><div><h2>合同助手</h2> ${tag('当前合同 · 自动分析')}<p>结合履约事实、主体经营与项目规则，给出分析结论及可执行的跟进建议。</p></div><div class="analysis-toolbar"><span>上次分析 ${e(analysisTime())}</span>${btn('重新分析','refresh','','small')}<small>源数据截至 ${M.ASOF} · 合成样例</small></div></div>`+kpis([{label:'租金应收',value:c.ar,unit:'元',note:'当前期间生效账单'},{label:'已核销',value:c.paid,unit:'元',note:'回款完成率 '+M.pct(c.paid,c.ar)+'%'},{label:'逾期未核销',value:c.overdue,unit:'元',tone:c.overdue?'red':'',note:c.overdue?'最长逾期 '+r.advice.age+' 天':'当前无逾期余额'},{label:'距合同到期',value:c.days,unit:'天',note:c.end+(c.days<=90?' · 到期提醒保留':'')}])+`<div class="overview-grid report-layout">`+card('履约五维雷达',radar(c)+`<div class="radar-legend">${tag('表现较好 '+r.good,'green')}${tag('需要关注 '+r.attention,'amber')}${tag('重点核验 '+r.risk,'red')}${r.missing?tag('数据待补 '+r.missing):''}</div><p class="caption">演示分档：≥90表现较好；60—89关注；＜60重点核验。正式分档待业务确认。</p>`,btn('查看维度口径','dimensions','','link small'))+`<section class="card report-card"><div class="card-head"><h3>履约分析与行动建议</h3>${btn('查看全部依据','contractsource','','link small')}</div><div class="report-summary"><b>${r.risk?'存在需要重点核验的履约信号':r.attention?'存在需要持续跟进的履约事项':'当前可核验维度整体平稳'}</b><p>五个维度中，${r.good}项表现较好、${r.attention}项需要关注、${r.risk}项重点核验${r.missing?'、'+r.missing+'项数据待补':''}。${c.overdue?'优先核对 '+M.money(c.overdue)+' 逾期款项'+(c.unallocated?'及 '+M.money(c.unallocated)+' 到账待分配':'')+'。':'当前无逾期余额，仍需结合主体信息与合同条款持续观察。'}</p></div><div class="report-scroll">${r.blocks.map((b,i)=>`<details class="analysis-item" ${i===0?'open':''}><summary><span><i>${String(i+1).padStart(2,'0')}</i>${e(b.title)}</span>${tag(b.status,b.status.includes('不足')||b.status.includes('重点')?'red':b.status.includes('缺')||b.status.includes('待')||b.status.includes('关注')||b.status.includes('跟进')?'amber':'green')}</summary><div class="analysis-content"><h4>当前事实</h4><p>${e(b.fact)}</p><h4>分析解读</h4><p>${e(b.analysis)}</p><div class="advice-block"><h4>行动建议</h4><p>${e(b.advice)}</p></div><p class="caption">依据 / 建议来源：${e(b.source)}</p><div class="row">${btn(b.label,b.action,'','link small')}${b.key==='payment'?btn('查看项目规则','policy','','link small')+btn('生成催缴草稿','draft','','link small'):''}</div></div></details>`).join('')}${r.expiry?`<details class="analysis-item"><summary><span><i>06</i>${e(r.expiry.title)}</span>${tag('到期提醒','amber')}</summary><div class="analysis-content"><p>${e(r.expiry.fact)}</p><div class="advice-block"><h4>行动建议</h4><p>${e(r.expiry.advice)}</p></div>${btn('查看续签准备','renew','','link small')}</div></details>`:''}</div><p class="caption report-footer">分析时间 ${e(analysisTime())} · 源数据截至 ${M.ASOF} · ${btn('生成跟进待办草稿','task','','link small')}</p></section></div>`+(S.reply?card('维度分析结果',contractReply(c,S.reply)):'')+draftNotice(c)}
+function assistant(c){const r=M.contractReport(c.id);return `<div class="assistant-header"><div><h2>合同助手</h2> ${tag('当前合同 · 自动分析')}<p>直接列出本合同需要处理的问题，核对项目规则后生成建议事项。</p></div><div class="analysis-toolbar"><span>上次分析 ${e(analysisTime())}</span>${btn('重新分析','refresh','','small')}<small>源数据读取 ${M.ASOF} · 测试系统快照</small></div></div>`+kpis([{label:'租金应收',value:c.ar,unit:'元',note:'已生成租金账单全周期，含未到期'},{label:'租金已收',value:c.paid,unit:'元',note:'按账单实收列汇总'},{label:'逾期未缴',value:c.overdue,unit:'元',tone:c.overdue?'red':'',note:c.overdue?'最长逾期 '+r.advice.age+' 天':'当前无逾期余额'},{label:'距合同到期',value:c.days,unit:'天',note:c.end}])+`<div class="overview-grid report-layout">`+card('履约五维雷达',radar(c)+`<p class="caption">未取得付款日、完整保证金余额、企业风险及生效变更记录的维度显示—，可点击查看所需来源。</p>`,btn('查看维度口径','dimensions','','link small'))+`<section class="card report-card"><div class="card-head"><h3>履约分析与行动建议</h3>${btn('查看全部依据','contractsource','','link small')}</div><div class="report-summary"><b>当前发现 ${r.issues.length} 项需要处理的问题</b><p>按账单及具体事件独立列出；${c.overdue?'租金逾期未缴 '+M.money(c.overdue)+'。':'当前无租金逾期。'}企业风险与变更来源待核验。</p></div><div class="report-scroll issue-list">${r.issues.length?r.issues.map((b,i)=>`<article class="issue-card"><div class="issue-heading"><span class="issue-number">${String(i+1).padStart(2,'0')}</span><div><h4>${e(b.title)}</h4><p>${e(b.fact)}</p></div>${tag(b.status,'amber')}</div>${b.bill?table(['费用项','账期','应收日','应收','租金已收','逾期未缴'],[[e(b.bill.fee),e(b.bill.period),b.bill.due,M.money(b.bill.ar),M.money(b.bill.paid),`<strong class="red-text">${M.money(b.bill.balance)}</strong>`]]):''}<p class="issue-analysis">${e(b.analysis)}</p><div class="advice-block"><h4>行动建议</h4>${S.issueAdvice[c.id+'|'+b.key]?`<p class="caption">${e(b.key==='expiry'?b.source:r.advice.source)}</p><p>${e(b.advice)}</p>${btn('重新查看项目规则','issue-policy',b.key,'link small')}`:`<p>先查看项目规则；有生效规则时按适用阶段生成建议，无规则时给出AI参考建议。</p>${btn('查看项目规则并生成建议','issue-policy',b.key,'small')}`}</div><div class="row">${btn(b.label,b.action,b.value||'','link small')}${b.bill?btn('生成催缴草稿','draft','','link small'):''}</div></article>`).join(''):'<div class="empty">当前载入账单未发现逾期未缴，合同未进入90天到期窗口。其他来源待接入核验。</div>'}</div><p class="caption report-footer">源数据读取 ${M.ASOF} · ${btn('生成跟进待办草稿','task','','link small')}</p></section></div>`+(S.reply?card('维度分析结果',contractReply(c,S.reply)):'')+draftNotice(c)}
+function issuePolicy(key){const c=M.contract(S.contract),issue=M.contractReport(c.id).issues.find(x=>x.key===key);if(!issue)return;const ad=M.collectionAdvice(c);drawer('项目规则核对 · '+M.scopes[c.project],fields([['合同',c.id],['具体问题',issue.title],['规则状态',ad.configured?'已取得适用规则':'当前快照未取得项目规则配置'],['处理方式',ad.configured?'依据生效规则生成建议事项':'使用AI参考建议，正式接入后须再次查询项目配置']])+`<p class="helper">规则检查顺序：当前项目 → 具体问题类型 → 生效版本 → 适用阶段。若取得规则，引用规则ID和版本；确认项目无规则时才使用AI建议。当前快照未包含规则接口，不推断项目实际有无规则。</p>`,btn('生成建议事项','issue-generate',key,'primary'))}
 function draftNotice(c){const n=S.drafts.filter(x=>x.contract===c.id).length;return n?`<div class="draft-list">本次演示已保存 ${n} 份本地草稿。${btn('查看草稿','draftlist','','link small')} · 草稿保存不改变合同账单状态。</div>`:''}
 function contractAnalysis(c,q){let title='履约核查结果',text='',action='contractsource';
 if(/所有|整体|哪些合同|多少合同|各项目/.test(q))return{title:'请前往智能问数查看整体数据',text:'当前助手仅分析 '+c.id+'。全域合同、资产、客商、账单的统计与对比可进入驾驶舱下的智能问数。',action:'gotoask'};
@@ -213,16 +760,16 @@ if(/企业|主体|经营风险/.test(q)){const b=M.contractReport(c.id).blocks.f
 else if(/变更|稳定/.test(q)){const b=M.contractReport(c.id).blocks.find(b=>b.key==='stability');title=b.title;text=b.fact+' '+b.analysis+' 建议：'+b.advice;action='changes';}
 else if(/保证金/.test(q)){title='保证金核验';text=c.deposit?`有效保证金 ${M.money(c.deposit[0])}，应缴 ${M.money(c.deposit[1])}，缺口 ${M.money(Math.max(0,c.deposit[1]-c.deposit[0]))}。保证金与租金分别核算。`:'当前未取得保证金应缴和有效余额数据，无法判断是否交齐。建议财务补充保证金条款、到账、抵扣和退还记录。';}
 else if(/到期|续签/.test(q)){title='到期与续签准备';text=`合同于 ${c.end} 结束，距 ${M.ASOF} 尚有 ${c.days} 天。`+(c.renew?`已进入90天准备窗口，准备清单完成 ${c.renew[0]} / ${c.renew[1]} 项。建议确认续签意向、审批方案并跟踪协议签署。准备完成率不代表续签概率。`:'尚未进入90天准备窗口，可按现有履约计划继续跟踪。');action='renew';}
-else if(/已经|已付|到账|付过|分配/.test(q)){title='到账与核销差异核对';text=`当前账单未核销 ${M.money(c.balance)}。`+(c.unallocated?`另有收款 RC-A01-01，2026-11-07到账 ${M.money(c.unallocated)}，已关联当前合同，尚未分配至账单。因此当前仍显示原逾期 ${M.money(c.overdue)}。请财务核对后完成正式分配，再重新分析。`:'当前未取得已确认关联本合同的待分配到账。请核对付款凭证、收款流水和核销记录。');action='billlist';}
-else if(/及时|历史|迟付/.test(q)){title='付款及时性';text=`到期应收 ${M.money(c.ar)}，按期核销 ${M.money(c.timely)}，按期回款完成率 ${M.pct(c.timely,c.ar)}%。已核销中有 ${M.money(c.latePaid)} 属于历史迟付，已结清部分不会重复计入当前欠费。当前逾期余额 ${M.money(c.overdue)}。`;action='billlist';}
-else if(/催缴|催收|下一步|风险|处理|跟进/.test(q)){title='处理建议与催缴准备';text=c.overdue?`当前合同逾期未核销 ${M.money(c.overdue)}。${c.unallocated?'请优先核对 '+M.money(c.unallocated)+' 已到账待分配款项；':''}建议由 ${c.owner} 复核账单与收款，再生成催缴草稿并确认发送方式。${c.renew?'同时跟踪 '+c.end+' 到期前的续签准备。':''}实际收款和任务完成需回到原业务流程确认。`:'当前无逾期余额，无需针对当前账单生成逾期催缴。可继续关注后续付款节点与到期安排。';action=c.overdue?'draft':'contractsource';}
-else if(/账单|交费|缴费|欠|应收|回款|付款|未交|没交/.test(q)){title='当前账单与未缴核查';text=`当前期间应收 ${M.money(c.ar)}，已核销 ${M.money(c.paid)}，未核销 ${M.money(c.balance)}，其中逾期 ${M.money(c.overdue)}。${c.bills.filter(b=>b.balance>0).map(b=>b.id+' 未核销 '+M.money(b.balance)+'，到期日 '+b.due+'。').join('')}${c.unallocated?'另有 '+M.money(c.unallocated)+' 到账待分配，暂不冲减账单余额。':''}`;action='billlist';}
+else if(/已经|已付|到账|付过|分配/.test(q)){title='到账与核销差异核对';text=`当前账单待缴 ${M.money(c.balance)}。`+(c.unallocated?`另有收款 RC-A01-01，2026-11-07到账 ${M.money(c.unallocated)}，已关联当前合同，尚未分配至账单。因此当前仍显示原逾期 ${M.money(c.overdue)}。请财务核对后完成正式分配，再重新分析。`:'当前未取得已确认关联本合同的待分配到账。请核对付款凭证、收款流水和核销记录。');action='billlist';}
+else if(/及时|历史|迟付/.test(q)){title='付款及时性';text=c.timely===null?'未取得付款实际到账日，无法判断按期付款率及历史迟付情况。请接入收款日期与账单关联记录后分析。':`到期应收 ${M.money(c.ar)}，按期核销 ${M.money(c.timely)}，按期回款完成率 ${M.pct(c.timely,c.ar)}%。租金已收中有 ${M.money(c.latePaid)} 属于历史迟付，已结清部分不会重复计入当前欠费。当前逾期余额 ${M.money(c.overdue)}。`;action='billlist';}
+else if(/催缴|催收|下一步|风险|处理|跟进/.test(q)){title='处理建议与催缴准备';text=c.overdue?`当前合同逾期未缴 ${M.money(c.overdue)}。${c.unallocated?'请优先核对 '+M.money(c.unallocated)+' 已到账待分配款项；':''}建议由 ${c.owner} 复核账单与收款，再生成催缴草稿并确认发送方式。${c.renew?'同时跟踪 '+c.end+' 到期前的续签准备。':''}实际收款和任务完成需回到原业务流程确认。`:'当前无逾期余额，无需针对当前账单生成逾期催缴。可继续关注后续付款节点与到期安排。';action=c.overdue?'draft':'contractsource';}
+else if(/账单|交费|缴费|欠|应收|回款|付款|未交|没交/.test(q)){title='当前账单与未缴核查';text=`当前期间应收 ${M.money(c.ar)}，租金已收 ${M.money(c.paid)}，待缴 ${M.money(c.balance)}，其中逾期 ${M.money(c.overdue)}。${c.bills.filter(b=>b.balance>0).map(b=>b.id+' 待缴 '+M.money(b.balance)+'，到期日 '+b.due+'。').join('')}${c.unallocated?'另有 '+M.money(c.unallocated)+' 到账待分配，暂不冲减账单余额。':''}`;action='billlist';}
 else{title='请补充要核查的履约问题';text='可询问当前合同的账单未缴、催缴、到账差异、保证金、付款及时性或续签准备。此原型按预设业务场景演示，真实语言理解由企业中台承担。'}
 return{title,text,action};}
-function contractReply(c,q){const a=contractAnalysis(c,q),labels={billlist:'查看账单与收款',draft:'生成催缴草稿',renew:'查看续签清单',contractsource:'查看数据依据',gotoask:'进入智能问数',enterprise:'查看企业信息',changes:'查看变更记录'};return `<div class="contract-answer" id="contract-reply"><div class="answer-meta"><span class="ai-badge">AI</span>当前合同 ${c.id} · 模拟回答</div><h4>${e(a.title)}</h4><p>${e(a.text)}</p><div class="row">${btn(labels[a.action],a.action,'','link small')}${btn('生成跟进待办草稿','task','','link small')}</div></div>`}
+function contractReply(c,q){const a=contractAnalysis(c,q),labels={billlist:'查看账单与收款',draft:'生成催缴草稿',renew:'查看续签清单',contractsource:'查看数据依据',gotoask:'进入智能问数',enterprise:'查看企业信息',changes:'查看变更记录'};return `<div class="contract-answer" id="contract-reply"><div class="answer-meta"><span class="ai-badge">AI</span>当前合同 ${c.id} · 来源分析</div><h4>${e(a.title)}</h4><p>${e(a.text)}</p><div class="row">${btn(labels[a.action],a.action,'','link small')}${btn('生成跟进待办草稿','task','','link small')}</div></div>`}
 function question(cq){S.reply=cq;render();$('#contract-reply')?.scrollIntoView({behavior:'smooth',block:'center'})}
-function queryChips(){return `<div class="query-chips"><span>试着问</span>${[['经营概览','当前整体经营概览'],['合同规模','合同规模与到期分布'],['项目回款','各项目回款情况怎么样'],['资产空置','资产规模与空置情况'],['年底待回收','年底前还有多少账单待回收？'],['无匹配数据','逾期超过100万元的合同有哪些？'],['无权限示例','新城中心回款情况如何？'],['同比数据不足','今年收入同比增长多少？']].map(([t,q])=>btn(t,'ask',q,'question-chip')).join('')}</div>`}
-function queryPage(){const active=S.sessions.find(x=>x.id===S.active);return `<div class="breadcrumb">经营驾驶舱 / 智能问数</div><div class="title-row"><div><h1>智能问数</h1><p>直接说出关注的项目和指标，查看经营数据及分析解读。</p></div>${btn('新建会话','new','','primary small')}</div><div class="query-context"><span>按当前账号权限查询 · 在问题中指定项目可进一步缩小范围</span><span>数据截至 ${M.ASOF} · 合成样例</span></div><div class="query-layout"><section class="conversation"><div class="conversation-top"><h3>${active?e(active.title):'开始一次经营分析'}</h3>${tag(S.busy?'正在生成…':'AI 问数')}</div><div class="chat-log" id="chat-log">${active?active.messages.map((m,i)=>message(m,i)).join(''):welcome()}</div>${queryChips()}<form class="composer" id="ask-form"><div class="input-frame"><textarea id="question" aria-label="智能问数问题" placeholder="例如：创智中心还有哪些合同欠费？按合同列出来。" ${S.busy?'disabled':''}></textarea><div class="input-bottom"><span>Enter 发送 · Shift + Enter 换行</span>${S.busy?btn('停止生成','stop','','small'):'<button class="primary" type="submit">发送</button>'}</div></div><p class="composer-note">结果含统计范围、数据时点和来源。无权限、无匹配记录、数据不足分别展示；此页面为合成数据演示。</p></form></section><aside class="history-panel"><div class="row between"><h3>历史会话</h3><span class="small muted">${S.sessions.length} 条</span></div><p>选择会话，回看当时的数据与分析</p><div class="history-label">演示问答与本地记录</div>${S.sessions.map(x=>`<button class="history-item ${x.id===S.active?'selected':''}" data-action="history" data-value="${e(x.id)}"><b>${e(x.title)}</b><small>${e(x.time)} · ${e(M.scopes[x.scope])} · ${x.messages.length}轮</small></button>`).join('')||'<div class="empty">暂无会话</div>'}<div class="history-footer">范围：资产、客商、合同、账单与收款。<br>历史保留原查询快照；需要最新数据时重新生成。</div></aside></div><div class="demo-bar"><span>左侧查询数据 + 分析解读 · 右侧历史回看</span>${btn('查看问数落地场景（'+M.SCENES.filter(x=>x.agent==='ask').length+'）','scenes','ask','link small')}</div>`}
+function queryChips(){return `<div class="query-chips"><span>试着问</span>${[['经营概览','当前整体经营概览'],['合同规模','合同规模与到期分布'],['项目回款','各项目回款情况怎么样'],['客户合同','北京城华房地产开发有限公司关联合同情况'],['年底待回收','年底前还有多少账单待回收？'],].map(([t,q])=>btn(t,'ask',q,'question-chip')).join('')}</div>`}
+function queryPage(){const active=S.sessions.find(x=>x.id===S.active);return `<div class="breadcrumb">经营驾驶舱 / 智能问数</div><div class="title-row"><div><h1>智能问数</h1><p>直接说出关注的项目和指标，查看经营数据及分析解读。</p></div>${btn('新建会话','new','','primary small')}</div><div class="query-context"><span>按当前账号权限查询 · 在问题中指定项目可进一步缩小范围</span><span>数据截至 ${M.ASOF} · 测试系统快照</span></div><div class="query-layout"><section class="conversation"><div class="conversation-top"><h3>${active?e(active.title):'开始一次经营分析'}</h3>${tag(S.busy?'正在生成…':'AI 问数')}</div><div class="chat-log" id="chat-log">${active?active.messages.map((m,i)=>message(m,i)).join(''):welcome()}</div>${queryChips()}<form class="composer" id="ask-form"><div class="input-frame"><textarea id="question" aria-label="智能问数问题" placeholder="例如：海开园配套商业还有哪些合同欠费？按合同列出来。" ${S.busy?'disabled':''}></textarea><div class="input-bottom"><span>Enter 发送 · Shift + Enter 换行</span>${S.busy?btn('停止生成','stop','','small'):'<button class="primary" type="submit">发送</button>'}</div></div><p class="composer-note">结果含统计范围、数据时点和来源。无权限、无匹配记录、数据不足分别展示；当前仅载入4家客户、5份合同。</p></form></section><aside class="history-panel"><div class="row between"><h3>历史会话</h3><span class="small muted">${S.sessions.length} 条</span></div><p>选择会话，回看当时的数据与分析</p><div class="history-label">业务查询与历史结果</div>${S.sessions.map(x=>`<button class="history-item ${x.id===S.active?'selected':''}" data-action="history" data-value="${e(x.id)}"><b>${e(x.title)}</b><small>${e(x.time)} · ${e(M.scopes[x.scope])} · ${x.messages.length}轮</small></button>`).join('')||'<div class="empty">暂无会话</div>'}<div class="history-footer">范围：资产、客商、合同、账单与收款。<br>历史保留原查询快照；需要最新数据时重新生成。</div></aside></div><div class="demo-bar"><span>左侧查询数据 + 分析解读 · 右侧历史回看</span>${btn('查看问数落地场景（'+M.SCENES.filter(x=>x.agent==='ask').length+'）','scenes','ask','link small')}</div>`}
 function welcome(){return `<div class="welcome compact-welcome"><p class="eyebrow">BUSINESS INSIGHTS</p><h2>从经营问题，找到具体行动</h2><p>可询问经营、合同、款项、资产规模；指定项目无需另选筛选器。<br>右侧已准备完整问答，支持查看有数据、无数据与无权限的展示。</p></div>`}
 function message(m,i){return `<article><div class="user-message"><div>${e(m.q)}</div></div><div class="answer-message"><div class="answer-meta"><span class="ai-badge">AI</span> 智能问数 <span class="muted">${M.scopes[m.a.scope]}</span></div><div class="answer-body" id="stream-${i}">${e(m.shown||'')}${m.status==='streaming'?'<span class="stream-line"></span>':''}</div>${m.status==='streaming'?'<p class="progress-text">已读取授权数据，正在组织结果…</p>':m.status==='stopped'?`<p class="progress-text">已停止生成，当前内容未完成。</p>${btn('重新生成','retry',i,'link small')}`:resultCard(m.a,i)}</div></article>`}
 function resultCard(a,i){return `<div class="answer-result"><div class="result-section-label">${a.rows.length?'01 · 查询数据':'查询状态'}</div><h3>${e(a.title)}</h3>${a.metrics.length?kpis(a.metrics):''}${a.chart.length?chart(a):''}${a.rows.length?table(a.columns,a.rows.map(r=>r.values.map((v,j)=>j===0&&r.id?btn(v,'opencontract',r.id,'link small'):e(v)))):''}${a.insights?.length?`<section class="insight-section"><h4>02 · 分析解读</h4>${a.insights.map(t=>`<p>${e(t)}</p>`).join('')}</section>`:''}<div class="answer-actions">${a.evidence.length?btn('查看数据来源与口径','sources',i,'link small'):`<span class="small muted">${a.kind==='denied'?'未查询目标项目数据':a.kind==='empty'?'查询成功，未发现匹配记录':'当前问题需要补充数据或范围'}</span>`}<div class="row">${btn('重新生成','retry',i,'link small')}${a.rows.length?btn('导出结果 CSV','export',i,'link small'):''}</div></div><p class="result-stamp">截至 ${a.asof} · ${e(M.scopes[a.scope])} · 查询快照</p></div><div class="followups">${a.followups.map(q=>btn(q,'ask',q,'small')).join('')}</div>`}
@@ -234,21 +781,21 @@ function newSession(){stop(false);S.active=null;render();$('#question')?.focus()
 function ask(q){q=q.trim();if(!q||S.busy)return;let session=activeSession();if(!session){session={id:'s'+Date.now(),title:q.slice(0,60),scope:S.scope,time:new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}),messages:[]};S.sessions.unshift(session);S.sessions=S.sessions.slice(0,30);S.active=session.id}const prev=session.messages.at(-1)?.a;const a=M.answer(q,session.scope,prev);const m={q,a,shown:'',status:'streaming'};session.messages.push(m);S.busy=true;if($('#question'))$('#question').value='';render();let n=0;S.timer=setInterval(()=>{n+=8;m.shown=a.text.slice(0,n);const el=$('#stream-'+(session.messages.length-1));if(el){el.textContent=m.shown;const c=document.createElement('span');c.className='stream-line';el.appendChild(c);scrollChat()}if(n>=a.text.length){clearInterval(S.timer);S.timer=null;m.status='done';S.busy=false;save();render()}},26)}
 function drawer(title,body,foot=''){const prev=document.activeElement;S.previousFocus=prev;$('#overlay').innerHTML=`<div class="overlay-screen"><section class="drawer" role="dialog" aria-modal="true" aria-label="${e(title)}"><header class="drawer-head"><div><h2>${e(title)}</h2><p>海开资管 · 双智能体原型</p></div>${btn('关闭','close','','small')}</header><div class="drawer-body">${body}</div>${foot?`<footer class="drawer-foot">${foot}</footer>`:''}</section></div>`;$('#overlay [data-action="close"]').focus()}
 function close(){const f=S.previousFocus;$('#overlay').innerHTML='';if(f?.isConnected)f.focus()}
-function dimensions(){const c=M.contract(S.contract);drawer('履约雷达 · 维度口径',`<p class="helper">五轴独立展示：三项完成率 + 两项演示规则映射分。不合成信用评级。企业风险与合同变更来源缺失时显示—，不填0。</p>${M.radar(c.id).map(a=>`<div class="scene-card"><h3>${e(a.label)} ${tag(a.value===null?'—':a.value+(a.unit||'%'))}</h3><p>${e(a.fact)}</p><p class="caption">${e(a.formula)}</p>${btn('查看维度分析','cq',a.question,'link small')}</div>`).join('')}`)}
-function enterprise(){const c=M.contract(S.contract),ep=M.enterpriseProfiles[c.customer];drawer('企业经营与风险依据 · '+c.name,fields([['签约主体',c.name],['匹配标识','客商主数据 '+c.customer+'（演示映射）'],['来源',ep?.source||'未取得'],['数据更新',ep?.updated||'未取得']])+ (ep?`<div class="note">当前为合成样例，未调用企查查；生产需校验统一主体标识、接口授权、事件有效性与更新时间。</div>`+fields([['登记状态',ep.status],['经营异常',ep.abnormal+'项'],['司法风险',ep.judicial+'项'],['风险等级',ep.riskLevel+'/5（演示规则）']])+`<h3>事件依据</h3><div class="source-list">${ep.refs.map(t=>`<div>${e(t)}</div>`).join('')}</div><p class="helper">外部信号用于辅助核验，不等同于该合同违约。第三方详情链接需由真实接口提供，本原型不伪造来源链接。</p>`:'<div class="note">企业信息未取得，当前无法判断经营风险。请补齐主体映射与已授权数据来源后分析。</div>'))}
-function changes(){const c=M.contract(S.contract),ch=M.changeProfiles[c.id];drawer('当前合同变更记录 · '+c.id,ch?table(['变更单','生效日期','类型','说明','状态'],ch.events.map(x=>[e(x.id),x.date,e(x.type),e(x.detail),e(x.status)]))+`<p class="helper">本表仅当前合同的已生效变更；未记录事件不代表已证明合同条款完全无风险。重签新合同不计为本合同变更。观察期2026-01-01至${M.ASOF}，示例规则分需业务确认。</p>`:'<div class="note">变更记录未取得，不能按零次变更计算稳定分。</div>')}
-function policy(){const c=M.contract(S.contract),p=M.projectPolicies[c.project],ad=M.collectionAdvice(c);drawer('项目催缴规则与建议来源',fields([['合同项目',M.scopes[c.project]],['规则状态',p?'已配置（演示样例）':'未配置'],['当前建议来源',ad.source],['最长逾期',ad.age+'天'],['当前阶段',ad.stage]])+(p?table(['逾期天数上限','处理阶段','配置动作','留痕要求'],p.stages.map(x=>[Number.isFinite(x.maxDays)?x.maxDays+'天':'90天以上',e(x.name),e(x.action),e(x.evidence)])):'<div class="note">项目未配置规则，展示AI参考建议。AI不把通用建议冒充客户制度，也不自行决定发律师函或终止合同。</div>')+`<h3>本合同建议</h3><p>${e(ad.action)}</p><p>${e(ad.evidence)}</p><p class="caption">配置优先：传入规则ID、版本、适用阶段与动作；AI补充沟通方式、执行步骤和证据留存，不能越过生效规则。</p>`)}
-function contractSource(){const c=M.contract(S.contract);drawer('当前合同 · 分析依据',fields([['合同范围',c.id],['签约客商',c.name],['期间',M.PERIOD],['截至时间',M.ASOF],['数据类型','合成演示数据'],['生效版本',S.contract==='HT-A01'?'V3（两次生效变更样例）':'V1（演示）']])+`<h3>账单依据</h3>${billTable(c)}<h3>其他依据</h3><div class="row">${btn('企业经营信息','enterprise','','link small')}${btn('合同变更记录','changes','','link small')}${btn('项目催缴规则','policy','','link small')}</div><div class="source-list"><div>合同期限：${c.id} / end_date = ${c.end}</div><div>保证金：${c.deposit?M.money(c.deposit[0])+' / '+M.money(c.deposit[1]):'来源缺失，无法判断'}</div><div>准备清单：${c.renew?c.renew.join(' / ')+' 项':'当前不适用'}</div>${c.unallocated?`<div>RC-A01-01：2026-11-07到账 ${M.money(c.unallocated)}，已关联合同但未核销。</div>`:''}</div><p class="caption">生产接口还需提供源记录更新时间、合同版本、核销分配ID与权限范围。本页不代表已连接真实系统。</p>`)}
-function renew(){const c=M.contract(S.contract);const labels=['续签意向已确认','续签方案已审批','续签协议已签署'];drawer('续签准备 · '+c.id,`<div class="note">合同结束日 ${c.end}，剩余 ${c.days} 天。${c.renew?'已进入90天准备窗口。':'当前尚未进入准备窗口。'}</div>${table(['准备事项','当前状态','责任角色'],labels.map((t,i)=>[e(t),c.renew?(i<c.renew[0]?tag('已完成','green'):tag('待推进','amber')):tag('当前不适用'),['招商经办','部门负责人','签约经办'][i]]))}<h3>推进建议</h3><p>先确认续签意向，再结合欠费与保证金核验，推进方案审批和协议签署；不续签时进入退出、结算与资产回收流程。</p><p class="caption">这些状态是原型准备清单；生产需映射资管已有的续签及审批记录。</p>`,`${btn('生成跟进待办草稿','task','','primary')}<span>仅保存演示草稿，不修改合同期限</span>`)}
-function draft(type='collection'){const c=M.contract(S.contract);if(type==='collection'&&!c.overdue){notify('当前合同无逾期未核销账单');return}S.draftType=type;
+function dimensions(){const c=M.contract(S.contract);drawer('履约雷达 · 维度口径',`<p class="helper">五轴独立展示，指标值须有来源。不合成信用评级。企业风险与合同变更来源缺失时显示—，不填0。</p>${M.radar(c.id).map(a=>`<div class="scene-card"><h3>${e(a.label)} ${tag(a.value===null?'—':a.value+(a.unit||'%'))}</h3><p>${e(a.fact)}</p><p class="caption">${e(a.formula)}</p>${btn('查看维度分析','cq',a.question,'link small')}</div>`).join('')}`)}
+function enterprise(){const c=M.contract(S.contract),ep=M.enterpriseProfiles[c.customer];drawer('企业经营与风险依据 · '+c.name,fields([['签约主体',c.name],['匹配标识','客商主数据 '+c.customer+'（演示映射）'],['来源',ep?.source||'未取得'],['数据更新',ep?.updated||'未取得']])+ (ep?`<div class="note">当前未取得企业风险来源，未调用企查查；生产需校验统一主体标识、接口授权、事件有效性与更新时间。</div>`+fields([['登记状态',ep.status],['经营异常',ep.abnormal+'项'],['司法风险',ep.judicial+'项'],['风险等级',ep.riskLevel+'/5（演示规则）']])+`<h3>事件依据</h3><div class="source-list">${ep.refs.map(t=>`<div>${e(t)}</div>`).join('')}</div><p class="helper">外部信号用于辅助核验，不等同于该合同违约。第三方详情链接需由真实接口提供，本原型不伪造来源链接。</p>`:'<div class="note">企业信息未取得，当前无法判断经营风险。请补齐主体映射与已授权数据来源后分析。</div>'))}
+function changes(){const c=M.contract(S.contract),ch=M.changeProfiles[c.id];drawer('当前合同变更记录 · '+c.id,ch?table(['变更单','生效日期','类型','说明','状态'],ch.events.map(x=>[e(x.id),x.date,e(x.type),e(x.detail),e(x.status)]))+`<p class="helper">本表仅当前合同的已生效变更；未记录事件不代表已证明合同条款完全无风险。重签新合同不计为本合同变更。观察期2026-01-01至${M.ASOF}，示例规则分需业务确认。</p>`:'<div class="note">变更记录未取得，不能按零次变更计算指标。</div>')}
+function policy(){const c=M.contract(S.contract),ad=M.collectionAdvice(c);drawer('项目规则与建议来源',fields([['项目',M.scopes[c.project]],['规则状态',ad.configured?'已取得适用规则':'当前快照未取得规则配置'],['最长逾期',ad.age+'天'],['建议来源',ad.source]])+`<div class="note">正式接入时先查询项目、事项类型、生效状态与适用阶段。查到规则后必须引用规则ID、版本及动作；确认无规则时才使用AI建议。接口失败或未接入须提示规则未取得。</div><h3>当前参考建议</h3><p>${e(ad.action)}</p><p>${e(ad.evidence)}</p>`)}
+function contractSource(){const c=M.contract(S.contract);drawer('当前合同 · 分析依据',fields([['合同范围',c.id],['签约客商',c.name],['期间',M.PERIOD],['截至时间',M.ASOF],['数据类型','测试系统只读快照'],['生效版本','未取得完整版本来源']])+`<h3>账单依据</h3>${billTable(c)}<h3>其他依据</h3><div class="row">${btn('企业经营信息','enterprise','','link small')}${btn('合同变更记录','changes','','link small')}${btn('项目催缴规则','policy','','link small')}</div><div class="source-list"><div>合同期限：${c.id} / end_date = ${c.end}</div><div>保证金：${c.deposit?M.money(c.deposit[0])+' / '+M.money(c.deposit[1]):'来源缺失，无法判断'}</div><div>准备清单：${c.renew?c.renew.join(' / ')+' 项':'当前不适用'}</div>${c.unallocated?`<div>RC-A01-01：2026-11-07到账 ${M.money(c.unallocated)}，已关联合同但待缴。</div>`:''}</div><p class="caption">生产接口还需提供源记录更新时间、合同版本、核销分配ID与权限范围。本页不代表已连接真实系统。</p>`)}
+function renew(){const c=M.contract(S.contract);drawer('合同到期信息 · '+c.id,fields([['合同',c.id],['客户',c.name],['合同开始日',c.start],['合同结束日',c.end],['剩余天数',c.days+'天'],['续签意向 / 审批 / 新合同状态','来源未取得']])+`<p class="helper">真实合同台账已确认期限；当前没有续签进度来源，不虚构准备完成率。</p><h3>建议事项</h3><p>先查询项目到期管理规则；有生效规则时按规则明确通知、意向确认、审批与签约节点，无规则时建议提前确认续签或退出安排，并核验欠费与保证金。</p>`,btn('查看项目规则','policy','','small'))}
+function draft(type='collection'){const c=M.contract(S.contract);if(type==='collection'&&!c.overdue){notify('当前合同无逾期未缴账单');return}S.draftType=type;
 const matched=M.collectionAdvice(c);
-const text=type==='collection'?`${c.name}：\n关于合同 ${c.id}（${M.scopes[c.project]}，${c.room}），截至 ${M.ASOF}，租金账单逾期未核销合计 ${M.money(c.overdue)}。\n${c.bills.filter(b=>b.overdue>0).map(b=>`账单 ${b.id}；到期日 ${b.due}；未核销 ${M.money(b.balance)}`).join('\n')}\n${c.unallocated?'核账提示：另有 '+M.money(c.unallocated)+' 已到账待分配，请财务先完成核对并更新本草稿金额。\n':''}请协助核对付款情况；如已付款，请提供付款凭证，以便财务核销。\n联系人：${c.owner}（演示负责人）\n【草稿待复核，未发送】`:`待办主题：${c.id} 履约事项跟进\n负责人：${c.owner}\n1. 核对账单未核销 ${M.money(c.balance)}${c.unallocated?'及已到账待分配 '+M.money(c.unallocated):''}。\n2. 检查保证金资料与当前有效余额。\n3. ${c.renew?'推进续签准备清单，当前完成 '+c.renew.join('/')+' 项。':'跟踪后续履约与到期节点。'}\n完成后需复核源数据并重新分析，任务完成不代表欠费结清。\n【本地演示待办草稿】`;
+const text=type==='collection'?`${c.name}：\n关于合同 ${c.id}（${M.scopes[c.project]}，${c.room}），截至 ${M.ASOF}，租金账单逾期未缴合计 ${M.money(c.overdue)}。\n${c.bills.filter(b=>b.overdue>0).map(b=>`账单 ${b.id}；到期日 ${b.due}；待缴 ${M.money(b.balance)}`).join('\n')}\n${c.unallocated?'核账提示：另有 '+M.money(c.unallocated)+' 已到账待分配，请财务先完成核对并更新本草稿金额。\n':''}请协助核对付款情况；如已付款，请提供付款凭证，以便财务核销。\n联系人：${c.owner}\n【草稿待复核，未发送】`:`待办主题：${c.id} 履约事项跟进\n负责人：${c.owner}\n1. 核对账单待缴 ${M.money(c.balance)}${c.unallocated?'及已到账待分配 '+M.money(c.unallocated):''}。\n2. 检查保证金资料与当前有效余额。\n3. ${c.renew?'推进续签准备清单，当前完成 '+c.renew.join('/')+' 项。':'跟踪后续履约与到期节点。'}\n完成后需复核源数据并重新分析，任务完成不代表欠费结清。\n【本地演示待办草稿】`;
 drawer(type==='collection'?'催缴内容草稿 · 待核账':'跟进待办草稿',`<p class="helper">基于 ${c.id} 的当前事实生成。建议来源：${e(matched.source)}；${e(matched.action)}。${e(matched.evidence)}。可编辑后保存本地草稿，正式发送由业务流程承接。</p>${c.unallocated?'<div class="note">发现已到账待分配款项，需先核账再确认催缴金额。</div>':''}<textarea id="draft-text" aria-label="草稿内容">${e(text)}</textarea>`,`${btn('保存本地草稿','savedraft','','primary')}<span>未发送、未派单、未变更财务数据</span>`)}
 function showScenes(tab){if(tab)S.scene=tab;const tabs=`<div class="scene-tabs">${btn('合同助手 · 8个场景','scene-tab','contract',S.scene==='contract'?'primary':'')}${btn('智能问数 · '+M.SCENES.filter(x=>x.agent==='ask').length+'个场景','scene-tab','ask',S.scene==='ask'?'primary':'')}${btn('页面与接入流程','scene-tab','flow',S.scene==='flow'?'primary':'')}</div>`;
 const content=S.scene==='flow'?flow():M.SCENES.filter(x=>x.agent===S.scene).map(x=>`<article class="scene-card"><h3>${e(x.id+' '+x.title)} ${tag(x.role)}</h3><dl>${[['角色问法',x.question],['所需数据',x.data],['处理与展示',x.flow],['验收样例',x.accept],['边界',x.boundary]].map(([a,b])=>`<dt>${e(a)}</dt><dd>${e(b)}</dd>`).join('')}</dl>${btn('演示这个问题',x.agent==='contract'?'scene-contract':'scene-ask',x.question,'link small mini-space')}</article>`).join('');
 drawer('核心场景与落地流程',tabs+content,`<a href="核心落地方案.html" target="_blank" rel="noopener">打开完整核心落地方案</a><a href="核心原型资料包_V3.0.zip" download>下载原型与方案</a>`)}
-function flow(){return `<h3>合同助手：在合同详情完成单份合同核查</h3><div class="flow-list"><div>01 · 合同台账 → 合同详情 → 合同助手 Tab<small>携带当前合同ID；进入即展示当前数据范围。</small></div><div>02 · 资管取数、校验并计算<small>复用单合同业务API，补充企业信息、合同变更、保证金与项目催缴规则；按需封装为受控工具/MCP。</small></div><div>03 · 企业中台分析并返回<small>资管后端通过 BaseURL + API 调用合同助手，返回结论、维度指标、建议和证据。</small></div><div>04 · 资管展示 → 核对明细 → 人工处理 → 重新分析<small>雷达、账单、准备清单和草稿；正式收款、发出催缴、派单、续签均由已有业务流程处理。</small></div></div><h3>智能问数：驾驶舱下的连续对话</h3><div class="flow-list"><div>01 · 驾驶舱 → 智能问数 → 直接提出业务问题<small>覆盖用户有权访问的资产、客商、合同、账单等业务数据。</small></div><div>02 · 企业中台识别问题 → 资管数据接口执行查询<small>业务数据同步到AI专用视图/中间表或数据仓库，统一指标口径；中台仅查询已授权的数据层，不直接面对业务全表。</small></div><div>03 · 结果流式返回 → 左侧展示<small>状态、文字增量、指标、图表、表格、证据依次呈现；可停止和重新生成。</small></div><div>04 · 继续追问 / 合同下钻 / 右侧历史回看<small>按会话保留上下文与结果快照。历史不自动刷新，重新查询生成新快照。</small></div></div><h3>双方系统怎么连接</h3><p>资管页面 → 资管后端 → 企业AI中台（BaseURL + API）→ 资管后端校验结果 → 页面展示。合同助手复用业务API与受控工具；智能问数依托AI专用视图/中间表或数据仓库，先治理再查询。中台通过双方约定的受控业务API查询授权数据；合同助手优先由资管后端提供单合同事实快照。</p><div class="note">BaseURL、鉴权密钥、智能体应用ID和接口路径在服务端配置。中台真实协议尚需双方联调确认，详细方案提供的是拟定适配协议。</div><p class="helper">当前页面为可操作的前端原型：合成数据、规则样例、本地草稿和历史、模拟流式展示。真实中台与业务API尚未接入。</p>`}
-function sources(i){const a=activeSession()?.messages[Number(i)]?.a;if(!a)return;drawer('数据来源与指标口径',fields([['查询范围',M.scopes[a.scope]],['截至时间',a.asof],['当前期间',a.period],['统计方式','授权过滤后聚合'],['数据性质','合成样例'],['结果类型',a.kind]])+`<h3>计算口径</h3><p>租金应收为当前期间生效租金账单；已核销为对应账单的有效分配金额；逾期为到期日早于截至日且仍未核销的余额。保证金与租金账单独立统计。面积出租率为去重资产快照的已租面积 / 可租面积。</p><h3>本次依据</h3><div class="source-list">${a.evidence.map(x=>`<div>${e(x)}</div>`).join('')}</div><p class="caption">快照回看保留原查询结果；生产环境查看历史时仍须重新校验权限。详细数据覆盖与更新时间需由真实接口提供。</p>`)}
+function flow(){return `<h3>合同助手：在合同详情完成单份合同核查</h3><div class="flow-list"><div>01 · 合同台账 → 合同详情 → 合同助手 Tab<small>携带当前合同ID；进入即展示当前数据范围。</small></div><div>02 · 资管取数、校验并计算<small>复用单合同业务API，补充企业信息、合同变更、保证金与项目催缴规则；按需封装为受控工具/MCP。</small></div><div>03 · 企业中台分析并返回<small>资管后端通过 BaseURL + API 调用合同助手，返回结论、维度指标、建议和证据。</small></div><div>04 · 资管展示 → 核对明细 → 人工处理 → 重新分析<small>雷达、账单、准备清单和草稿；正式收款、发出催缴、派单、续签均由已有业务流程处理。</small></div></div><h3>智能问数：驾驶舱下的连续对话</h3><div class="flow-list"><div>01 · 驾驶舱 → 智能问数 → 直接提出业务问题<small>覆盖用户有权访问的资产、客商、合同、账单等业务数据。</small></div><div>02 · 企业中台识别问题 → 资管数据接口执行查询<small>业务数据同步到AI专用视图/中间表或数据仓库，统一指标口径；中台仅查询已授权的数据层，不直接面对业务全表。</small></div><div>03 · 结果流式返回 → 左侧展示<small>状态、文字增量、指标、图表、表格、证据依次呈现；可停止和重新生成。</small></div><div>04 · 继续追问 / 合同下钻 / 右侧历史回看<small>按会话保留上下文与结果快照。历史不自动刷新，重新查询生成新快照。</small></div></div><h3>双方系统怎么连接</h3><p>资管页面 → 资管后端 → 企业AI中台（BaseURL + API）→ 资管后端校验结果 → 页面展示。合同助手复用业务API与受控工具；智能问数依托AI专用视图/中间表或数据仓库，先治理再查询。中台通过双方约定的受控业务API查询授权数据；合同助手优先由资管后端提供单合同事实快照。</p><div class="note">BaseURL、鉴权密钥、智能体应用ID和接口路径在服务端配置。中台真实协议尚需双方联调确认，详细方案提供的是拟定适配协议。</div><p class="helper">当前页面为可操作的前端原型：测试系统只读快照、本地草稿和历史、模拟流式展示。真实中台与业务API尚未接入。</p>`}
+function sources(i){const a=activeSession()?.messages[Number(i)]?.a;if(!a)return;drawer('数据来源与指标口径',fields([['查询范围',M.scopes[a.scope]],['截至时间',a.asof],['当前期间',a.period],['统计方式','授权过滤后聚合'],['数据性质','测试系统只读快照'],['结果类型',a.kind]])+`<h3>计算口径</h3><p>租金应收按已载入全周期租金账单汇总，含未到期账单；租金已收按账单实收列及待收余额核对。逾期未缴取应收日早于截至日的待收余额。保证金单列；完整可租资产未载入时不计算出租率。</p><h3>本次依据</h3><div class="source-list">${a.evidence.map(x=>`<div>${e(x)}</div>`).join('')}</div><p class="caption">快照回看保留原查询结果；生产环境查看历史时仍须重新校验权限。详细数据覆盖与更新时间需由真实接口提供。</p>`)}
 function downloadCSV(i){const a=activeSession()?.messages[Number(i)]?.a;if(!a?.rows.length)return;const quote=s=>'"'+String(s).replace(/"/g,'""')+'"';const data='\uFEFF'+[a.columns,...a.rows.map(r=>r.values)].map(r=>r.map(quote).join(',')).join('\r\n');const u=URL.createObjectURL(new Blob([data],{type:'text/csv;charset=utf-8'}));const link=document.createElement('a');link.href=u;link.download='问数结果_'+a.kind+'_'+a.asof+'.csv';link.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 function navigate(page){stop(false);S.page=page;location.hash=page;render();window.scrollTo({top:0,behavior:'smooth'})}
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-action]');if(!b)return;const v=b.dataset.value,a=b.dataset.action;
@@ -260,13 +807,15 @@ else if(a==='refresh')refreshAnalysis();
 else if(a==='enterprise')enterprise();
 else if(a==='changes')changes();
 else if(a==='policy')policy();
+else if(a==='issue-policy')issuePolicy(v);
+else if(a==='issue-generate'){S.issueAdvice[S.contract+'|'+v]=true;close();render();notify('已生成建议事项；来源已标明，未执行业务操作')}
 else if(a==='risk')riskDetails(v);
 else if(a==='risk-assistant'){const signal=M.riskSignals(S.contract).find(r=>r.code===v);close();S.tab='合同助手';if(signal)question(signal.question);else render()}
 else if(a==='dimensions')dimensions();
 else if(a==='contractsource')contractSource();
 else if(a==='billlist'){const c=M.contract(S.contract);drawer('账单与收款核对 · '+c.id,billTable(c)+(c.unallocated?`<div class="note">已到账待分配：RC-A01-01，${M.money(c.unallocated)}，2026-11-07。当前未抵减账单余额。</div>`:''),`${btn('查看财务台账','gotobills','','primary small')}<span>账单状态取自生效核销数据</span>`)}
 else if(a==='gotobills'){close();S.tab='财务收支台账';render();window.scrollTo({top:0,behavior:'smooth'})}
-else if(a==='bill'){const bill=M.bills.find(x=>x.id===v);drawer('账单依据 · '+v,fields([['关联对象',bill.contract],['计费期',bill.period],['费用项',bill.fee],['应收',M.money(bill.ar)],['已核销',M.money(bill.paid)],['未核销',M.money(bill.balance)],['按期核销',M.money(bill.timely)],['到期日',bill.due],['逾期余额',M.money(bill.overdue)]]))}
+else if(a==='bill'){const bill=M.bills.find(x=>x.id===v);drawer('账单依据 · '+v,fields([['关联对象',bill.contract],['计费期',bill.period],['费用项',bill.fee],['应收',M.money(bill.ar)],['租金已收',M.money(bill.paid)],['待缴',M.money(bill.balance)],['按期核销',M.money(bill.timely)],['到期日',bill.due],['逾期余额',M.money(bill.overdue)]]))}
 else if(a==='renew')renew();
 else if(a==='draft')draft();
 else if(a==='task')draft('task');
