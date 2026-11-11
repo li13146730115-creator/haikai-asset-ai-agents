@@ -987,5 +987,369 @@
       "demo": true
     }
   },
+  "collection_policies": {
+    "A": {
+      "id": "DEMO-A-COLLECTION",
+      "project": "A",
+      "version": "2.0",
+      "status": "active",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "demo": true,
+      "stages": [
+        {
+          "key": "friendly",
+          "id": "STAGE_FRIENDLY",
+          "name": "友好提醒",
+          "minDays": 1,
+          "maxDays": 30,
+          "severity": "一般",
+          "channels": [
+            "电话",
+            "短信",
+            "邮件"
+          ],
+          "evidence": [
+            "沟通纪要",
+            "短信截图",
+            "邮件记录"
+          ],
+          "approval": false,
+          "roles": [
+            "合同经办"
+          ],
+          "notifyChannels": [
+            "站内通知"
+          ],
+          "action": "核对账单及到账记录后，电话友好提醒客户，随后通过短信或邮件发送本期对账信息；请客户在3个工作日内反馈预计付款日期，保留沟通记录。",
+          "request": "请协助核对本期租金并反馈预计付款日期；如已付款，请提供凭证以便核账。",
+          "ruleId": "STAGE_A_FRIENDLY",
+          "logic": "AND",
+          "priority": 1,
+          "enabled": true
+        },
+        {
+          "key": "formal",
+          "id": "STAGE_FORMAL",
+          "name": "正式催告",
+          "minDays": 31,
+          "maxDays": 90,
+          "severity": "重要",
+          "channels": [
+            "邮件",
+            "书面通知/EMS",
+            "电话",
+            "短信"
+          ],
+          "evidence": [
+            "邮件记录",
+            "EMS回执",
+            "书面付款承诺",
+            "通话纪要"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "财务"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "1个工作日内完成财务核账，2个工作日内提交项目负责人复核书面催缴内容；确认后使用邮件及书面通知/EMS催告，并电话跟进，请客户在3个工作日内提供付款日期或书面分期计划，5个工作日内回访并更新催缴台账。",
+          "request": "请在收到通知后3个工作日内反馈明确付款日期或书面分期计划，便于双方落实本期欠费处理。",
+          "ruleId": "STAGE_A_FORMAL",
+          "logic": "AND",
+          "priority": 31,
+          "enabled": true
+        },
+        {
+          "key": "legal",
+          "id": "STAGE_LEGAL",
+          "name": "律师函",
+          "minDays": 91,
+          "maxDays": 180,
+          "severity": "紧急",
+          "channels": [
+            "邮件",
+            "书面通知/EMS",
+            "电话"
+          ],
+          "evidence": [
+            "生效合同及补充协议",
+            "账单与核账记录",
+            "前序催告送达记录",
+            "客户回复及书面承诺",
+            "律师函及送达凭证（实施后补充）"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "法务"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "整理本期合同条款、账单、前序催告与送达证据，在2个工作日内提交项目负责人及法务评估律师函适用条件；证据或前序阶段记录不足先补齐。律师函经法务审定和审批后由授权人员按确认方式送达；经办继续通过邮件、电话核实付款方案并登记送达与回复。",
+          "request": "本期欠费已持续较长时间，请尽快书面反馈付款安排；我们将提交项目负责人及法务评估后续处理。",
+          "ruleId": "STAGE_A_LEGAL",
+          "logic": "AND",
+          "priority": 91,
+          "enabled": true
+        },
+        {
+          "key": "litigation",
+          "id": "STAGE_LITIGATION",
+          "name": "诉讼/仲裁",
+          "minDays": 181,
+          "maxDays": null,
+          "severity": "紧急",
+          "channels": [
+            "邮件",
+            "书面通知/EMS"
+          ],
+          "evidence": [
+            "完整合同与争议解决条款",
+            "欠费计算表与核账记录",
+            "前序催告及送达记录",
+            "履约及违约证据",
+            "内部审批与法务意见"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "法务",
+            "管理者"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "由经办汇总本期长期欠费金额、履约证据、前序沟通与送达材料，在2个工作日内提交项目负责人及法务开展诉讼/仲裁可行性评估；核验合同争议解决条款、前序处置及内部授权。是否起诉或仲裁须完成专项审批，由法务确认程序与材料；客户沟通继续通过经确认的邮件或书面通知留痕。",
+          "request": "请尽快书面确认本期欠费处理方案；我们拟提交内部审批及法务评估后续争议解决安排，具体以双方沟通及正式文件为准。",
+          "ruleId": "STAGE_A_LITIGATION",
+          "logic": "AND",
+          "priority": 181,
+          "enabled": true
+        }
+      ],
+      "arrearsLevels": [
+        {
+          "id": "ARREARS_A_FRIENDLY",
+          "name": "一般",
+          "minDays": 1,
+          "maxDays": 30,
+          "severity": "一般",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_A_FORMAL",
+          "name": "重要",
+          "minDays": 31,
+          "maxDays": 90,
+          "severity": "重要",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_A_LEGAL",
+          "name": "紧急",
+          "minDays": 91,
+          "maxDays": 180,
+          "severity": "紧急",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_A_LITIGATION",
+          "name": "紧急",
+          "minDays": 181,
+          "maxDays": null,
+          "severity": "紧急",
+          "enabled": true
+        }
+      ]
+    },
+    "B": {
+      "id": "DEMO-B-COLLECTION",
+      "project": "B",
+      "version": "2.0",
+      "status": "active",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "demo": true,
+      "stages": [
+        {
+          "key": "friendly",
+          "id": "STAGE_FRIENDLY",
+          "name": "友好提醒",
+          "minDays": 1,
+          "maxDays": 30,
+          "severity": "一般",
+          "channels": [
+            "电话",
+            "短信",
+            "邮件"
+          ],
+          "evidence": [
+            "沟通纪要",
+            "短信截图",
+            "邮件记录"
+          ],
+          "approval": false,
+          "roles": [
+            "合同经办"
+          ],
+          "notifyChannels": [
+            "站内通知"
+          ],
+          "action": "核对账单及到账记录后，电话友好提醒客户，随后通过短信或邮件发送本期对账信息；请客户在3个工作日内反馈预计付款日期，保留沟通记录。",
+          "request": "请协助核对本期租金并反馈预计付款日期；如已付款，请提供凭证以便核账。",
+          "ruleId": "STAGE_B_FRIENDLY",
+          "logic": "AND",
+          "priority": 1,
+          "enabled": true
+        },
+        {
+          "key": "formal",
+          "id": "STAGE_FORMAL",
+          "name": "正式催告",
+          "minDays": 31,
+          "maxDays": 90,
+          "severity": "重要",
+          "channels": [
+            "邮件",
+            "书面通知/EMS",
+            "电话",
+            "短信"
+          ],
+          "evidence": [
+            "邮件记录",
+            "EMS回执",
+            "书面付款承诺",
+            "通话纪要"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "财务"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "1个工作日内完成财务核账，2个工作日内提交项目负责人复核书面催缴内容；确认后使用邮件及书面通知/EMS催告，并电话跟进，请客户在3个工作日内提供付款日期或书面分期计划，5个工作日内回访并更新催缴台账。",
+          "request": "请在收到通知后3个工作日内反馈明确付款日期或书面分期计划，便于双方落实本期欠费处理。",
+          "ruleId": "STAGE_B_FORMAL",
+          "logic": "AND",
+          "priority": 31,
+          "enabled": true
+        },
+        {
+          "key": "legal",
+          "id": "STAGE_LEGAL",
+          "name": "律师函",
+          "minDays": 91,
+          "maxDays": 180,
+          "severity": "紧急",
+          "channels": [
+            "邮件",
+            "书面通知/EMS",
+            "电话"
+          ],
+          "evidence": [
+            "生效合同及补充协议",
+            "账单与核账记录",
+            "前序催告送达记录",
+            "客户回复及书面承诺",
+            "律师函及送达凭证（实施后补充）"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "法务"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "整理本期合同条款、账单、前序催告与送达证据，在2个工作日内提交项目负责人及法务评估律师函适用条件；证据或前序阶段记录不足先补齐。律师函经法务审定和审批后由授权人员按确认方式送达；经办继续通过邮件、电话核实付款方案并登记送达与回复。",
+          "request": "本期欠费已持续较长时间，请尽快书面反馈付款安排；我们将提交项目负责人及法务评估后续处理。",
+          "ruleId": "STAGE_B_LEGAL",
+          "logic": "AND",
+          "priority": 91,
+          "enabled": true
+        },
+        {
+          "key": "litigation",
+          "id": "STAGE_LITIGATION",
+          "name": "诉讼/仲裁",
+          "minDays": 181,
+          "maxDays": null,
+          "severity": "紧急",
+          "channels": [
+            "邮件",
+            "书面通知/EMS"
+          ],
+          "evidence": [
+            "完整合同与争议解决条款",
+            "欠费计算表与核账记录",
+            "前序催告及送达记录",
+            "履约及违约证据",
+            "内部审批与法务意见"
+          ],
+          "approval": true,
+          "roles": [
+            "项目负责人",
+            "法务",
+            "管理者"
+          ],
+          "notifyChannels": [
+            "站内通知",
+            "邮件"
+          ],
+          "action": "由经办汇总本期长期欠费金额、履约证据、前序沟通与送达材料，在2个工作日内提交项目负责人及法务开展诉讼/仲裁可行性评估；核验合同争议解决条款、前序处置及内部授权。是否起诉或仲裁须完成专项审批，由法务确认程序与材料；客户沟通继续通过经确认的邮件或书面通知留痕。",
+          "request": "请尽快书面确认本期欠费处理方案；我们拟提交内部审批及法务评估后续争议解决安排，具体以双方沟通及正式文件为准。",
+          "ruleId": "STAGE_B_LITIGATION",
+          "logic": "AND",
+          "priority": 181,
+          "enabled": true
+        }
+      ],
+      "arrearsLevels": [
+        {
+          "id": "ARREARS_B_FRIENDLY",
+          "name": "一般",
+          "minDays": 1,
+          "maxDays": 30,
+          "severity": "一般",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_B_FORMAL",
+          "name": "重要",
+          "minDays": 31,
+          "maxDays": 90,
+          "severity": "重要",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_B_LEGAL",
+          "name": "紧急",
+          "minDays": 91,
+          "maxDays": 180,
+          "severity": "紧急",
+          "enabled": true
+        },
+        {
+          "id": "ARREARS_B_LITIGATION",
+          "name": "紧急",
+          "minDays": 181,
+          "maxDays": null,
+          "severity": "紧急",
+          "enabled": true
+        }
+      ]
+    }
+  },
   "scheduled_bills": []
 }
