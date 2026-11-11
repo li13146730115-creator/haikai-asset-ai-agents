@@ -951,5 +951,41 @@
     "A": null,
     "B": null
   },
+  "demo_escalation_policies": {
+    "A": {
+      "id": "DEMO-A-RENT-30",
+      "project": "A",
+      "name": "海开园1号楼租金逾期催缴升级规则（演示）",
+      "version": "1.0",
+      "status": "active",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "thresholdDays": 30,
+      "deadlines": {
+        "verify": 1,
+        "notice": 2,
+        "reply": 3,
+        "review": 5
+      },
+      "demo": true
+    },
+    "B": {
+      "id": "DEMO-B-RENT-30",
+      "project": "B",
+      "name": "海开园配套商业租金逾期催缴升级规则（演示）",
+      "version": "1.0",
+      "status": "active",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "thresholdDays": 30,
+      "deadlines": {
+        "verify": 1,
+        "notice": 2,
+        "reply": 3,
+        "review": 5
+      },
+      "demo": true
+    }
+  },
   "scheduled_bills": []
 }
