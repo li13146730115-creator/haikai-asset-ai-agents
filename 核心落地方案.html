@@ -1,7 +1,7 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>双智能体核心落地方案 V3.0</title><style>html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#35374c;font:14px/1.95 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header{padding:19px 26px;border-bottom:1px solid #e9e7f1;background:white;position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:15px}header strong{font-size:16px}a{color:#6558d7;text-decoration:none}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1600px;margin:auto}aside{padding:25px 20px;height:calc(100vh - 73px);position:sticky;top:73px;overflow:auto;border-right:1px solid #e7e5ef}aside a{display:block;padding:7px 0;font-size:11px;color:#8c849c}aside a:hover{color:#6558d7}main{padding:35px 45px;background:white;min-width:0}h1{font-size:28px;line-height:1.5}h2{font-size:21px;border-top:1px solid #ebe7f1;padding-top:30px;margin-top:40px;scroll-margin-top:100px}h3{font-size:16px;margin-top:29px}h4{font-size:14px}p,li{color:#6a667b}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.9;display:block;overflow:auto;margin:20px 0}th{background:#f7f5fc;color:#82748f;font-weight:600}td,th{border:1px solid #ebe7f0;padding:10px 13px;vertical-align:top;min-width:100px}td{color:#6d6379}pre{background:#f8f6fc;border:1px solid #ece7f4;border-radius:7px;padding:18px;overflow:auto;font-size:12px;line-height:1.7}code{font-size:12px;color:#8d6b94}blockquote{border-left:3px solid #c5b6e0;padding-left:18px}strong{color:#50445e}@media(max-width:850px){.layout{display:block}aside{display:none}main{padding:23px 20px}header{font-size:11px}h1{font-size:23px}}@media print{header,aside{display:none}.layout{display:block}main{padding:0}h2{break-before:auto}table{display:table;font-size:10px}pre{white-space:pre-wrap}}</style></head><body><header><strong>海开资管 · 核心落地方案 V3.0</strong><span><a href="index.html">返回业务原型</a> · <a href="核心原型资料包_V3.0.zip" download>下载全部资料</a></span></header><div class="layout"><aside><a href="#section-1">1. 产品范围与入口</a><a href="#section-2">2. 合同助手页面与操作</a><a href="#section-3">3. 智能问数页面与操作</a><a href="#section-4">4. 数据准备清单</a><a href="#section-5">5. Agent设计与企业中台接入</a><a href="#section-6">6. 前后端开发拆分与实施顺序</a><a href="#section-7">7. 联调与客户验收</a><a href="#section-8">8. 交付内容与能力标识</a><a href="#section-9">C01 履约总览</a><a href="#section-10">C02 应收与未缴</a><a href="#section-11">C03 逾期催缴</a><a href="#section-12">C04 续签准备</a><a href="#section-13">C05 付款及时性</a><a href="#section-14">C06 保证金核验</a><a href="#section-15">C07 到账待分配</a><a href="#section-16">C08 跟进与复核</a><a href="#section-17">Q01 经营总览</a><a href="#section-18">Q02 欠费催缴分布</a><a href="#section-19">Q03 回款分析</a><a href="#section-20">Q04 企业关联合同</a><a href="#section-21">Q05 到期统筹</a><a href="#section-22">Q06 资产出租与空置</a><a href="#section-23">Q09 连续追问与会话回看</a><a href="#section-24">Q10 数据不足与澄清</a></aside><main><h1>海开资管双智能体核心落地方案 V3.0</h1>
-<p>更新：2026-11-11。范围依据本轮最新沟通；此前第二智能体的“企业洞察 / 多合同分析”调整为<strong>智能问数</strong>，企业关联合同分析是其中一个场景。此前工程材料作为历史参考，不作为本次范围的默认开发依据。</p>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>双智能体核心落地方案 V3.1</title><style>html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#35374c;font:14px/1.95 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header{padding:19px 26px;border-bottom:1px solid #e9e7f1;background:white;position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:15px}header strong{font-size:16px}a{color:#6558d7;text-decoration:none}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1600px;margin:auto}aside{padding:25px 20px;height:calc(100vh - 73px);position:sticky;top:73px;overflow:auto;border-right:1px solid #e7e5ef}aside a{display:block;padding:7px 0;font-size:11px;color:#8c849c}aside a:hover{color:#6558d7}main{padding:35px 45px;background:white;min-width:0}h1{font-size:28px;line-height:1.5}h2{font-size:21px;border-top:1px solid #ebe7f1;padding-top:30px;margin-top:40px;scroll-margin-top:100px}h3{font-size:16px;margin-top:29px}h4{font-size:14px}p,li{color:#6a667b}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.9;display:block;overflow:auto;margin:20px 0}th{background:#f7f5fc;color:#82748f;font-weight:600}td,th{border:1px solid #ebe7f0;padding:10px 13px;vertical-align:top;min-width:100px}td{color:#6d6379}pre{background:#f8f6fc;border:1px solid #ece7f4;border-radius:7px;padding:18px;overflow:auto;font-size:12px;line-height:1.7}code{font-size:12px;color:#8d6b94}blockquote{border-left:3px solid #c5b6e0;padding-left:18px}strong{color:#50445e}@media(max-width:850px){.layout{display:block}aside{display:none}main{padding:23px 20px}header{font-size:11px}h1{font-size:23px}}@media print{header,aside{display:none}.layout{display:block}main{padding:0}h2{break-before:auto}table{display:table;font-size:10px}pre{white-space:pre-wrap}}</style></head><body><header><strong>海开资管 · 核心落地方案 V3.1</strong><span><a href="index.html">返回业务原型</a> · <a href="核心原型资料包_V3.0.zip" download>下载全部资料</a></span></header><div class="layout"><aside><a href="#section-1">1. 产品范围与入口</a><a href="#section-2">2. 合同助手页面与操作</a><a href="#section-3">3. 智能问数页面与操作</a><a href="#section-4">4. 数据准备清单</a><a href="#section-5">5. Agent设计与企业中台接入</a><a href="#section-6">6. 前后端开发拆分与实施顺序</a><a href="#section-7">7. 联调与客户验收</a><a href="#section-8">8. 交付内容与能力标识</a><a href="#section-9">9. 1111会议版新增落地与验收要求</a><a href="#section-10">C01 履约总览</a><a href="#section-11">C02 应收与未缴</a><a href="#section-12">C03 逾期催缴</a><a href="#section-13">C04 续签准备</a><a href="#section-14">C05 付款及时性</a><a href="#section-15">C06 保证金核验</a><a href="#section-16">C07 到账待分配</a><a href="#section-17">C08 企业风险与条款稳定</a><a href="#section-18">Q01 经营总览</a><a href="#section-19">Q02 欠费催缴分布</a><a href="#section-20">Q03 回款分析</a><a href="#section-21">Q04 企业关联合同</a><a href="#section-22">Q05 到期统筹</a><a href="#section-23">Q06 资产出租与空置</a><a href="#section-24">Q09 连续追问与会话回看</a><a href="#section-25">Q10 数据不足与澄清</a><a href="#section-26">Q11 授权与空结果</a><a href="#section-27">Q12 年底待回收计划</a></aside><main><h1>海开资管双智能体核心落地方案 V3.1</h1>
+<p>更新：2026-11-11。根据1111内部会议调整，此前第二智能体的“企业洞察 / 多合同分析”调整为<strong>智能问数</strong>，企业关联合同分析是其中一个场景。此前工程材料作为历史参考，不作为本次范围的默认开发依据。</p>
 <p>本次问数范围不包含设备台账和多经点位，原Q07、Q08取消；其余场景编号保留以便追溯。</p>
-<p>本次交付包含可操作的业务原型、16个场景的问法/数据/流程/验收要求、两端交互与拟定接口协议。页面内的客户、金额、资产均为合成样例，演示分析截至2026-11-08；未接入真实资管数据与企业中台。</p>
+<p>本次交付包含可操作的业务原型、18个场景的问法/数据/流程/验收要求、两端交互与拟定接口协议。页面内的客户、金额、资产均为合成样例，演示分析截至2026-11-08；未接入真实资管数据与企业中台。</p>
 <h2 id="section-1">1. 产品范围与入口</h2>
 <table>
 <thead>
@@ -28,7 +28,7 @@
 </tr>
 <tr>
 <td>页面形态</td>
-<td>履约指标、雷达、分析建议、场景卡片、分析结果、账单明细</td>
+<td>履约指标、五维雷达、折叠式事实/分析/行动建议；账单与证据通过入口下钻</td>
 <td>左侧流式对话与结果，右侧历史会话</td>
 </tr>
 <tr>
@@ -57,9 +57,9 @@
 <li>首屏展示应收、已核销、逾期未核销、剩余天数；分析期间和截至时间必须可见。</li>
 <li>雷达独立展示五个履约维度，旁边直接显示数值，可点击查看口径和事实依据。</li>
 <li>建议卡展示“发现什么 → 依据是什么 → 先做什么 → 谁负责”，支持跳到账单、续签清单及草稿。</li>
-<li>用户点击预设场景卡片，查看对应分析结论和明细；合同助手不提供再次输入问题的区域。</li>
-<li>合同助手按固定场景自动分析，用户点击卡片查看结果；合同范围始终锁定当前合同，全域问数使用驾驶舱入口。</li>
-<li>操作后通过“重新分析”重新拉取数据；草稿或任务完成不直接改变财务结果。</li>
+<li>隐藏合同详情底部的场景问法卡片与重复账单表；在五维指标与建议中点开依据。合同助手不提供自由输入。</li>
+<li>合同助手自动分析，并以折叠项展示各维度事实、分析解读、行动建议和来源。范围始终锁定当前合同。</li>
+<li>分别显示“上次分析时间”和“源数据截至”。进入时加载最后结果；重新分析生成新结果及时间，不能改变源数据时点。原型只重生成样例分析并在本地保留时间；生产才会重新取数。草稿不改变财务结果。</li>
 </ol>
 <h3>合同详情风险标识（本次调整）</h3>
 <p>合同助手不提供自由输入区或“发送问题”按钮。合同详情公共头部展示当前合同的风险标识，切换到基本与条款、财务收支台账等Tab后仍保留。</p>
@@ -67,13 +67,15 @@
 <li><strong>逾期欠费</strong>：当前有效逾期余额大于0，红色标识，并显示金额。点击查看账单ID、到期日、余额与到账待分配情况。</li>
 <li><strong>保证金不足</strong>：已取得生效应缴与有效余额，且余额不足，显示橙色标识。资料缺失时只显示“保证金资料待核验”，不计入已识别风险数量。</li>
 <li><strong>续签准备待完成</strong>：剩余0—90天，且已配置准备清单仍有未完成项，显示橙色标识。该提示为到期管理事项，不代表违约认定。</li>
+<li><strong>企业经营风险需关注</strong>：已获取并核验的主体风险达到业务配置等级；当前用合成样例演示。</li>
+<li><strong>合同变更较频繁</strong>：当前合同观察期内生效变更达到示例阈值；变更本身不等于违约。</li>
 <li>无已识别风险时不显示“存在履约风险”；资料缺失也不推断为无风险。标识不改变合同原有“履约中”等生命周期状态。</li>
 </ul>
 <p>点击单个标识打开该项风险详情；点击风险总数查看全部已识别项。详情包含事实、来源、截至时间和处理入口，支持跳到账单、续签清单或定位合同助手对应分析。</p>
 <p>风险状态复用合同助手同一事实快照，随有效源数据更新后重新计算。生产响应建议增加 <code>risk_signals[]</code>（code、label、severity、status、detail、evidence_refs、as_of、action_type）、<code>data_gaps[]</code> 与快照ID；标识规则由业务服务校验，不仅依据大模型文字判断。规则未配置、分析失败或结果过期时分别显示“待分析”“分析暂不可用”或“结果待更新”，不得以空数组冒充无风险。当前静态演示始终采用固定演示快照。</p>
-<p>验收样例：HT-A01显示3项（逾期20,000元、保证金缺口10,000元、续签准备1/3），进入任何合同Tab仍可见；HT-C01显示保证金资料待核验，未计为保证金不足；HT-A01完成有效核销及保障/续签补齐后，标识随重新分析移除，而不是在保存草稿后移除。</p>
+<p>验收样例：HT-A01显示5项（逾期20,000元、保证金缺口10,000元、续签准备1/3、企业风险与变更关注），进入任何合同Tab仍可见；HT-C01显示保证金资料待核验，未计为保证金不足；HT-A01完成有效核销及保障/续签补齐后，相应标识随重新分析移除；企业与变更提示仍按各自来源单独复核，而不是在保存草稿后移除。</p>
 <h3>2.2 雷达定义</h3>
-<p>所有轴采用0—100%的完成率。数值越高仅表示该维度完成度更高；不合成信用评级、续约概率或法律责任结论。超额收款在文本显示真实比率，绘图最多到100%。</p>
+<p>前三轴为0—100%比例，后两轴为0—100演示规则映射分。越高仅表示该维度表现更好；不合成信用评级、续约概率或法律责任结论。超额收款在文本显示真实比率，绘图最多到100%。</p>
 <table>
 <thead>
 <tr>
@@ -102,21 +104,21 @@
 <td>条款无保证金则不适用；未取得记录则未知</td>
 </tr>
 <tr>
-<td>续签准备</td>
-<td>完成的准备项 / 适用准备项</td>
-<td>原型为意向、方案、协议三项等权</td>
-<td>未进入90天窗口不适用；清单来源不明则缺失</td>
+<td>主体经营</td>
+<td>演示：(5－主体风险等级) × 20</td>
+<td>来源为已授权企业信息；主体风险0—5级只是演示规则，需业务确认</td>
+<td>来源缺失则未知，不能当作低风险</td>
 </tr>
 <tr>
-<td>催缴跟进</td>
-<td>已完成跟进项 / 已配置且适用的跟进项</td>
-<td>反映处理进度，不能替代回款</td>
-<td>无逾期催缴任务不适用；无记录来源则缺失</td>
+<td>合同稳定</td>
+<td>演示：max(0,100－观察期已生效变更次数×15)</td>
+<td>当前合同版本与审批；新签合同不计本合同变更，频次不直接认定违约</td>
+<td>无变更记录来源时未知，不能按零次</td>
 </tr>
 </tbody></table>
 <p>**生产口径补充：**账单未到期部分不进入“付款及时”分母。演示账单全部已到期，因此原型中到期应收与期间应收相同。日期按项目业务时区计算；“逾期”取到期日早于截至日，账单到期当天不算逾期。</p>
 <p>雷达有缺失或不适用轴时显示“—”，保留可用轴的数值和相邻有效线段，不将缺失值补0形成完整封闭图。空状态要区分“无风险信号”“数据不足”“不适用”。</p>
-<h3>2.3 真实演示路径</h3>
+<h3>2.3 合成样例演示路径</h3>
 <p>打开HT-A01，首屏应看到：应收100,000元，已核销80,000元，逾期未核销20,000元；结束日期2026-12-31，剩余53天。</p>
 <p>问“还有哪些账单没交费？”：展示B-A01-03，2026-10-31到期，未核销20,000元。B-A01-02虽然曾迟付10,000元，但已结清，不进入当前欠费。</p>
 <p>问“客户说已经付过款，为什么还欠费？”：单列RC-A01-01在11月7日到账5,000元、已确认关联合同但未分配，不直接冲减逾期。若财务正式分配5,000元且来源数据更新，重新分析应显示已核销85,000元、逾期15,000元；此变化作为后端联调验收用例，<strong>当前前端演示不执行核销</strong>。</p>
@@ -124,8 +126,8 @@
 <p>点击续签：准备清单1/3，意向已确认、方案审批待推进、协议签署待推进。查看保证金：有效20,000元、应缴30,000元、缺口10,000元。</p>
 <h2 id="section-3">3. 智能问数页面与操作</h2>
 <h3>3.1 左对话、右历史</h3>
-<p>左侧为当前会话，包含范围筛选、问题输入、识别/查询状态、流式文字、指标/图表/表格、数据依据、追问建议。右侧为历史会话列表，显示标题、范围、时间和轮次；点击恢复原问题和原结果。业务页不配置BaseURL、Key或模型参数。</p>
-<p>首屏提供经营概览、欠费催缴、资产出租、客商关联合同、到期统筹、项目回款等示例。页面的项目筛选是对当前授权范围的进一步收窄，不是权限来源。</p>
+<p>左侧为当前会话，无项目下拉筛选，包含问题输入、识别/查询状态、流式文字、指标/图表/表格、数据依据、追问建议。右侧为历史会话列表，显示标题、范围、时间和轮次；点击恢复原问题和原结果。业务页不配置BaseURL、Key或模型参数。</p>
+<p>首屏默认展示一组已完成的经营概览问答；输入框上方为紧凑问题气泡。右侧提供经营、合同、款项、资产、年底待回收、有权无匹配、无权、数据不足的完整样例。用户在问题中指定项目，系统解析后与授权范围取交集；不能由问题扩大权限。</p>
 <h3>3.2 一次问数的执行流程</h3>
 <ol>
 <li>用户提问，例如“目前哪些合同欠费，需要催缴？”</li>
@@ -185,8 +187,8 @@
 </tbody></table>
 <h3>3.4 演示路径</h3>
 <p>问“当前整体经营概览”：8项资产、3家签约客商、7份合同；租金应收500,000元、已核销452,000元、回款率90.4%、逾期48,000元；可租10,000㎡、已租7,200㎡、面积出租率72%。</p>
-<p>继续问“哪些合同欠费需要催缴”：HT-A01 20,000元、HT-A03 10,000元、HT-B01 6,000元、HT-C01 12,000元，共4份48,000元。按项目：项目A 26,000元，项目B 22,000元。</p>
-<p>问“远景科技旗下合同回款情况”：三份合同应收200,000元、已核销170,000元、逾期30,000元。切换项目B后重新提问，只返回HT-A03，应收20,000元、核销10,000元。合同归属与客商主数据ID共同约束，不能按企业名称重复累加。</p>
+<p>继续问“哪些合同欠费需要催缴”：HT-A01 20,000元、HT-A03 10,000元、HT-B01 6,000元、HT-C01 12,000元，共4份48,000元。按项目：海淀科技园 26,000元，创智中心 22,000元。</p>
+<p>问“远景科技旗下合同回款情况”：三份合同应收200,000元、已核销170,000元、逾期30,000元。在问题中指定创智中心后重新提问，只返回HT-A03，应收20,000元、核销10,000元。合同归属与客商主数据ID共同约束，不能按企业名称重复累加。</p>
 <p>问“资产出租率与空置情况”：按资产ID去重；HT-C01、HT-C02共同关联AS-B03，该资产面积不能重复算两次。</p>
 <p>问“今年收入同比增长多少”：当前演示只有单期快照，显示缺少去年同期与指标定义，不捏造同比。设备台账与多经点位不在本次问数范围；相关问题提示当前不支持，不生成指标或图表。</p>
 <h3>3.5 页面状态与异常</h3>
@@ -325,6 +327,24 @@
 <td>P0业务确认；可后置补采</td>
 </tr>
 <tr>
+<td>企业信息</td>
+<td>统一主体标识、匹配状态、经营状态、有效风险事件/级别、来源、更新时间、授权状态</td>
+<td>主体经营维度与核验</td>
+<td>字段/授权待联调，缺失不评分</td>
+</tr>
+<tr>
+<td>合同变更</td>
+<td>当前合同ID、版本、审批/生效状态、变更类型/时间、原条款/新条款</td>
+<td>合同稳定维度</td>
+<td>可得性待核验，重签不算变更</td>
+</tr>
+<tr>
+<td>项目规则</td>
+<td>project_id、rule_id/version、启用状态、适用逾期区间、标准动作、留痕要求</td>
+<td>建议依据与优先级</td>
+<td>配置优先；未配置转AI建议</td>
+</tr>
+<tr>
 <td>催缴与跟进</td>
 <td>collection_id、bill_ids、责任人、触达/回执/处理状态、日期</td>
 <td>催缴跟进、草稿</td>
@@ -359,7 +379,11 @@
 </tr>
 <tr>
 <td>资管业务/数据API</td>
-<td>主数据关系、指标计算、授权查询、明细分页、证据定位</td>
+<td>单合同复用现有详情API，按需封装受控工具/MCP；主数据、规则与证据定位</td>
+</tr>
+<tr>
+<td>AI专用数据层</td>
+<td>业务同步至专用视图/中间表或数据仓库，统一粒度与口径；问数仅面向该层，不能直接给模型业务全表</td>
 </tr>
 <tr>
 <td>企业AI中台</td>
@@ -372,12 +396,12 @@
 </tbody></table>
 <p>不要求用户替换已有AI中台，不预设其产品厂商、协议或模型。BaseURL + API是既定连接方式；下文路径及事件为双方讨论用的<strong>建议适配协议</strong>，需映射到实际中台规范。</p>
 <h3>5.2 合同助手Agent工作流</h3>
-<p>输入：contract_id、scene_code（进入Tab默认overview，点击预设场景切换）、as_of、period、facts_snapshot_id、用户可见字段、口径版本。场景问法是需求表达，前端不提供自由输入框。</p>
+<p>输入：contract_id、scene_code（进入Tab默认overview，维度/证据入口按需分析）、as_of、period、facts_snapshot_id、用户可见字段、口径版本。场景问法是需求表达，前端不提供自由输入框。</p>
 <p>执行：固定合同 → 读取快照 → 判断数据完整性 → 执行/引用确定性指标 → 按scene_code选择分析场景 → 引用事实给结论/建议 → 输出固定结构。</p>
-<p>能力拆分：账单核查、付款及时性、保证金、到期准备、催缴/待办草稿。自动分析首屏复用同一事实快照；用户点击场景查看时复用当前快照；重新分析时重新取数。Agent不能覆盖固定contract_id。</p>
+<p>能力拆分：账单核查、付款及时性、保证金、企业经营风险、合同条款与变更、到期提醒、规则匹配、催缴/待办草稿。自动分析首屏复用同一事实快照；用户点击维度查看时复用当前快照；重新分析时重新取数。Agent不能覆盖固定contract_id。</p>
 <p>提示词约束：只引用当前合同快照中的事实与可见来源；未提供的保证金、续签、工单等显示缺失；当前余额和历史迟付分开；建议使用“待核验/建议处理”等业务表达；返回数据ID、结论关联证据与动作类型，不能仅返回不可解析的长文字。</p>
 <h3>5.3 智能问数Agent工作流</h3>
-<p>输入：question、session_id、可用上下文、授权引用、选定项目筛选、期间/截至、指标目录版本。</p>
+<p>输入：question、session_id、可用上下文、授权引用、从问题中解析并经权限校验的项目条件、期间/截至、指标目录版本。</p>
 <p>执行：识别数据域 → 主体/指标/时间消歧 → 生成受限query_spec → 业务API校验并执行 → 空/缺失处理 → 解释结果 → 返回结果组件与证据 → 保存会话。</p>
 <p>query_spec允许metric_code、dimension_codes、typed_filters、sort、page_size。数据API只允许注册指标和维度组合，不接受模型提交的任意SQL、任意URL或跨租户参数。跨数据域查询通过预定义关系实现。全域问数是“全部授权数据”，不是绕过组织与项目权限。</p>
 <p>建议能力API：contract_facts、contract_bills、contract_receipts、contract_renewal、contract_collection、query_metrics、query_details、resolve_customer、get_metric_definition。实际中台可以将这些HTTP API注册为工具；不要求新增MCP。</p>
@@ -562,8 +586,8 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>WP4 智能问数</td>
-<td>驾驶舱模块、查询规划/指标API、左对话右历史、结果/追问/下钻</td>
-<td>Q01—Q06、Q09—Q10通过；多域关联金额不重复</td>
+<td>专用数据层、驾驶舱模块、查询规划/指标API、数据+解读、历史/追问/下钻</td>
+<td>Q01—Q06、Q09—Q12通过；无权/空/缺失状态区分，金额不重复</td>
 </tr>
 <tr>
 <td>WP6 联调上线</td>
@@ -574,7 +598,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <p>首期建议先开放账单欠费、到期、经营/回款、客商关联合同、资产出租。保证金、续签准备、催缴跟进按实际字段可用性显示完成率或缺失状态。设备台账和多经点位不纳入本次开发与验收范围。</p>
 <p>不在没有字段样本与中台协议的情况下承诺固定工期。可用上述工作包形成双方排期；每个工作包以接口、页面和验收样本为完成凭据。</p>
 <h2 id="section-7">7. 联调与客户验收</h2>
-<p>每条业务验收必须核对：角色、授权范围、截至时间、输入、预期数字、明细来源、边界、操作后源数据是否变化。附录场景清单给出16条基础业务用例。</p>
+<p>每条业务验收必须核对：角色、授权范围、截至时间、输入、预期数字、明细来源、边界、操作后源数据是否变化。附录场景清单给出18条基础业务用例。</p>
 <p>补充异常与交叉验收：</p>
 <table>
 <thead>
@@ -586,7 +610,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </thead>
 <tbody><tr>
 <td>A01</td>
-<td>项目A权限用户提问“全部项目欠费”，并篡改project_ids=B</td>
+<td>海淀科技园权限用户提问“全部项目欠费”，并篡改project_ids=B</td>
 <td>服务端拒绝越权或仅返回A；金额26,000元；结果/来源/导出均无B</td>
 </tr>
 <tr>
@@ -686,7 +710,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>浏览器本地历史、CSV导出；重新生成保留旧会话</td>
 </tr>
 <tr>
-<td>16场景问法/数据/验收与接口方案</td>
+<td>18场景问法/数据/验收与接口方案</td>
 <td>本文及场景清单</td>
 </tr>
 <tr>
@@ -699,8 +723,72 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 </tbody></table>
 <p>原型用于客户确认入口、范围、交互、结果和口径，并供开发拆分工作包。以本版范围及拟定契约为基础，补齐真实字段映射和中台协议后进入开发；不能直接将合成数据模型部署为生产财务服务。</p>
-<h1>双智能体核心场景清单 V3.0</h1>
-<h2 id="section-9">C01 履约总览</h2>
+<h2 id="section-9">9. 1111会议版新增落地与验收要求</h2>
+<h3>9.1 行动建议遵循项目规则</h3>
+<p>合同助手先读取合同所属项目的生效催缴/预警规则，确定规则ID、版本、逾期区间和标准动作，再由AI补充执行步骤、沟通要点及证据留存。未配置时必须显示“AI建议 · 项目未配置催缴规则”，不可冒充客户制度。项目规则读取失败与未配置是不同状态，生产返回失败时不能直接走无配置分支。律师函、终止合同、调整保证金仅提供提交评估建议，由业务/法务决策。</p>
+<p>原型：海淀科技园配置COL-HD-01样例，逾期8天匹配书面催缴；创智中心没有配置，显示AI参考建议。阶段阈值仅为演示，不代表客户真实制度。</p>
+<h3>9.2 数据结果与文字解读</h3>
+<p>问数结果明确区分“01 查询数据”和“02 分析解读”。解读只能引用已返回的事实。当前总览：创智中心逾期/应收11%，海淀科技园8.67%；全域最大单合同欠费HT-A01 20,000元，其次HT-C01 12,000元；最长逾期8天，不演示多月账龄或未来回款确定预测。</p>
+<p>年底待回收单独使用已生成计划账单：当前逾期48,000元 + 当前未到期、年底前到期90,000元 = 138,000元。新增计划账单不合并进原期间应收500,000元；明确不同观察窗口，不能混合分母。</p>
+<h3>9.3 页面与接口新增字段</h3>
+<p>合同结果新增 analyzed_at、source_as_of、enterprise_profile、contract_changes、matched_policy、analysis_sections[]（fact/interpretation/recommendation/evidence/action）。规则响应需区分 configured / not_configured / failed，企业信息区分 available / missing / expired / failed；雷达阈值、映射与版本必须返回可核对依据，不让模型主观填分。</p>
+<p>问数结果新增 status（success/empty/denied/missing/clarify）、data_result、insights[]、authorized_scope、resolved_filters、source_coverage。后端鉴权先于查询，不把项目是否存在、金额或数量泄露给无权用户；拒绝结果不可导出业务明细。</p>
+<h3>9.4 客户演示路径与验收</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>预期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>进入HT-A01助手</td>
+<td>回款80%、及时70%、保证金66.67%、主体40分、合同稳定70分；5项风险/关注标识；不出现底部场景卡与重复账单表</td>
+</tr>
+<tr>
+<td>展开回款与账龄</td>
+<td>显示20,000元逾期、5,000元待分配、8天账龄、COL-HD-01匹配书面催缴；执行与留痕明确</td>
+</tr>
+<tr>
+<td>切换HT-A03并查看建议</td>
+<td>项目未配置规则，明确AI建议；不生成“客户规定30天发律师函”等结论</td>
+</tr>
+<tr>
+<td>切换HT-C01</td>
+<td>保证金、主体、变更缺失轴为—；不补0或输出企业安全结论</td>
+</tr>
+<tr>
+<td>点击重新分析</td>
+<td>上次分析时间更新，源数据截至仍2026-11-08；原型不宣称真实取数成功</td>
+</tr>
+<tr>
+<td>进入问数</td>
+<td>默认显示经营概览完整问答；快捷气泡、右侧历史可点；无项目下拉框</td>
+</tr>
+<tr>
+<td>问创智中心回款，再追问按项目展开</td>
+<td>均保持该项目条件；若请求全部则重新与账号授权核验</td>
+</tr>
+<tr>
+<td>选择无权限示例</td>
+<td>显示当前无此项目查询授权，无指标/图表/合同明细；不导出数据</td>
+</tr>
+<tr>
+<td>问逾期超过100万元合同</td>
+<td>查询成功但无匹配记录，区别于权限拒绝与来源不足</td>
+</tr>
+<tr>
+<td>问同比</td>
+<td>说明缺少基期，不能生成增长率或同比图</td>
+</tr>
+<tr>
+<td>选择年底待回收</td>
+<td>48,000 + 90,000 = 138,000；区分逾期/未到期，声明非回款预测</td>
+</tr>
+</tbody></table>
+<p>项目名称、企业信息、规则、变更及账单均为业务化合成样例；尚无获授权的生产数据集或真实接口。接入前须完成字段映射、数据同步、语义层对账和中台协议联调。内部会议转写及画面仅留本地，不随公开站点发布。</p>
+<h1>双智能体核心场景清单 V3.1</h1>
+<h2 id="section-10">C01 履约总览</h2>
 <table>
 <thead>
 <tr>
@@ -722,7 +810,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>需要的数据</td>
-<td>当前合同、账单、核销、保证金、期限、准备清单</td>
+<td>当前合同、账单、核销、保证金、企业信息、变更、项目规则</td>
 </tr>
 <tr>
 <td>实现流程</td>
@@ -737,7 +825,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>仅当前合同；缺失维度单列，不产出信用评级。</td>
 </tr>
 </tbody></table>
-<h2 id="section-10">C02 应收与未缴</h2>
+<h2 id="section-11">C02 应收与未缴</h2>
 <table>
 <thead>
 <tr>
@@ -774,7 +862,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>作废账单排除；到账待分配不自动抵减。</td>
 </tr>
 </tbody></table>
-<h2 id="section-11">C03 逾期催缴</h2>
+<h2 id="section-12">C03 逾期催缴</h2>
 <table>
 <thead>
 <tr>
@@ -811,7 +899,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>原型仅本地草稿；实际发出走原业务确认流程。</td>
 </tr>
 </tbody></table>
-<h2 id="section-12">C04 续签准备</h2>
+<h2 id="section-13">C04 续签准备</h2>
 <table>
 <thead>
 <tr>
@@ -848,7 +936,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>准备进度不是续签概率，不自动延长合同。</td>
 </tr>
 </tbody></table>
-<h2 id="section-13">C05 付款及时性</h2>
+<h2 id="section-14">C05 付款及时性</h2>
 <table>
 <thead>
 <tr>
@@ -885,7 +973,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>按期核销/到期应收；补录时间不替代实际到账时间。</td>
 </tr>
 </tbody></table>
-<h2 id="section-14">C06 保证金核验</h2>
+<h2 id="section-15">C06 保证金核验</h2>
 <table>
 <thead>
 <tr>
@@ -922,7 +1010,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>保证金不混入租金回款；未知值不填0。</td>
 </tr>
 </tbody></table>
-<h2 id="section-15">C07 到账待分配</h2>
+<h2 id="section-16">C07 到账待分配</h2>
 <table>
 <thead>
 <tr>
@@ -959,7 +1047,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>需要财务正式核销后刷新，不自动修改账。</td>
 </tr>
 </tbody></table>
-<h2 id="section-16">C08 跟进与复核</h2>
+<h2 id="section-17">C08 企业风险与条款稳定</h2>
 <table>
 <thead>
 <tr>
@@ -977,26 +1065,26 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>典型问法</td>
-<td>下一步谁负责？处理后风险消除了吗？</td>
+<td>企业是否有经营风险，合同变更是否频繁？</td>
 </tr>
 <tr>
 <td>需要的数据</td>
-<td>负责人、任务、跟进记录、业务快照</td>
+<td>统一主体标识、外部风险事件、当前合同版本与生效变更</td>
 </tr>
 <tr>
 <td>实现流程</td>
-<td>生成待办草稿 → 人工执行 → 更新源数据 → 重新分析</td>
+<td>主体匹配 → 事件核验 → 分项指标 → 与付款行为联合解读</td>
 </tr>
 <tr>
 <td>验收案例</td>
-<td>可查看本地草稿；任务完成不会直接将欠费归零。</td>
+<td>HT-A01主体演示分40、合同稳定70；HT-C01缺失时显示待核验。</td>
 </tr>
 <tr>
 <td>边界</td>
-<td>业务指标只随有效源数据变化。</td>
+<td>分级是演示规则，变更不等同违约；外部命中需核验，不作信用评级。</td>
 </tr>
 </tbody></table>
-<h2 id="section-17">Q01 经营总览</h2>
+<h2 id="section-18">Q01 经营总览</h2>
 <table>
 <thead>
 <tr>
@@ -1033,7 +1121,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>每个指标明确口径与截至时间。</td>
 </tr>
 </tbody></table>
-<h2 id="section-18">Q02 欠费催缴分布</h2>
+<h2 id="section-19">Q02 欠费催缴分布</h2>
 <table>
 <thead>
 <tr>
@@ -1063,14 +1151,14 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>验收案例</td>
-<td>4份合同逾期48,000元；项目A 26,000元、B 22,000元。</td>
+<td>4份合同逾期48,000元；海淀科技园 26,000元、B 22,000元。</td>
 </tr>
 <tr>
 <td>边界</td>
 <td>授权项目内查询；零余额不进入催缴清单。</td>
 </tr>
 </tbody></table>
-<h2 id="section-19">Q03 回款分析</h2>
+<h2 id="section-20">Q03 回款分析</h2>
 <table>
 <thead>
 <tr>
@@ -1100,14 +1188,14 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>验收案例</td>
-<td>项目A应收300,000元、核销274,000元、回款率91.33%。</td>
+<td>海淀科技园应收300,000元、核销274,000元、回款率91.33%。</td>
 </tr>
 <tr>
 <td>边界</td>
 <td>不以银行流水总额替代已核销。</td>
 </tr>
 </tbody></table>
-<h2 id="section-20">Q04 企业关联合同</h2>
+<h2 id="section-21">Q04 企业关联合同</h2>
 <table>
 <thead>
 <tr>
@@ -1137,14 +1225,14 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 </tr>
 <tr>
 <td>验收案例</td>
-<td>全部范围远景3份合同，应收200,000元；项目B仅1份、20,000元。</td>
+<td>全部范围远景3份合同，应收200,000元；创智中心仅1份、20,000元。</td>
 </tr>
 <tr>
 <td>边界</td>
 <td>同名需澄清；同合同多资源关联不得重复汇总。</td>
 </tr>
 </tbody></table>
-<h2 id="section-21">Q05 到期统筹</h2>
+<h2 id="section-22">Q05 到期统筹</h2>
 <table>
 <thead>
 <tr>
@@ -1181,7 +1269,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>到期日与续签状态分开展示。</td>
 </tr>
 </tbody></table>
-<h2 id="section-22">Q06 资产出租与空置</h2>
+<h2 id="section-23">Q06 资产出租与空置</h2>
 <table>
 <thead>
 <tr>
@@ -1218,7 +1306,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>台账数量与面积出租率不混用。</td>
 </tr>
 </tbody></table>
-<h2 id="section-23">Q09 连续追问与会话回看</h2>
+<h2 id="section-24">Q09 连续追问与会话回看</h2>
 <table>
 <thead>
 <tr>
@@ -1255,7 +1343,7 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <td>历史不自动更新；重新查询形成新快照。</td>
 </tr>
 </tbody></table>
-<h2 id="section-24">Q10 数据不足与澄清</h2>
+<h2 id="section-25">Q10 数据不足与澄清</h2>
 <table>
 <thead>
 <tr>
@@ -1290,6 +1378,80 @@ data: {&quot;run_id&quot;:&quot;run-001&quot;,&quot;seq&quot;:5,&quot;status&quo
 <tr>
 <td>边界</td>
 <td>不支持问题需澄清，不展示伪造图表。</td>
+</tr>
+</tbody></table>
+<h2 id="section-26">Q11 授权与空结果</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>智能体</td>
+<td>智能问数</td>
+</tr>
+<tr>
+<td>角色</td>
+<td>业务 / 管理者</td>
+</tr>
+<tr>
+<td>典型问法</td>
+<td>新城中心回款情况；逾期超过100万元的合同</td>
+</tr>
+<tr>
+<td>需要的数据</td>
+<td>服务端授权范围、指标查询状态、筛选条件</td>
+</tr>
+<tr>
+<td>实现流程</td>
+<td>先鉴权 → 有权再查询 → 区分拒绝/空结果/来源缺失</td>
+</tr>
+<tr>
+<td>验收案例</td>
+<td>无权限不返回指标；无匹配合同明确为空，不伪造数值。</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>页面不提供授权项目选择器；生产权限必须在服务端执行。</td>
+</tr>
+</tbody></table>
+<h2 id="section-27">Q12 年底待回收计划</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>智能体</td>
+<td>智能问数</td>
+</tr>
+<tr>
+<td>角色</td>
+<td>财务 / 管理者</td>
+</tr>
+<tr>
+<td>典型问法</td>
+<td>年底前还有多少账单待回收？</td>
+</tr>
+<tr>
+<td>需要的数据</td>
+<td>已到期账单、年底前已生成未到期账单、核销分配</td>
+</tr>
+<tr>
+<td>实现流程</td>
+<td>区分到期状态 → 计算计划余额 → 账单下钻</td>
+</tr>
+<tr>
+<td>验收案例</td>
+<td>逾期48,000元 + 未到期90,000元 = 138,000元。</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>账单计划不等于实际回款预测，未生成账单不纳入。</td>
 </tr>
 </tbody></table>
 </main></div></body></html>
